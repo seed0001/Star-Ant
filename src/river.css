@@ -1,0 +1,86 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  font-family: system-ui, Segoe UI, Roboto, sans-serif;
+  background: #0d1210;
+  color: #d8ebe0;
+}
+
+#river-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}
+
+#river-chrome {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  max-width: 22rem;
+  padding: 0.85rem 1rem;
+  pointer-events: none;
+}
+
+#river-chrome h1 {
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+#river-chrome a {
+  pointer-events: auto;
+  color: #8ec4a8;
+  text-decoration: none;
+}
+
+#river-chrome a:hover {
+  text-decoration: underline;
+}
+
+.river-hint {
+  margin: 0 0 0.65rem;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  opacity: 0.88;
+}
+
+.river-controls {
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  font-size: 0.78rem;
+}
+
+.river-controls label {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto;
+  gap: 0.15rem 0.5rem;
+  align-items: center;
+}
+
+.river-controls input[type="range"] {
+  grid-column: 1 / -1;
+  width: 100%;
+}
+
+.river-controls span:last-child {
+  justify-self: end;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.9;
+}
+
+.river-back {
+  margin: 0.75rem 0 0;
+  font-size: 0.82rem;
+}

@@ -1,0 +1,3304 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grass World — Fly</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div
+      id="app-splash"
+      class="app-splash"
+      aria-modal="true"
+      role="dialog"
+      aria-labelledby="splash-title"
+      aria-describedby="splash-desc"
+      aria-hidden="false"
+    >
+      <div class="app-splash-backdrop" aria-hidden="true"></div>
+      <img
+        class="app-splash-img"
+        src="/splash.png"
+        alt=""
+        width="1920"
+        height="1080"
+        decoding="async"
+      />
+      <div class="app-splash-panel app-splash-panel--modes">
+        <h1 id="splash-title" class="app-splash-title">Grass World</h1>
+        <p id="splash-desc" class="app-splash-desc">
+          Choose how you want to play. Desktop uses mouse + keyboard. Tablet mode adds touch controls and a
+          framed view for phone or tablet browsers on your network.
+        </p>
+        <p class="app-splash-network-hint">
+          For tablet: run the dev server with LAN access (this project uses <code>host: true</code> in Vite), then
+          open <code>http://YOUR_PC_IP:5173/</code> from the tablet on the same Wi‑Fi.
+        </p>
+        <div class="app-splash-mode-btns" role="group" aria-label="Play mode">
+          <button type="button" id="splash-mode-desktop" class="app-splash-btn app-splash-btn--primary">
+            Desktop mode
+          </button>
+          <button type="button" id="splash-mode-tablet" class="app-splash-btn app-splash-btn--secondary">
+            Tablet mode
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="login-root" class="login-root" role="presentation" hidden>
+      <canvas id="login-canvas" aria-hidden="true"></canvas>
+      <details class="login-ocean-panel" id="login-ocean-panel">
+        <summary class="login-ocean-summary">Ocean</summary>
+        <div class="login-ocean-body">
+          <p class="login-ocean-section">Waves</p>
+          <label class="login-ocean-row">
+            <span>Height</span>
+            <input id="login-wave-height" type="range" min="0.15" max="2.5" step="0.05" value="1" />
+            <span class="login-ocean-val" data-for="login-wave-height">1</span>
+          </label>
+          <label class="login-ocean-row">
+            <span>Frequency</span>
+            <input id="login-wave-freq" type="range" min="0.35" max="2.2" step="0.05" value="1" />
+            <span class="login-ocean-val" data-for="login-wave-freq">1</span>
+          </label>
+          <label class="login-ocean-row">
+            <span>Speed</span>
+            <input id="login-wave-speed" type="range" min="0" max="2.5" step="0.05" value="1" />
+            <span class="login-ocean-val" data-for="login-wave-speed">1</span>
+          </label>
+          <label class="login-ocean-row">
+            <span>Chop</span>
+            <input id="login-wave-chop" type="range" min="0" max="1.5" step="0.05" value="1" />
+            <span class="login-ocean-val" data-for="login-wave-chop">1</span>
+          </label>
+          <p class="login-ocean-section">Color</p>
+          <label class="login-ocean-row">
+            <span>Warmth</span>
+            <input id="login-water-warmth" type="range" min="0" max="1" step="0.02" value="0.35" />
+            <span class="login-ocean-val" data-for="login-water-warmth">0.35</span>
+          </label>
+          <label class="login-ocean-row">
+            <span>Saturation</span>
+            <input id="login-water-sat" type="range" min="0.2" max="2" step="0.05" value="1" />
+            <span class="login-ocean-val" data-for="login-water-sat">1</span>
+          </label>
+          <label class="login-ocean-row">
+            <span>Contrast</span>
+            <input id="login-water-contrast" type="range" min="0.5" max="2" step="0.05" value="1" />
+            <span class="login-ocean-val" data-for="login-water-contrast">1</span>
+          </label>
+          <p class="login-ocean-section">Surface</p>
+          <label class="login-ocean-row">
+            <span>Foam</span>
+            <input id="login-foam" type="range" min="0" max="2" step="0.05" value="1" />
+            <span class="login-ocean-val" data-for="login-foam">1</span>
+          </label>
+          <label class="login-ocean-row">
+            <span>Sun glint</span>
+            <input id="login-spec" type="range" min="0" max="2.5" step="0.05" value="1" />
+            <span class="login-ocean-val" data-for="login-spec">1</span>
+          </label>
+          <p class="login-ocean-section">Sky &amp; bloom</p>
+          <label class="login-ocean-row">
+            <span>Sky warmth</span>
+            <input id="login-sky-warmth" type="range" min="0" max="1" step="0.02" value="0.2" />
+            <span class="login-ocean-val" data-for="login-sky-warmth">0.2</span>
+          </label>
+          <label class="login-ocean-row">
+            <span>Sky saturation</span>
+            <input id="login-sky-sat" type="range" min="0.3" max="2" step="0.05" value="1" />
+            <span class="login-ocean-val" data-for="login-sky-sat">1</span>
+          </label>
+          <label class="login-ocean-row">
+            <span>Bloom</span>
+            <input id="login-bloom" type="range" min="0" max="1.5" step="0.05" value="0.48" />
+            <span class="login-ocean-val" data-for="login-bloom">0.48</span>
+          </label>
+          <button type="button" id="login-ocean-reset" class="login-ocean-reset">Reset</button>
+        </div>
+      </details>
+      <div class="login-ui">
+        <h1 class="login-title">Grass World</h1>
+        <p class="login-look-hint">Drag to look around · scroll to zoom</p>
+        <button type="button" id="login-btn" class="login-btn">Login</button>
+      </div>
+    </div>
+
+    <div
+      id="terrain-choice-modal"
+      class="terrain-choice-modal"
+      hidden
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="terrain-choice-title"
+    >
+      <div class="terrain-choice-card">
+        <h2 id="terrain-choice-title">Choose your world</h2>
+        <p class="terrain-choice-desc">
+          <strong>Water</strong> — start under the ocean and raise land.
+          <strong>Land</strong> — start on dry ground.
+        </p>
+        <div class="terrain-choice-actions">
+          <button type="button" id="terrain-pick-water" class="terrain-choice-btn terrain-choice-btn--water">
+            Water
+          </button>
+          <button type="button" id="terrain-pick-land" class="terrain-choice-btn terrain-choice-btn--land">
+            Land
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="game-root" class="game-root game-root--concealed">
+    <div id="hud">
+      <p class="hud-desktop-only">
+        <strong>Click</strong> to fly — <kbd>W A S D</kbd> move · <kbd>Space</kbd> up ·
+        <kbd>Shift</kbd> down · <kbd>Mouse</kbd> look · <strong>Wheel</strong> fly speed
+      </p>
+      <p class="hud-tablet-only">
+        <strong>Touch:</strong> drag on the <em>right</em> to look · left stick moves · Up / Dn for altitude · speed
+        slider below
+      </p>
+      <p class="hud-fly-speed-row" aria-label="Free flight speed">
+        <label class="hud-fly-speed-label">
+          <span class="hud-fly-speed-title">Fly speed</span>
+          <input
+            id="hud-fly-speed"
+            type="range"
+            min="0.25"
+            max="120"
+            step="0.25"
+            value="18"
+          />
+          <span id="hud-fly-speed-val" class="hud-fly-speed-val">18</span>
+        </label>
+        <span class="hud-fly-speed-hint">Wheel on canvas · Shift = bigger steps</span>
+      </p>
+      <p id="hud-fly-hint" class="hint">
+        Esc releases mouse · <kbd>1</kbd> day / night · <kbd>P</kbd> settings ·
+        <kbd>C</kbd> constellations · <kbd>E</kbd> terrain paint · Bee ride / watch / drone below.
+      </p>
+      <p id="hud-moon-tide" class="hud-moon-tide" aria-live="polite" hidden>
+        <span class="hud-moon-tide-label">Tide</span>
+        <span id="hud-moon-tide-state">—</span>
+        <span class="hud-moon-tide-sep">·</span>
+        <span id="hud-moon-tide-offset">0.00 m</span>
+      </p>
+      <p id="hud-fish-eco" class="hud-fish-eco" aria-live="polite" hidden>
+        <span class="hud-fish-eco-label">Lake fish</span>
+        <span id="hud-fish-eco-pop">—</span>
+        <span class="hud-fish-eco-sep">·</span>
+        <span class="hud-fish-eco-label">Health</span>
+        <meter id="hud-fish-eco-health-meter" min="0" max="1" low="0.35" high="0.65" optimum="0.85" value="1"></meter>
+        <span id="hud-fish-eco-health-val">100%</span>
+        <span class="hud-fish-eco-sep">·</span>
+        <span class="hud-fish-eco-label">Pellets</span>
+        <span id="hud-fish-eco-pellets">—</span>
+      </p>
+      <p class="hud-actions">
+        <button type="button" id="transition-btn">Day / night</button>
+        <button type="button" id="constellation-btn">Constellations</button>
+        <button
+          type="button"
+          id="random-creature-view-btn"
+          class="hud-bee-btn"
+          disabled
+          aria-pressed="false"
+        >
+          Random creature view
+        </button>
+        <button type="button" id="tree-chop-btn" class="hud-bee-btn" aria-pressed="false">
+          Chop trees
+        </button>
+        <button type="button" id="terrain-paint-btn" class="hud-bee-btn" aria-pressed="false">
+          Terrain paint
+        </button>
+        <button type="button" id="settings-toggle">Settings</button>
+        <button type="button" id="bee-ride-btn" class="hud-bee-btn" disabled aria-pressed="false">
+          Bee ride
+        </button>
+        <button type="button" id="bee-watch-btn" class="hud-bee-btn" disabled aria-pressed="false">
+          Bee watch
+        </button>
+        <button type="button" id="bee-drone-btn" class="hud-bee-btn" disabled aria-pressed="false">
+          Bee drone
+        </button>
+        <button type="button" id="bee-exit-btn" class="hud-bee-btn" disabled>Exit bee</button>
+        <button type="button" id="micro-world-btn" class="hud-bee-btn" disabled aria-pressed="false">
+          Micro world (1″)
+        </button>
+        <button type="button" id="micro-world-exit-btn" class="hud-bee-btn" disabled>
+          Exit micro world
+        </button>
+        <button
+          type="button"
+          id="soldier-cam-toggle"
+          class="hud-bee-btn"
+          disabled
+          aria-pressed="false"
+        >
+          3rd person view
+        </button>
+      </p>
+    </div>
+
+    <div
+      id="world-spawn-overlay"
+      class="world-spawn-overlay"
+      aria-hidden="true"
+      aria-label="Spawn world on terrain"
+    >
+      <div class="world-spawn-card">
+        <p class="world-spawn-title">Raise land from the sea</p>
+        <p class="world-spawn-text">
+          You start in open water. Use terrain paint to build islands or coast, then spawn grass, trees,
+          flowers, and critters on dry ground (counts stay at zero until you turn them up and spawn).
+        </p>
+        <button type="button" id="world-spawn-btn" class="world-spawn-btn">Spawn world</button>
+      </div>
+    </div>
+
+    <div id="world-minimap" class="world-minimap" aria-hidden="true">
+      <canvas id="world-minimap-canvas" width="256" height="256"></canvas>
+      <p class="world-minimap-caption">Map → world</p>
+    </div>
+
+    <aside id="settings-panel" class="settings-panel" aria-label="Scene settings">
+      <div class="settings-inner">
+        <header class="settings-header">
+          <h2>Scene settings</h2>
+          <button type="button" id="settings-close" aria-label="Close">×</button>
+        </header>
+
+        <div class="settings-tabs" role="tablist" aria-label="Settings categories">
+          <button
+            type="button"
+            class="settings-tab is-active"
+            role="tab"
+            aria-selected="true"
+            id="tab-grass"
+            data-tab="grass"
+            aria-controls="panel-grass"
+          >
+            Grass
+          </button>
+          <button
+            type="button"
+            class="settings-tab"
+            role="tab"
+            aria-selected="false"
+            id="tab-ground"
+            data-tab="ground"
+            aria-controls="panel-ground"
+          >
+            Ground
+          </button>
+          <button
+            type="button"
+            class="settings-tab"
+            role="tab"
+            aria-selected="false"
+            id="tab-water"
+            data-tab="water"
+            aria-controls="panel-water"
+          >
+            Water
+          </button>
+          <button
+            type="button"
+            class="settings-tab"
+            role="tab"
+            aria-selected="false"
+            id="tab-sky"
+            data-tab="sky"
+            aria-controls="panel-sky"
+          >
+            Sky
+          </button>
+          <button
+            type="button"
+            class="settings-tab"
+            role="tab"
+            aria-selected="false"
+            id="tab-weather"
+            data-tab="weather"
+            aria-controls="panel-weather"
+          >
+            Weather
+          </button>
+          <button
+            type="button"
+            class="settings-tab"
+            role="tab"
+            aria-selected="false"
+            id="tab-flowers"
+            data-tab="flowers"
+            aria-controls="panel-flowers"
+          >
+            Flowers
+          </button>
+          <button
+            type="button"
+            class="settings-tab"
+            role="tab"
+            aria-selected="false"
+            id="tab-trees"
+            data-tab="trees"
+            aria-controls="panel-trees"
+          >
+            Trees
+          </button>
+          <button
+            type="button"
+            class="settings-tab"
+            role="tab"
+            aria-selected="false"
+            id="tab-critters"
+            data-tab="critters"
+            aria-controls="panel-critters"
+          >
+            Critters
+          </button>
+          <button
+            type="button"
+            class="settings-tab"
+            role="tab"
+            aria-selected="false"
+            id="tab-insects"
+            data-tab="insects"
+            aria-controls="panel-insects"
+          >
+            Insects
+          </button>
+          <button
+            type="button"
+            class="settings-tab"
+            role="tab"
+            aria-selected="false"
+            id="tab-author"
+            data-tab="author"
+            aria-controls="panel-author"
+          >
+            Author
+          </button>
+          <button
+            type="button"
+            class="settings-tab"
+            role="tab"
+            aria-selected="false"
+            id="tab-simulation"
+            data-tab="simulation"
+            aria-controls="panel-simulation"
+          >
+            Simulation
+          </button>
+          <button
+            type="button"
+            class="settings-tab"
+            role="tab"
+            aria-selected="false"
+            id="tab-audio"
+            data-tab="audio"
+            aria-controls="panel-audio"
+          >
+            Audio
+          </button>
+        </div>
+
+        <div
+          id="panel-grass"
+          class="settings-tab-panel is-active"
+          role="tabpanel"
+          aria-labelledby="tab-grass"
+        >
+        <section class="blade-presets" aria-label="Grass settings">
+          <h3 class="settings-section-title">Grass settings</h3>
+          <p class="blade-presets-hint">
+            Define one or more blade shapes. The field uses your <strong>total</strong> count and picks
+            randomly among the types you add (one type → all match; two → mix of both; etc.).
+          </p>
+
+          <label class="setting-row">
+            Total blades in field <span id="val-grass-count">0</span>
+            <input
+              id="set-grass-count"
+              type="range"
+              min="0"
+              max="10000000"
+              step="1000"
+              value="0"
+            />
+          </label>
+
+          <p class="blade-types-meta">
+            Blade types: <span id="val-blade-types-count">1</span>
+            · <span id="blade-distribution-hint">—</span>
+          </p>
+          <p class="blade-types-meta blade-share-hint">
+            Each type’s <strong>field share</strong> is a relative weight (0–100). They are normalized so
+            your <strong>total blades</strong> above splits across types (e.g. weights 75 and 25 → 75% /
+            25% of the total).
+          </p>
+
+          <div id="blade-presets-list" class="blade-presets-list"></div>
+
+          <button type="button" id="add-blade-preset" class="add-blade-btn">+ Add blade type</button>
+
+          <p class="blade-total">
+            Last distribution (instances per type): <span id="val-blade-distribution">—</span>
+          </p>
+        </section>
+
+        <template id="blade-preset-template">
+          <div class="blade-preset" data-blade-preset-row>
+            <div class="blade-preset-header">
+              <h4 class="blade-preset-title">Blade</h4>
+              <button type="button" class="remove-blade-preset" aria-label="Remove this blade type">
+                ×
+              </button>
+            </div>
+            <label class="setting-row setting-row-tight">
+              In field (this build) <span data-blade-val="count">0</span>
+            </label>
+            <label class="setting-row setting-row-tight">
+              Field share (weight)
+              <span data-blade-val="share">100</span>
+              <input
+                data-field="share"
+                type="range"
+                min="0"
+                max="100"
+                step="1"
+                value="100"
+              />
+            </label>
+            <label class="setting-row setting-row-tight">
+              Width <span data-blade-val="width">0.080</span>
+              <input data-field="width" type="range" min="0.03" max="0.32" step="0.005" value="0.08" />
+            </label>
+            <label class="setting-row setting-row-tight">
+              Thickness <span data-blade-val="thickness">0.016</span>
+              <input data-field="thickness" type="range" min="0.004" max="0.06" step="0.001" value="0.016" />
+            </label>
+            <label class="setting-row setting-row-tight">
+              Height <span data-blade-val="height">1.20</span>
+              <input data-field="height" type="range" min="0.35" max="2.8" step="0.05" value="1.2" />
+            </label>
+            <label class="setting-row setting-row-tight">
+              Edge noise <span data-blade-val="edge">0.30</span>
+              <input data-field="edge" type="range" min="0" max="1" step="0.02" value="0.3" />
+            </label>
+            <label class="setting-row setting-row-tight">
+              Slices (width strips) <span data-blade-val="slices">1</span>
+              <input data-field="slices" type="range" min="1" max="16" step="1" value="1" />
+            </label>
+            <label class="setting-row setting-row-tight blade-curve-row">
+              Bend curve
+              <select data-field="curve" class="blade-curve-select">
+                <option value="0">Straight</option>
+                <option value="1">Ease (tip)</option>
+                <option value="2">Arc</option>
+                <option value="3">S-curve</option>
+                <option value="4">Smooth step</option>
+              </select>
+            </label>
+            <label class="setting-row setting-row-tight">
+              Curve strength <span data-blade-val="curveStrength">0.35</span>
+              <input data-field="curveStrength" type="range" min="0" max="1" step="0.02" value="0.35" />
+            </label>
+            <label class="setting-row setting-row-tight">
+              Cel shading (toon) <span data-blade-val="cel">0.00</span>
+              <input data-field="cel" type="range" min="0" max="1" step="0.02" value="0" />
+            </label>
+            <label class="setting-row setting-row-tight">
+              Erosion (ragged holes) <span data-blade-val="erosion">0.45</span>
+              <input data-field="erosion" type="range" min="0" max="1" step="0.02" value="0.45" />
+            </label>
+            <label class="setting-row setting-row-tight">
+              Streak shade <span data-blade-val="streak">0.50</span>
+              <input data-field="streak" type="range" min="0" max="1" step="0.02" value="0.5" />
+            </label>
+            <label class="setting-row setting-color">
+              Color base
+              <input data-field="color" type="color" value="#3d8a42" />
+            </label>
+            <label class="setting-row setting-color">
+              Color mid
+              <input data-field="color2" type="color" value="#4a8f4a" />
+            </label>
+            <label class="setting-row setting-color">
+              Color tip
+              <input data-field="color3" type="color" value="#c8e8a8" />
+            </label>
+            <label class="setting-row setting-row-tight">
+              Vertical bands <span data-blade-val="bandV">2</span>
+              <input data-field="bandV" type="range" min="1" max="8" step="1" value="2" />
+            </label>
+            <label class="setting-row setting-row-tight">
+              Horizontal bands <span data-blade-val="bandH">1</span>
+              <input data-field="bandH" type="range" min="1" max="8" step="1" value="1" />
+            </label>
+          </div>
+        </template>
+
+        <label class="setting-row">
+          Color variation <span id="val-color-var">1.00</span>
+          <input
+            id="set-color-variation"
+            type="range"
+            min="0"
+            max="1"
+            step="0.05"
+            value="1"
+          />
+        </label>
+        </div>
+
+        <div
+          id="panel-ground"
+          class="settings-tab-panel"
+          role="tabpanel"
+          aria-labelledby="tab-ground"
+        >
+          <h3 class="settings-section-title">Ground</h3>
+          <p class="blade-presets-hint">
+            Soil appearance and <strong>procedural elevation</strong>. Grass instances follow the same
+            height field as the mesh. <strong>Water</strong> (ocean and ponds) has its own tab.
+          </p>
+
+          <section class="ground-shader-block" aria-label="Ground appearance">
+            <h4 class="settings-subtitle">Soil &amp; albedo</h4>
+            <p class="blade-presets-hint">
+              Cloudy soil: base tint plus warm / cool layers. Albedo map blends your texture, or 0 for
+              shader-only.
+            </p>
+            <label class="setting-row setting-color">
+              Base tint
+              <input id="set-ground-color" type="color" value="#5c4a3a" />
+            </label>
+            <label class="setting-row">
+              Warm earth <span id="val-ground-warm">1.00</span>
+              <input
+                id="set-ground-warm"
+                type="range"
+                min="0"
+                max="2.5"
+                step="0.05"
+                value="1"
+              />
+            </label>
+            <label class="setting-row">
+              Cool mineral <span id="val-ground-cool">1.00</span>
+              <input
+                id="set-ground-cool"
+                type="range"
+                min="0"
+                max="2.5"
+                step="0.05"
+                value="1"
+              />
+            </label>
+            <label class="setting-row">
+              Albedo map blend <span id="val-ground-map-mix">0.35</span>
+              <input
+                id="set-ground-map-mix"
+                type="range"
+                min="0"
+                max="1"
+                step="0.02"
+                value="0.35"
+              />
+            </label>
+          </section>
+
+          <section class="ground-shader-block" aria-label="Terrain elevation">
+            <h4 class="settings-subtitle">Elevation (noise)</h4>
+            <p class="blade-presets-hint">
+              Fractal noise displaces the ground mesh; higher <strong>ridge</strong> pushes sharper
+              peaks. <strong>Frequency</strong> is spatial scale (lower → wider hills). More
+              <strong>octaves</strong> adds smaller detail frequencies.
+            </p>
+            <label class="setting-row">
+              Height amplitude <span id="val-terrain-amp">0.0</span>
+              <input
+                id="set-terrain-amplitude"
+                type="range"
+                min="0"
+                max="55"
+                step="0.5"
+                value="0"
+              />
+            </label>
+            <label class="setting-row">
+              Base frequency <span id="val-terrain-freq">0.0160</span>
+              <input
+                id="set-terrain-frequency"
+                type="range"
+                min="0.002"
+                max="0.12"
+                step="0.0005"
+                value="0.016"
+              />
+            </label>
+            <label class="setting-row">
+              Octaves (layers) <span id="val-terrain-oct">5</span>
+              <input
+                id="set-terrain-octaves"
+                type="range"
+                min="1"
+                max="8"
+                step="1"
+                value="5"
+              />
+            </label>
+            <label class="setting-row">
+              Persistence <span id="val-terrain-pers">0.52</span>
+              <input
+                id="set-terrain-persistence"
+                type="range"
+                min="0.2"
+                max="0.95"
+                step="0.01"
+                value="0.52"
+              />
+            </label>
+            <label class="setting-row">
+              Lacunarity (freq gap) <span id="val-terrain-lac">2.05</span>
+              <input
+                id="set-terrain-lacunarity"
+                type="range"
+                min="1.5"
+                max="3"
+                step="0.05"
+                value="2.05"
+              />
+            </label>
+            <label class="setting-row">
+              Ridge (sharp peaks) <span id="val-terrain-ridge">0.35</span>
+              <input
+                id="set-terrain-ridge"
+                type="range"
+                min="0"
+                max="1"
+                step="0.02"
+                value="0.35"
+              />
+            </label>
+            <label class="setting-row">
+              Noise seed <span id="val-terrain-seed">0</span>
+              <input
+                id="set-terrain-seed"
+                type="range"
+                min="0"
+                max="9999"
+                step="1"
+                value="0"
+              />
+            </label>
+          </section>
+        </div>
+
+        <div
+          id="panel-water"
+          class="settings-tab-panel"
+          role="tabpanel"
+          aria-labelledby="tab-water"
+        >
+          <h3 class="settings-section-title">Water</h3>
+          <p class="blade-presets-hint">
+            Open water and excavated ponds use the <strong>water table</strong> mesh: animated waves,
+            depth tint, sky reflection, sun specular, foam, and sparkles. Dig terrain below the water line
+            to expose it. Saved in environment JSON as <code>waterShader</code>.
+          </p>
+
+          <section class="ground-shader-block" aria-label="Water waves">
+            <h4 class="settings-subtitle">Waves &amp; motion</h4>
+            <p class="blade-presets-hint">
+              Primary Gerstner swell, cross chop, ripples, and fine surface detail.
+            </p>
+            <label class="setting-row">
+              Wave time scale <span id="val-water-wave-time-scale">1.000</span>
+              <input
+                id="set-water-wave-time-scale"
+                type="range"
+                min="0.05"
+                max="4"
+                step="0.05"
+                value="1"
+              />
+            </label>
+            <label class="setting-row">
+              Wave amplitude scale <span id="val-water-wave-amp">1.000</span>
+              <input
+                id="set-water-wave-amp"
+                type="range"
+                min="0"
+                max="3"
+                step="0.025"
+                value="1"
+              />
+            </label>
+            <label class="setting-row">
+              Frequency 1 <span id="val-water-freq1">0.420</span>
+              <input id="set-water-freq1" type="range" min="0.05" max="2" step="0.01" value="0.42" />
+            </label>
+            <label class="setting-row">
+              Frequency 2 <span id="val-water-freq2">0.360</span>
+              <input id="set-water-freq2" type="range" min="0.05" max="2" step="0.01" value="0.36" />
+            </label>
+            <label class="setting-row">
+              Speed 1 <span id="val-water-speed1">1.050</span>
+              <input id="set-water-speed1" type="range" min="0.1" max="4" step="0.05" value="1.05" />
+            </label>
+            <label class="setting-row">
+              Speed 2 <span id="val-water-speed2">0.880</span>
+              <input id="set-water-speed2" type="range" min="0.1" max="4" step="0.05" value="0.88" />
+            </label>
+            <label class="setting-row">
+              Primary swell amplitude <span id="val-water-amp-primary">0.055</span>
+              <input
+                id="set-water-amp-primary"
+                type="range"
+                min="0"
+                max="0.2"
+                step="0.002"
+                value="0.055"
+              />
+            </label>
+            <label class="setting-row">
+              Chop X <span id="val-water-chop-x">0.880</span>
+              <input id="set-water-chop-x" type="range" min="0.1" max="4" step="0.02" value="0.88" />
+            </label>
+            <label class="setting-row">
+              Chop Z <span id="val-water-chop-z">0.740</span>
+              <input id="set-water-chop-z" type="range" min="0.1" max="4" step="0.02" value="0.74" />
+            </label>
+            <label class="setting-row">
+              Chop speed <span id="val-water-chop-speed">0.620</span>
+              <input
+                id="set-water-chop-speed"
+                type="range"
+                min="0.05"
+                max="3"
+                step="0.02"
+                value="0.62"
+              />
+            </label>
+            <label class="setting-row">
+              Chop amplitude <span id="val-water-chop-amp">0.032</span>
+              <input
+                id="set-water-chop-amp"
+                type="range"
+                min="0"
+                max="0.12"
+                step="0.002"
+                value="0.032"
+              />
+            </label>
+            <label class="setting-row">
+              Ripple X <span id="val-water-rip-x">1.900</span>
+              <input id="set-water-rip-x" type="range" min="0.5" max="6" step="0.05" value="1.9" />
+            </label>
+            <label class="setting-row">
+              Ripple Z <span id="val-water-rip-z">1.700</span>
+              <input id="set-water-rip-z" type="range" min="0.5" max="6" step="0.05" value="1.7" />
+            </label>
+            <label class="setting-row">
+              Ripple speed A <span id="val-water-rip-spd-a">0.350</span>
+              <input
+                id="set-water-rip-spd-a"
+                type="range"
+                min="0.05"
+                max="2"
+                step="0.02"
+                value="0.35"
+              />
+            </label>
+            <label class="setting-row">
+              Ripple speed B <span id="val-water-rip-spd-b">0.410</span>
+              <input
+                id="set-water-rip-spd-b"
+                type="range"
+                min="0.05"
+                max="2"
+                step="0.02"
+                value="0.41"
+              />
+            </label>
+            <label class="setting-row">
+              Ripple amplitude <span id="val-water-rip-amp">0.015</span>
+              <input
+                id="set-water-rip-amp"
+                type="range"
+                min="0"
+                max="0.08"
+                step="0.001"
+                value="0.015"
+              />
+            </label>
+            <label class="setting-row">
+              Detail X <span id="val-water-det-x">3.100</span>
+              <input id="set-water-det-x" type="range" min="0.5" max="10" step="0.05" value="3.1" />
+            </label>
+            <label class="setting-row">
+              Detail Z <span id="val-water-det-z">2.400</span>
+              <input id="set-water-det-z" type="range" min="0.5" max="10" step="0.05" value="2.4" />
+            </label>
+            <label class="setting-row">
+              Detail speed <span id="val-water-det-spd">1.200</span>
+              <input id="set-water-det-spd" type="range" min="0.1" max="4" step="0.05" value="1.2" />
+            </label>
+            <label class="setting-row">
+              Detail amplitude <span id="val-water-det-amp">0.008</span>
+              <input
+                id="set-water-det-amp"
+                type="range"
+                min="0"
+                max="0.05"
+                step="0.0005"
+                value="0.008"
+              />
+            </label>
+          </section>
+
+          <section class="ground-shader-block" aria-label="Water shore and depth">
+            <h4 class="settings-subtitle">Shoreline &amp; depth</h4>
+            <p class="blade-presets-hint">
+              Surface normals, land–water boundary, and how depth tints the water column.
+            </p>
+            <label class="setting-row">
+              Normal finite diff. (ε) <span id="val-water-normal-eps">0.180</span>
+              <input
+                id="set-water-normal-eps"
+                type="range"
+                min="0.04"
+                max="0.55"
+                step="0.01"
+                value="0.18"
+              />
+            </label>
+            <label class="setting-row">
+              Shore discard bias <span id="val-water-discard-bias">0.035</span>
+              <input
+                id="set-water-discard-bias"
+                type="range"
+                min="0.008"
+                max="0.12"
+                step="0.001"
+                value="0.035"
+              />
+            </label>
+            <label class="setting-row">
+              Depth absorb <span id="val-water-depth-absorb">0.850</span>
+              <input
+                id="set-water-depth-absorb"
+                type="range"
+                min="0.1"
+                max="3"
+                step="0.02"
+                value="0.85"
+              />
+            </label>
+            <label class="setting-row">
+              Depth shallow edge <span id="val-water-depth-shallow-edge">0.350</span>
+              <input
+                id="set-water-depth-shallow-edge"
+                type="range"
+                min="0.05"
+                max="1.2"
+                step="0.01"
+                value="0.35"
+              />
+            </label>
+            <label class="setting-row">
+              Depth mid start <span id="val-water-depth-mid-k">0.250</span>
+              <input
+                id="set-water-depth-mid-k"
+                type="range"
+                min="0.05"
+                max="1.5"
+                step="0.01"
+                value="0.25"
+              />
+            </label>
+            <label class="setting-row">
+              Depth deep end <span id="val-water-depth-deep-k">1.200</span>
+              <input
+                id="set-water-depth-deep-k"
+                type="range"
+                min="0.2"
+                max="4"
+                step="0.02"
+                value="1.2"
+              />
+            </label>
+          </section>
+
+          <section class="ground-shader-block" aria-label="Water reflection and specular">
+            <h4 class="settings-subtitle">Reflection &amp; specular</h4>
+            <p class="blade-presets-hint">
+              Fresnel, sun glint, and sky reflection strength (day vs night).
+            </p>
+            <label class="setting-row">
+              Fresnel power <span id="val-water-fresnel-pow">3.500</span>
+              <input
+                id="set-water-fresnel-pow"
+                type="range"
+                min="1"
+                max="10"
+                step="0.1"
+                value="3.5"
+              />
+            </label>
+            <label class="setting-row">
+              Specular power (night) <span id="val-water-spec-pow-min">48</span>
+              <input id="set-water-spec-pow-min" type="range" min="8" max="128" step="1" value="48" />
+            </label>
+            <label class="setting-row">
+              Specular power (day) <span id="val-water-spec-pow-max">96</span>
+              <input id="set-water-spec-pow-max" type="range" min="16" max="256" step="1" value="96" />
+            </label>
+            <label class="setting-row">
+              Sun specular strength <span id="val-water-spec-strength">0.850</span>
+              <input
+                id="set-water-spec-strength"
+                type="range"
+                min="0"
+                max="2.5"
+                step="0.02"
+                value="0.85"
+              />
+            </label>
+            <label class="setting-row">
+              Sky reflection (night) <span id="val-water-refl-night">0.250</span>
+              <input
+                id="set-water-refl-night"
+                type="range"
+                min="0"
+                max="1.5"
+                step="0.02"
+                value="0.25"
+              />
+            </label>
+            <label class="setting-row">
+              Sky reflection (day) <span id="val-water-refl-day">0.550</span>
+              <input
+                id="set-water-refl-day"
+                type="range"
+                min="0"
+                max="2"
+                step="0.02"
+                value="0.55"
+              />
+            </label>
+          </section>
+
+          <section class="ground-shader-block" aria-label="Water foam">
+            <h4 class="settings-subtitle">Foam</h4>
+            <p class="blade-presets-hint">
+              Shore breakup and animated foam pattern on shallow water.
+            </p>
+            <label class="setting-row">
+              Foam strength <span id="val-water-foam-str">1.000</span>
+              <input id="set-water-foam-str" type="range" min="0" max="2.5" step="0.02" value="1" />
+            </label>
+            <label class="setting-row">
+              Foam depth (shallow) <span id="val-water-foam-start">0.220</span>
+              <input
+                id="set-water-foam-start"
+                type="range"
+                min="0.02"
+                max="0.6"
+                step="0.005"
+                value="0.22"
+              />
+            </label>
+            <label class="setting-row">
+              Foam depth (deep) <span id="val-water-foam-end">0.020</span>
+              <input
+                id="set-water-foam-end"
+                type="range"
+                min="0"
+                max="0.15"
+                step="0.002"
+                value="0.02"
+              />
+            </label>
+            <label class="setting-row">
+              Foam pattern X <span id="val-water-foam-fx">2.100</span>
+              <input id="set-water-foam-fx" type="range" min="0.2" max="8" step="0.05" value="2.1" />
+            </label>
+            <label class="setting-row">
+              Foam pattern Z <span id="val-water-foam-fz">1.800</span>
+              <input id="set-water-foam-fz" type="range" min="0.2" max="8" step="0.05" value="1.8" />
+            </label>
+            <label class="setting-row">
+              Foam scroll speed <span id="val-water-foam-spd">2.000</span>
+              <input id="set-water-foam-spd" type="range" min="0" max="6" step="0.05" value="2" />
+            </label>
+          </section>
+
+          <section class="ground-shader-block" aria-label="Water glints">
+            <h4 class="settings-subtitle">Sparkles / glints</h4>
+            <p class="blade-presets-hint">
+              Sun-facing sparkles on the water surface.
+            </p>
+            <label class="setting-row">
+              Glint cell density <span id="val-water-glint-grid">28</span>
+              <input id="set-water-glint-grid" type="range" min="6" max="80" step="1" value="28" />
+            </label>
+            <label class="setting-row">
+              Glint sharpness <span id="val-water-glint-pow">12.00</span>
+              <input id="set-water-glint-pow" type="range" min="2" max="32" step="0.5" value="12" />
+            </label>
+            <label class="setting-row">
+              Glint strength <span id="val-water-glint-str">0.350</span>
+              <input
+                id="set-water-glint-str"
+                type="range"
+                min="0"
+                max="1.5"
+                step="0.02"
+                value="0.35"
+              />
+            </label>
+          </section>
+
+          <section class="ground-shader-block" aria-label="Water transparency">
+            <h4 class="settings-subtitle">Transparency</h4>
+            <p class="blade-presets-hint">
+              How opaque the water sheet is from different view angles and over foam.
+            </p>
+            <label class="setting-row">
+              Alpha (grazing) <span id="val-water-alpha-min">0.420</span>
+              <input
+                id="set-water-alpha-min"
+                type="range"
+                min="0.1"
+                max="0.95"
+                step="0.01"
+                value="0.42"
+              />
+            </label>
+            <label class="setting-row">
+              Alpha (facing) <span id="val-water-alpha-max">0.720</span>
+              <input
+                id="set-water-alpha-max"
+                type="range"
+                min="0.2"
+                max="1"
+                step="0.01"
+                value="0.72"
+              />
+            </label>
+            <label class="setting-row">
+              Alpha foam boost <span id="val-water-alpha-foam">0.880</span>
+              <input
+                id="set-water-alpha-foam"
+                type="range"
+                min="0.3"
+                max="1"
+                step="0.01"
+                value="0.88"
+              />
+            </label>
+            <label class="setting-row">
+              Alpha depth bias <span id="val-water-alpha-depth">0.080</span>
+              <input
+                id="set-water-alpha-depth"
+                type="range"
+                min="0"
+                max="0.35"
+                step="0.005"
+                value="0.08"
+              />
+            </label>
+            <label class="setting-row">
+              Alpha clamp low <span id="val-water-alpha-clamp-lo">0.350</span>
+              <input
+                id="set-water-alpha-clamp-lo"
+                type="range"
+                min="0.1"
+                max="0.9"
+                step="0.01"
+                value="0.35"
+              />
+            </label>
+            <label class="setting-row">
+              Alpha clamp high <span id="val-water-alpha-clamp-hi">0.920</span>
+              <input
+                id="set-water-alpha-clamp-hi"
+                type="range"
+                min="0.4"
+                max="1"
+                step="0.01"
+                value="0.92"
+              />
+            </label>
+          </section>
+
+          <section class="ground-shader-block" aria-label="Water colors">
+            <h4 class="settings-subtitle">Water colors</h4>
+            <p class="blade-presets-hint">
+              Tints for shallow, mid, deep, foam, reflection, glint, and sun spec.
+            </p>
+            <label class="setting-row">
+              Shallow tint
+              <input id="set-water-color-shallow" type="color" value="#1f8a8a" />
+            </label>
+            <label class="setting-row">
+              Mid tint
+              <input id="set-water-color-mid" type="color" value="#0f4a5c" />
+            </label>
+            <label class="setting-row">
+              Deep tint
+              <input id="set-water-color-deep" type="color" value="#08182c" />
+            </label>
+            <label class="setting-row">
+              Foam tint
+              <input id="set-water-color-foam" type="color" value="#eaf4f8" />
+            </label>
+            <label class="setting-row">
+              Sky reflection tint
+              <input id="set-water-color-sky-refl" type="color" value="#7399cc" />
+            </label>
+            <label class="setting-row">
+              Glint tint
+              <input id="set-water-color-glint" type="color" value="#c0e8ff" />
+            </label>
+            <label class="setting-row">
+              Sun specular tint
+              <input id="set-water-color-sun-spec" type="color" value="#fff8eb" />
+            </label>
+          </section>
+        </div>
+
+        <div
+          id="panel-sky"
+          class="settings-tab-panel"
+          role="tabpanel"
+          aria-labelledby="tab-sky"
+        >
+          <h3 class="settings-section-title">Sky settings</h3>
+          <p class="blade-presets-hint">
+            <strong>Night</strong>: star density and nebula weights.
+            <strong>Advanced</strong>: every uniform driving the sky shader — sun path, day colors, anti-sun
+            sector, sun disk, sunset, clouds, storm. Names match export key <code>skyDetail</code> in
+            environment JSON.
+          </p>
+          <label class="setting-row">
+            Stars (amount) <span id="val-star">0.00</span>
+            <input
+              id="set-star-amount"
+              type="range"
+              min="0"
+              max="1"
+              step="0.02"
+              value="0"
+            />
+          </label>
+
+          <label class="setting-row">
+            Night blues <span id="val-neb-b">1.00</span>
+            <input
+              id="set-nebula-blue"
+              type="range"
+              min="0"
+              max="2.5"
+              step="0.05"
+              value="1"
+            />
+          </label>
+
+          <label class="setting-row">
+            Night purples <span id="val-neb-p">1.00</span>
+            <input
+              id="set-nebula-purple"
+              type="range"
+              min="0"
+              max="2.5"
+              step="0.05"
+              value="1"
+            />
+          </label>
+
+          <details class="settings-advanced-block" open>
+            <summary class="settings-advanced-summary">Sky shader (fine control)</summary>
+            <p class="blade-presets-hint settings-advanced-hint">
+              Scroll for all parameters. Sliders use safe min/max; exact values are still saved in exports.
+            </p>
+            <div class="settings-sky-scroll">
+              <label class="setting-row setting-row-tight"><span>sunAzimuthSpeed</span> <span id="val-sky-sun-azimuth-speed">0.022</span><input type="range" id="set-sky-sun-azimuth-speed" min="0" max="0.2" step="0.001" value="0.022" /></label>
+              <label class="setting-row setting-row-tight"><span>sunElevMin</span> <span id="val-sky-sun-elev-min">-0.14</span><input type="range" id="set-sky-sun-elev-min" min="-0.5" max="0.5" step="0.005" value="-0.14" /></label>
+              <label class="setting-row setting-row-tight"><span>sunElevMax</span> <span id="val-sky-sun-elev-max">0.58</span><input type="range" id="set-sky-sun-elev-max" min="-0.2" max="0.95" step="0.005" value="0.58" /></label>
+              <label class="setting-row setting-row-tight"><span>sunElevPiMul</span> <span id="val-sky-sun-elev-pi-mul">0.48</span><input type="range" id="set-sky-sun-elev-pi-mul" min="0.1" max="1.2" step="0.005" value="0.48" /></label>
+              <label class="setting-row setting-row-tight"><span>zenithColor</span> <span id="val-sky-zenith-color">#0a3870</span><input type="color" id="set-sky-zenith-color" value="#0a3870" /></label>
+              <label class="setting-row setting-row-tight"><span>horizonColor</span> <span id="val-sky-horizon-color">#9ec8f8</span><input type="color" id="set-sky-horizon-color" value="#9ec8f8" /></label>
+              <label class="setting-row setting-row-tight"><span>dayGradientLow</span> <span id="val-sky-day-gradient-low">-0.05</span><input type="range" id="set-sky-day-gradient-low" min="-0.5" max="0.4" step="0.005" value="-0.05" /></label>
+              <label class="setting-row setting-row-tight"><span>dayGradientHigh</span> <span id="val-sky-day-gradient-high">0.72</span><input type="range" id="set-sky-day-gradient-high" min="0.1" max="1.2" step="0.005" value="0.72" /></label>
+              <label class="setting-row setting-row-tight"><span>antiSunStart</span> <span id="val-sky-anti-sun-start">0.12</span><input type="range" id="set-sky-anti-sun-start" min="-1" max="1" step="0.01" value="0.12" /></label>
+              <label class="setting-row setting-row-tight"><span>antiSunEnd</span> <span id="val-sky-anti-sun-end">-0.78</span><input type="range" id="set-sky-anti-sun-end" min="-1" max="1" step="0.01" value="-0.78" /></label>
+              <label class="setting-row setting-row-tight"><span>antiSunHorizonY0</span> <span id="val-sky-anti-sun-horizon-y0">0.1</span><input type="range" id="set-sky-anti-sun-horizon-y0" min="-0.5" max="0.5" step="0.01" value="0.1" /></label>
+              <label class="setting-row setting-row-tight"><span>antiSunHorizonY1</span> <span id="val-sky-anti-sun-horizon-y1">-0.28</span><input type="range" id="set-sky-anti-sun-horizon-y1" min="-0.6" max="0.5" step="0.01" value="-0.28" /></label>
+              <label class="setting-row setting-row-tight"><span>oppCoolColor</span> <span id="val-sky-opp-cool-color">#1e293b</span><input type="color" id="set-sky-opp-cool-color" value="#1e293b" /></label>
+              <label class="setting-row setting-row-tight"><span>antiSunBlend</span> <span id="val-sky-anti-sun-blend">0.62</span><input type="range" id="set-sky-anti-sun-blend" min="0" max="1" step="0.01" value="0.62" /></label>
+              <label class="setting-row setting-row-tight"><span>antiSunWeight</span> <span id="val-sky-anti-sun-weight">1</span><input type="range" id="set-sky-anti-sun-weight" min="0" max="2" step="0.01" value="1" /></label>
+              <label class="setting-row setting-row-tight"><span>sunCorePow</span> <span id="val-sky-sun-core-pow">360</span><input type="range" id="set-sky-sun-core-pow" min="40" max="2000" step="1" value="360" /></label>
+              <label class="setting-row setting-row-tight"><span>sunCoreStr</span> <span id="val-sky-sun-core-str">1.38</span><input type="range" id="set-sky-sun-core-str" min="0" max="4" step="0.01" value="1.38" /></label>
+              <label class="setting-row setting-row-tight"><span>sunGlowWidePow</span> <span id="val-sky-sun-glow-wide-pow">10</span><input type="range" id="set-sky-sun-glow-wide-pow" min="2" max="64" step="0.5" value="10" /></label>
+              <label class="setting-row setting-row-tight"><span>sunGlowWideStr</span> <span id="val-sky-sun-glow-wide-str">0.42</span><input type="range" id="set-sky-sun-glow-wide-str" min="0" max="3" step="0.01" value="0.42" /></label>
+              <label class="setting-row setting-row-tight"><span>sunGlowMidPow</span> <span id="val-sky-sun-glow-mid-pow">96</span><input type="range" id="set-sky-sun-glow-mid-pow" min="8" max="256" step="1" value="96" /></label>
+              <label class="setting-row setting-row-tight"><span>sunGlowMidStr</span> <span id="val-sky-sun-glow-mid-str">0.26</span><input type="range" id="set-sky-sun-glow-mid-str" min="0" max="2" step="0.01" value="0.26" /></label>
+              <label class="setting-row setting-row-tight"><span>sunDiskColor</span> <span id="val-sky-sun-disk-color">#fff8e0</span><input type="color" id="set-sky-sun-disk-color" value="#fff8e0" /></label>
+              <label class="setting-row setting-row-tight"><span>sunsetWarmStr</span> <span id="val-sky-sunset-warm-str">1.4</span><input type="range" id="set-sky-sunset-warm-str" min="0" max="4" step="0.02" value="1.4" /></label>
+              <label class="setting-row setting-row-tight"><span>sunsetWarmColor</span> <span id="val-sky-sunset-warm-color">#ff6b1a</span><input type="color" id="set-sky-sunset-warm-color" value="#ff6b1a" /></label>
+              <label class="setting-row setting-row-tight"><span>sunsetPinkStr</span> <span id="val-sky-sunset-pink-str">0.55</span><input type="range" id="set-sky-sunset-pink-str" min="0" max="2" step="0.02" value="0.55" /></label>
+              <label class="setting-row setting-row-tight"><span>sunsetPinkColor</span> <span id="val-sky-sunset-pink-color">#ff8ca8</span><input type="color" id="set-sky-sunset-pink-color" value="#ff8ca8" /></label>
+              <label class="setting-row setting-row-tight"><span>sunsetTowardPow</span> <span id="val-sky-sunset-toward-pow">2.5</span><input type="range" id="set-sky-sunset-toward-pow" min="0.5" max="8" step="0.05" value="2.5" /></label>
+              <label class="setting-row setting-row-tight"><span>sunsetMaskLow</span> <span id="val-sky-sunset-mask-low">0.02</span><input type="range" id="set-sky-sunset-mask-low" min="0" max="0.5" step="0.01" value="0.02" /></label>
+              <label class="setting-row setting-row-tight"><span>sunsetMaskMid</span> <span id="val-sky-sunset-mask-mid">0.28</span><input type="range" id="set-sky-sunset-mask-mid" min="0" max="0.5" step="0.01" value="0.28" /></label>
+              <label class="setting-row setting-row-tight"><span>sunsetMaskHigh</span> <span id="val-sky-sunset-mask-high">0.42</span><input type="range" id="set-sky-sunset-mask-high" min="0.3" max="0.8" step="0.01" value="0.42" /></label>
+              <label class="setting-row setting-row-tight"><span>sunsetMaskTop</span> <span id="val-sky-sunset-mask-top">0.62</span><input type="range" id="set-sky-sunset-mask-top" min="0.5" max="1" step="0.01" value="0.62" /></label>
+              <label class="setting-row setting-row-tight"><span>duskBlueStr</span> <span id="val-sky-dusk-blue-str">0.55</span><input type="range" id="set-sky-dusk-blue-str" min="0" max="1.5" step="0.01" value="0.55" /></label>
+              <label class="setting-row setting-row-tight"><span>duskBlueColor</span> <span id="val-sky-dusk-blue-color">#405a9e</span><input type="color" id="set-sky-dusk-blue-color" value="#405a9e" /></label>
+              <label class="setting-row setting-row-tight"><span>duskYMin</span> <span id="val-sky-dusk-y-min">-0.2</span><input type="range" id="set-sky-dusk-y-min" min="-0.5" max="0.2" step="0.01" value="-0.2" /></label>
+              <label class="setting-row setting-row-tight"><span>duskYMax</span> <span id="val-sky-dusk-y-max">0.15</span><input type="range" id="set-sky-dusk-y-max" min="0" max="0.5" step="0.01" value="0.15" /></label>
+              <label class="setting-row setting-row-tight"><span>nightFadeLow</span> <span id="val-sky-night-fade-low">-0.2</span><input type="range" id="set-sky-night-fade-low" min="-0.8" max="0.2" step="0.01" value="-0.2" /></label>
+              <label class="setting-row setting-row-tight"><span>nightFadeHigh</span> <span id="val-sky-night-fade-high">0.3</span><input type="range" id="set-sky-night-fade-high" min="0" max="0.8" step="0.01" value="0.3" /></label>
+              <label class="setting-row setting-row-tight"><span>nightFadeYOffset</span> <span id="val-sky-night-fade-y-offset">0.1</span><input type="range" id="set-sky-night-fade-y-offset" min="-0.2" max="0.3" step="0.01" value="0.1" /></label>
+              <label class="setting-row setting-row-tight"><span>dayHorizonLow</span> <span id="val-sky-day-horizon-low">0.82</span><input type="range" id="set-sky-day-horizon-low" min="0.3" max="1.2" step="0.01" value="0.82" /></label>
+              <label class="setting-row setting-row-tight"><span>dayHorizonHigh</span> <span id="val-sky-day-horizon-high">1</span><input type="range" id="set-sky-day-horizon-high" min="0.5" max="1.5" step="0.01" value="1" /></label>
+              <label class="setting-row setting-row-tight"><span>dayHorizonYMin</span> <span id="val-sky-day-horizon-y-min">-0.18</span><input type="range" id="set-sky-day-horizon-y-min" min="-0.5" max="0.1" step="0.01" value="-0.18" /></label>
+              <label class="setting-row setting-row-tight"><span>dayHorizonYMax</span> <span id="val-sky-day-horizon-y-max">0.14</span><input type="range" id="set-sky-day-horizon-y-max" min="0" max="0.4" step="0.01" value="0.14" /></label>
+              <label class="setting-row setting-row-tight"><span>starExponentMul</span> <span id="val-sky-star-exponent-mul">1</span><input type="range" id="set-sky-star-exponent-mul" min="0.25" max="4" step="0.05" value="1" /></label>
+              <label class="setting-row setting-row-tight"><span>starMultMul</span> <span id="val-sky-star-mult-mul">1</span><input type="range" id="set-sky-star-mult-mul" min="0.25" max="4" step="0.05" value="1" /></label>
+              <label class="setting-row setting-row-tight"><span>starCullMul</span> <span id="val-sky-star-cull-mul">1</span><input type="range" id="set-sky-star-cull-mul" min="0.5" max="2" step="0.01" value="1" /></label>
+              <label class="setting-row setting-row-tight"><span>nightGroundTint</span> <span id="val-sky-night-ground-tint">#0c0e12</span><input type="color" id="set-sky-night-ground-tint" value="#0c0e12" /></label>
+              <label class="setting-row setting-row-tight"><span>nightGroundStr</span> <span id="val-sky-night-ground-str">1</span><input type="range" id="set-sky-night-ground-str" min="0" max="3" step="0.05" value="1" /></label>
+              <label class="setting-row setting-row-tight"><span>cloudPanoH</span> <span id="val-sky-cloud-pano-h">0.75</span><input type="range" id="set-sky-cloud-pano-h" min="0.2" max="2" step="0.01" value="0.75" /></label>
+              <label class="setting-row setting-row-tight"><span>cloudPanoV</span> <span id="val-sky-cloud-pano-v">1.1</span><input type="range" id="set-sky-cloud-pano-v" min="0.5" max="2" step="0.01" value="1.1" /></label>
+              <label class="setting-row setting-row-tight"><span>cloudScale1</span> <span id="val-sky-cloud-scale1">2.4</span><input type="range" id="set-sky-cloud-scale1" min="0.5" max="8" step="0.05" value="2.4" /></label>
+              <label class="setting-row setting-row-tight"><span>cloudScale2</span> <span id="val-sky-cloud-scale2">5.1</span><input type="range" id="set-sky-cloud-scale2" min="1" max="16" step="0.05" value="5.1" /></label>
+              <label class="setting-row setting-row-tight"><span>cloudScale3</span> <span id="val-sky-cloud-scale3">11</span><input type="range" id="set-sky-cloud-scale3" min="2" max="24" step="0.05" value="11" /></label>
+              <label class="setting-row setting-row-tight"><span>cloudScroll1</span> <span id="val-sky-cloud-scroll1">1</span><input type="range" id="set-sky-cloud-scroll1" min="0" max="3" step="0.05" value="1" /></label>
+              <label class="setting-row setting-row-tight"><span>cloudScroll2</span> <span id="val-sky-cloud-scroll2">1.65</span><input type="range" id="set-sky-cloud-scroll2" min="0" max="4" step="0.05" value="1.65" /></label>
+              <label class="setting-row setting-row-tight"><span>cloudScroll3</span> <span id="val-sky-cloud-scroll3">-0.85</span><input type="range" id="set-sky-cloud-scroll3" min="-2" max="2" step="0.05" value="-0.85" /></label>
+              <label class="setting-row setting-row-tight"><span>cloudSmoothMin</span> <span id="val-sky-cloud-smooth-min">0.38</span><input type="range" id="set-sky-cloud-smooth-min" min="0" max="0.95" step="0.01" value="0.38" /></label>
+              <label class="setting-row setting-row-tight"><span>cloudSmoothMax</span> <span id="val-sky-cloud-smooth-max">0.72</span><input type="range" id="set-sky-cloud-smooth-max" min="0.05" max="1" step="0.01" value="0.72" /></label>
+              <label class="setting-row setting-row-tight"><span>cloudNoiseW1</span> <span id="val-sky-cloud-noise-w1">0.55</span><input type="range" id="set-sky-cloud-noise-w1" min="0" max="1" step="0.01" value="0.55" /></label>
+              <label class="setting-row setting-row-tight"><span>cloudNoiseW2</span> <span id="val-sky-cloud-noise-w2">0.35</span><input type="range" id="set-sky-cloud-noise-w2" min="0" max="1" step="0.01" value="0.35" /></label>
+              <label class="setting-row setting-row-tight"><span>cloudNoiseW3</span> <span id="val-sky-cloud-noise-w3">0.15</span><input type="range" id="set-sky-cloud-noise-w3" min="0" max="1" step="0.01" value="0.15" /></label>
+              <label class="setting-row setting-row-tight"><span>cloudHorizonBandStart</span> <span id="val-sky-cloud-horizon-band-start">0.15</span><input type="range" id="set-sky-cloud-horizon-band-start" min="0" max="0.5" step="0.01" value="0.15" /></label>
+              <label class="setting-row setting-row-tight"><span>cloudHorizonBandEnd</span> <span id="val-sky-cloud-horizon-band-end">0.85</span><input type="range" id="set-sky-cloud-horizon-band-end" min="0.5" max="1" step="0.01" value="0.85" /></label>
+              <label class="setting-row setting-row-tight"><span>cloudHorizonBoost</span> <span id="val-sky-cloud-horizon-boost">0.55</span><input type="range" id="set-sky-cloud-horizon-boost" min="0" max="2" step="0.01" value="0.55" /></label>
+              <label class="setting-row setting-row-tight"><span>cloudCoverMul</span> <span id="val-sky-cloud-cover-mul">1</span><input type="range" id="set-sky-cloud-cover-mul" min="0" max="2" step="0.01" value="1" /></label>
+              <label class="setting-row setting-row-tight"><span>cloudStormCoverMul</span> <span id="val-sky-cloud-storm-cover-mul">0.45</span><input type="range" id="set-sky-cloud-storm-cover-mul" min="0" max="2" step="0.01" value="0.45" /></label>
+              <label class="setting-row setting-row-tight"><span>cloudAlphaBase</span> <span id="val-sky-cloud-alpha-base">0.55</span><input type="range" id="set-sky-cloud-alpha-base" min="0" max="1.5" step="0.01" value="0.55" /></label>
+              <label class="setting-row setting-row-tight"><span>cloudStormAlpha</span> <span id="val-sky-cloud-storm-alpha">0.38</span><input type="range" id="set-sky-cloud-storm-alpha" min="0" max="1" step="0.01" value="0.38" /></label>
+              <label class="setting-row setting-row-tight"><span>cloudElMin</span> <span id="val-sky-cloud-el-min">-0.85</span><input type="range" id="set-sky-cloud-el-min" min="-1" max="0" step="0.01" value="-0.85" /></label>
+              <label class="setting-row setting-row-tight"><span>cloudElMax</span> <span id="val-sky-cloud-el-max">0.92</span><input type="range" id="set-sky-cloud-el-max" min="0" max="1" step="0.01" value="0.92" /></label>
+              <label class="setting-row setting-row-tight"><span>cloudDayMixMin</span> <span id="val-sky-cloud-day-mix-min">0.2</span><input type="range" id="set-sky-cloud-day-mix-min" min="0" max="1" step="0.01" value="0.2" /></label>
+              <label class="setting-row setting-row-tight"><span>cloudDayMixMax</span> <span id="val-sky-cloud-day-mix-max">0.92</span><input type="range" id="set-sky-cloud-day-mix-max" min="0" max="1" step="0.01" value="0.92" /></label>
+              <label class="setting-row setting-row-tight"><span>cloudLitColor</span> <span id="val-sky-cloud-lit-color">#f5f8ff</span><input type="color" id="set-sky-cloud-lit-color" value="#f5f8ff" /></label>
+              <label class="setting-row setting-row-tight"><span>cloudShadeBright</span> <span id="val-sky-cloud-shade-bright">#8c93a8</span><input type="color" id="set-sky-cloud-shade-bright" value="#8c93a8" /></label>
+              <label class="setting-row setting-row-tight"><span>cloudShadeStorm</span> <span id="val-sky-cloud-shade-storm">#2e3038</span><input type="color" id="set-sky-cloud-shade-storm" value="#2e3038" /></label>
+              <label class="setting-row setting-row-tight"><span>cloudDiffuseBase</span> <span id="val-sky-cloud-diffuse-base">0.35</span><input type="range" id="set-sky-cloud-diffuse-base" min="0" max="1" step="0.01" value="0.35" /></label>
+              <label class="setting-row setting-row-tight"><span>cloudDiffuseSun</span> <span id="val-sky-cloud-diffuse-sun">0.65</span><input type="range" id="set-sky-cloud-diffuse-sun" min="0" max="1.5" step="0.01" value="0.65" /></label>
+              <label class="setting-row setting-row-tight"><span>cloudStormDiffuse</span> <span id="val-sky-cloud-storm-diffuse">0.85</span><input type="range" id="set-sky-cloud-storm-diffuse" min="0" max="1" step="0.01" value="0.85" /></label>
+              <label class="setting-row setting-row-tight"><span>stormScreenTint</span> <span id="val-sky-storm-screen-tint">0.7</span><input type="range" id="set-sky-storm-screen-tint" min="0" max="1.5" step="0.01" value="0.7" /></label>
+            </div>
+          </details>
+        </div>
+
+        <div
+          id="panel-weather"
+          class="settings-tab-panel"
+          role="tabpanel"
+          aria-labelledby="tab-weather"
+        >
+          <h3 class="settings-section-title">Weather settings</h3>
+          <p class="blade-presets-hint">
+            Wind drives grass motion and <strong>scrolls sky clouds</strong> across the dome. Rain, snow, and
+            lightning add storm weight to the sky; higher lightning = more frequent strikes and brighter cloud
+            flashes.
+          </p>
+          <label class="setting-row">
+            Rain <span id="val-weather-rain">0.00</span>
+            <input
+              id="set-weather-rain"
+              type="range"
+              min="0"
+              max="1"
+              step="0.02"
+              value="0"
+            />
+          </label>
+          <label class="setting-row">
+            Snow <span id="val-weather-snow">0.00</span>
+            <input
+              id="set-weather-snow"
+              type="range"
+              min="0"
+              max="1"
+              step="0.02"
+              value="0"
+            />
+          </label>
+          <label class="setting-row">
+            Lightning <span id="val-weather-lightning">0.00</span>
+            <input
+              id="set-weather-lightning"
+              type="range"
+              min="0"
+              max="1"
+              step="0.02"
+              value="0"
+            />
+          </label>
+          <label class="setting-row">
+            Cloud cover <span id="val-weather-clouds">0.00</span>
+            <input
+              id="set-weather-clouds"
+              type="range"
+              min="0"
+              max="1"
+              step="0.02"
+              value="0"
+            />
+          </label>
+          <label class="setting-row">
+            Wind speed <span id="val-wind-spd">1.00</span>
+            <input
+              id="set-wind-speed"
+              type="range"
+              min="0"
+              max="3"
+              step="0.05"
+              value="1"
+            />
+          </label>
+
+          <label class="setting-row">
+            Wind direction (°) <span id="val-wind-dir">0</span>
+            <input
+              id="set-wind-direction"
+              type="range"
+              min="0"
+              max="360"
+              step="1"
+              value="0"
+            />
+          </label>
+        </div>
+
+        <div
+          id="panel-flowers"
+          class="settings-tab-panel"
+          role="tabpanel"
+          aria-labelledby="tab-flowers"
+        >
+          <h3 class="settings-section-title">Flowers</h3>
+          <p class="blade-presets-hint">
+            Procedural blooms: petal count uses <strong>Fibonacci</strong> numbers; petals sit on the
+            <strong>golden angle</strong> (137.5°). Stems sway with wind. Higher
+            <strong>cluster density</strong> groups flowers into meadow patches (noise).
+          </p>
+
+          <label class="setting-row">
+            Total flowers in field <span id="val-flower-count">0</span>
+            <input
+              id="set-flower-count"
+              type="range"
+              min="0"
+              max="100000"
+              step="500"
+              value="0"
+            />
+          </label>
+
+          <p class="blade-types-meta">
+            Flower types: <span id="val-flower-types-count">1</span>
+            · <span id="flower-distribution-hint">—</span>
+          </p>
+          <p class="blade-types-meta blade-share-hint">
+            Each type’s <strong>field share</strong> is a relative weight (0–100), same as grass.
+          </p>
+
+          <p class="blade-types-meta">
+            <button type="button" id="flower-editor-open-btn" class="flower-editor-open-btn">
+              Flower designer…
+            </button>
+            <span class="flower-editor-open-note">
+              Separate 3D preview — edit without regenerating the field until you save.
+            </span>
+          </p>
+
+          <div id="flower-presets-list" class="blade-presets-list"></div>
+
+          <button type="button" id="add-flower-preset" class="add-blade-btn">+ Add flower type</button>
+
+          <p class="blade-total">
+            Last distribution (instances per type): <span id="val-flower-distribution">—</span>
+          </p>
+
+          <label class="setting-row">
+            Flower color variation <span id="val-flower-color-var">1.00</span>
+            <input
+              id="set-flower-color-variation"
+              type="range"
+              min="0"
+              max="1"
+              step="0.05"
+              value="1"
+            />
+          </label>
+
+          <template id="flower-preset-template">
+            <div class="blade-preset" data-flower-preset-row>
+              <div class="blade-preset-header">
+                <h4 class="blade-preset-title">Flower</h4>
+                <button type="button" class="remove-flower-preset" aria-label="Remove this flower type">
+                  ×
+                </button>
+              </div>
+              <label class="setting-row setting-row-tight">
+                In field (this build) <span data-flower-val="count">0</span>
+              </label>
+              <label class="setting-row setting-row-tight">
+                Field share (weight)
+                <span data-flower-val="share">100</span>
+                <input
+                  data-field="share"
+                  type="range"
+                  min="0"
+                  max="100"
+                  step="1"
+                  value="100"
+                />
+              </label>
+              <label class="setting-row setting-row-tight blade-curve-row">
+                Petal count (Fibonacci)
+                <select data-field="petalCount" class="blade-curve-select">
+                  <option value="3">3</option>
+                  <option value="5">5</option>
+                  <option value="8" selected>8</option>
+                  <option value="13">13</option>
+                  <option value="21">21</option>
+                  <option value="34">34</option>
+                </select>
+              </label>
+              <label class="setting-row setting-row-tight">
+                Petal length <span data-flower-val="petalLength">0.35</span>
+                <input data-field="petalLength" type="range" min="0.08" max="1.2" step="0.02" value="0.35" />
+              </label>
+              <label class="setting-row setting-row-tight">
+                Stem width <span data-flower-val="stemWidth">0.022</span>
+                <input data-field="stemWidth" type="range" min="0.006" max="0.12" step="0.002" value="0.022" />
+              </label>
+              <label class="setting-row setting-row-tight">
+                Stem height <span data-flower-val="stemHeight">1.10</span>
+                <input data-field="stemHeight" type="range" min="0.35" max="4" step="0.05" value="1.1" />
+              </label>
+              <label class="setting-row setting-row-tight">
+                Receptacle disc radius (width)
+                <span data-flower-val="centerDiscRadius">0.15</span>
+                <input
+                  data-field="centerDiscRadius"
+                  type="range"
+                  min="0.02"
+                  max="0.65"
+                  step="0.01"
+                  value="0.147"
+                />
+              </label>
+              <label class="setting-row setting-row-tight">
+                Receptacle disc thickness (vertical)
+                <span data-flower-val="centerDiscThickness">0.012</span>
+                <input
+                  data-field="centerDiscThickness"
+                  type="range"
+                  min="0.001"
+                  max="0.12"
+                  step="0.001"
+                  value="0.012"
+                />
+              </label>
+              <label class="setting-row setting-row-tight">
+                Receptacle dome (inverted bowl / bulb)
+                <span data-flower-val="centerDiscBulge">0.40</span>
+                <input
+                  data-field="centerDiscBulge"
+                  type="range"
+                  min="0"
+                  max="1"
+                  step="0.02"
+                  value="0.4"
+                />
+              </label>
+              <label class="setting-row setting-row-tight">
+                Cluster density (noise patches) <span data-flower-val="clusterDensity">0.45</span>
+                <input data-field="clusterDensity" type="range" min="0" max="1" step="0.02" value="0.45" />
+              </label>
+              <h4 class="settings-subtitle">Petal tip outline</h4>
+              <p class="blade-presets-hint">
+                Geometry: <strong>Tip sharpness</strong> pulls the outline to a point; <strong>Tip roundness</strong>
+                curves the tip like a dome (vs a straight cut).
+              </p>
+              <label class="setting-row setting-row-tight">
+                Tip sharpness (pointed ↔ blunt) <span data-flower-val="petalTipSharpness">0.25</span>
+                <input
+                  data-field="petalTipSharpness"
+                  type="range"
+                  min="0"
+                  max="1"
+                  step="0.02"
+                  value="0.25"
+                />
+              </label>
+              <label class="setting-row setting-row-tight">
+                Tip roundness (domed ↔ straight edge) <span data-flower-val="petalTipRoundness">0.40</span>
+                <input
+                  data-field="petalTipRoundness"
+                  type="range"
+                  min="0"
+                  max="1"
+                  step="0.02"
+                  value="0.4"
+                />
+              </label>
+              <label class="setting-row setting-row-tight">
+                Bloom (petal openness) <span data-flower-val="petalBloom">0.55</span>
+                <input
+                  data-field="petalBloom"
+                  type="range"
+                  min="0"
+                  max="1"
+                  step="0.02"
+                  value="0.55"
+                />
+              </label>
+              <h4 class="settings-subtitle">Petal shape (noise)</h4>
+              <p class="blade-presets-hint">
+                Edge / ripple / warp displace the mesh; higher values add organic variation.
+              </p>
+              <label class="setting-row setting-row-tight">
+                Edge noise <span data-flower-val="petalEdgeNoise">0.35</span>
+                <input data-field="petalEdgeNoise" type="range" min="0" max="1" step="0.02" value="0.35" />
+              </label>
+              <label class="setting-row setting-row-tight">
+                Surface warp <span data-flower-val="petalWarp">0.28</span>
+                <input data-field="petalWarp" type="range" min="0" max="1" step="0.02" value="0.28" />
+              </label>
+              <label class="setting-row setting-row-tight">
+                Ripple <span data-flower-val="petalRipple">0.22</span>
+                <input data-field="petalRipple" type="range" min="0" max="1" step="0.02" value="0.22" />
+              </label>
+              <h4 class="settings-subtitle">Petal colors (base → tip)</h4>
+              <p class="blade-presets-hint">
+                Five stops along the petal; blend controls how soft the transitions are.
+              </p>
+              <label class="setting-row setting-row-tight">
+                Color blend <span data-flower-val="petalGradientBlend">0.55</span>
+                <input data-field="petalGradientBlend" type="range" min="0" max="1" step="0.02" value="0.55" />
+              </label>
+              <label class="setting-row setting-color">
+                Stop 1 (base)
+                <input data-field="color" type="color" value="#f0e8ff" />
+              </label>
+              <label class="setting-row setting-color">
+                Stop 2
+                <input data-field="color2" type="color" value="#e8a0d8" />
+              </label>
+              <label class="setting-row setting-color">
+                Stop 3
+                <input data-field="color3" type="color" value="#ffe8f8" />
+              </label>
+              <label class="setting-row setting-color">
+                Stop 4
+                <input data-field="color4" type="color" value="#f5c8e8" />
+              </label>
+              <label class="setting-row setting-color">
+                Stop 5 (tip)
+                <input data-field="color5" type="color" value="#ffffff" />
+              </label>
+              <h4 class="settings-subtitle">Center &amp; pollen</h4>
+              <p class="blade-presets-hint">
+                Outer disc is the seed ring; the inner circle is the pollen zone (golden / dusty).
+              </p>
+              <label class="setting-row setting-color">
+                Outer disc (seeds)
+                <input data-field="centerColor" type="color" value="#4a3020" />
+              </label>
+              <label class="setting-row setting-color">
+                Pollen
+                <input data-field="pollenColor" type="color" value="#e8c830" />
+              </label>
+              <label class="setting-row setting-row-tight">
+                Pollen radius <span data-flower-val="pollenRadius">0.38</span>
+                <input data-field="pollenRadius" type="range" min="0.05" max="0.95" step="0.02" value="0.38" />
+              </label>
+              <label class="setting-row setting-row-tight">
+                Pollen grain <span data-flower-val="pollenGrain">0.65</span>
+                <input data-field="pollenGrain" type="range" min="0" max="1" step="0.02" value="0.65" />
+              </label>
+              <label class="setting-row setting-row-tight">
+                Pollen brightness <span data-flower-val="pollenBrightness">1.05</span>
+                <input data-field="pollenBrightness" type="range" min="0.3" max="2" step="0.05" value="1.05" />
+              </label>
+              <label class="setting-row setting-color">
+                Stem
+                <input data-field="stemColor" type="color" value="#2d5a28" />
+              </label>
+              <input type="hidden" data-field="petalShapeCustom" value="false" />
+              <input type="hidden" data-field="petalShapesJson" value="" />
+            </div>
+          </template>
+        </div>
+
+        <div
+          id="panel-trees"
+          class="settings-tab-panel"
+          role="tabpanel"
+          aria-labelledby="tab-trees"
+        >
+          <h3 class="settings-section-title">Trees</h3>
+          <p class="blade-presets-hint">
+            Procedural trees via
+            <a href="https://github.com/dgreenheck/ez-tree" target="_blank" rel="noopener">ez-tree</a>
+            (bark + branch geometry, textured leaves with wind sway). The <strong>preset</strong> loads a
+            base recipe; sliders below override trunk size, branching, foliage, and colors (library units
+            before world scale).
+          </p>
+          <label class="setting-row">
+            Tree count <span id="val-tree-count">0</span>
+            <input
+              id="set-tree-count"
+              type="range"
+              min="0"
+              max="48"
+              step="1"
+              value="0"
+            />
+          </label>
+          <label class="setting-row">
+            Preset
+            <select id="set-tree-preset" class="blade-curve-select">
+              <option>Ash Small</option>
+              <option>Ash Medium</option>
+              <option>Ash Large</option>
+              <option>Aspen Small</option>
+              <option>Aspen Medium</option>
+              <option>Aspen Large</option>
+              <option>Bush 1</option>
+              <option>Bush 2</option>
+              <option>Bush 3</option>
+              <option>Oak Small</option>
+              <option selected>Oak Medium</option>
+              <option>Oak Large</option>
+              <option>Pine Small</option>
+              <option>Pine Medium</option>
+              <option>Pine Large</option>
+            </select>
+          </label>
+          <label class="setting-row">
+            World scale <span id="val-tree-scale">0.10</span>
+            <input
+              id="set-tree-scale"
+              type="range"
+              min="0.03"
+              max="2"
+              step="0.005"
+              value="0.1"
+            />
+          </label>
+          <label class="setting-row">
+            Placement seed <span id="val-tree-field-seed">42811</span>
+            <input
+              id="set-tree-field-seed"
+              type="range"
+              min="0"
+              max="99999"
+              step="1"
+              value="42811"
+            />
+          </label>
+          <label class="setting-row">
+            Rocks <span id="val-rock-count">0</span>
+            <input
+              id="set-rock-count"
+              type="range"
+              min="0"
+              max="5000"
+              step="10"
+              value="0"
+            />
+          </label>
+          <label class="setting-row">
+            Boulders <span id="val-boulder-count">0</span>
+            <input
+              id="set-boulder-count"
+              type="range"
+              min="0"
+              max="160"
+              step="1"
+              value="0"
+            />
+          </label>
+          <label class="setting-row">
+            Rock placement seed <span id="val-rock-seed">28401</span>
+            <input
+              id="set-rock-seed"
+              type="range"
+              min="0"
+              max="99999"
+              step="1"
+              value="28401"
+            />
+          </label>
+          <label class="setting-row">
+            Bee hives <span id="val-bee-hive-count">0</span>
+            <input
+              id="set-bee-hive-count"
+              type="range"
+              min="0"
+              max="48"
+              step="1"
+              value="0"
+            />
+          </label>
+          <label class="setting-row">
+            Bee hive seed <span id="val-bee-hive-seed">19283</span>
+            <input
+              id="set-bee-hive-seed"
+              type="range"
+              min="0"
+              max="99999"
+              step="1"
+              value="19283"
+            />
+          </label>
+
+          <h4 class="settings-subtitle">Structure (trunk &amp; branches)</h4>
+          <label class="setting-row">
+            Species
+            <select id="set-tree-species" class="blade-curve-select">
+              <option value="deciduous" selected>Deciduous</option>
+              <option value="evergreen">Evergreen (conifer)</option>
+            </select>
+          </label>
+          <label class="setting-row">
+            Trunk thickness (radius) <span id="val-tree-trunk-radius">1.41</span>
+            <input
+              id="set-tree-trunk-radius"
+              type="range"
+              min="0.3"
+              max="6"
+              step="0.02"
+              value="1.41"
+            />
+          </label>
+          <label class="setting-row">
+            Trunk height (length) <span id="val-tree-trunk-length">37.2</span>
+            <input
+              id="set-tree-trunk-length"
+              type="range"
+              min="8"
+              max="90"
+              step="0.5"
+              value="37.24"
+            />
+          </label>
+          <label class="setting-row">
+            Branch levels (0 = trunk only) <span id="val-tree-branch-levels">3</span>
+            <input
+              id="set-tree-branch-levels"
+              type="range"
+              min="0"
+              max="4"
+              step="1"
+              value="3"
+            />
+          </label>
+          <label class="setting-row">
+            Branches from trunk <span id="val-tree-children-trunk">6</span>
+            <input
+              id="set-tree-children-trunk"
+              type="range"
+              min="1"
+              max="16"
+              step="1"
+              value="6"
+            />
+          </label>
+          <label class="setting-row">
+            Branches from limbs <span id="val-tree-children-branch">4</span>
+            <input
+              id="set-tree-children-branch"
+              type="range"
+              min="1"
+              max="16"
+              step="1"
+              value="4"
+            />
+          </label>
+          <label class="setting-row">
+            Fine / sub-branches <span id="val-tree-children-sub">3</span>
+            <input
+              id="set-tree-children-sub"
+              type="range"
+              min="1"
+              max="16"
+              step="1"
+              value="3"
+            />
+          </label>
+          <label class="setting-row">
+            Crown branch length × <span id="val-tree-crown-mul">1.00</span>
+            <input
+              id="set-tree-crown-mul"
+              type="range"
+              min="0.25"
+              max="2.5"
+              step="0.05"
+              value="1"
+            />
+          </label>
+
+          <h4 class="settings-subtitle">Leaves or needles</h4>
+          <label class="setting-row">
+            Foliage clusters (per terminal) <span id="val-tree-leaf-count">18</span>
+            <input
+              id="set-tree-leaf-count"
+              type="range"
+              min="1"
+              max="200"
+              step="1"
+              value="18"
+            />
+          </label>
+          <label class="setting-row">
+            Leaf / needle size <span id="val-tree-leaf-size">2.50</span>
+            <input
+              id="set-tree-leaf-size"
+              type="range"
+              min="0.5"
+              max="10"
+              step="0.1"
+              value="2.5"
+            />
+          </label>
+          <label class="setting-row">
+            Size variance <span id="val-tree-leaf-variance">0.70</span>
+            <input
+              id="set-tree-leaf-variance"
+              type="range"
+              min="0"
+              max="1"
+              step="0.05"
+              value="0.7"
+            />
+          </label>
+          <label class="setting-row">
+            Billboard
+            <select id="set-tree-leaf-billboard" class="blade-curve-select">
+              <option value="double" selected>Double (cross)</option>
+              <option value="single">Single</option>
+            </select>
+          </label>
+
+          <h4 class="settings-subtitle">Textures &amp; colors</h4>
+          <label class="setting-row">
+            Bark texture
+            <select id="set-tree-bark-type" class="blade-curve-select">
+              <option value="birch">Birch</option>
+              <option value="oak" selected>Oak</option>
+              <option value="pine">Pine</option>
+              <option value="willow">Willow</option>
+            </select>
+          </label>
+          <label class="setting-row">
+            Leaf / needle texture
+            <select id="set-tree-leaf-type" class="blade-curve-select">
+              <option value="ash">Ash</option>
+              <option value="aspen">Aspen</option>
+              <option value="oak" selected>Oak</option>
+              <option value="pine">Pine (needles)</option>
+            </select>
+          </label>
+          <label class="setting-row setting-color">
+            Bark tint
+            <input id="set-tree-bark-color" type="color" value="#fff9f1" />
+          </label>
+          <label class="setting-row setting-color">
+            Foliage tint
+            <input id="set-tree-leaf-color" type="color" value="#5a8a50" />
+          </label>
+        </div>
+
+        <div
+          id="panel-critters"
+          class="settings-tab-panel"
+          role="tabpanel"
+          aria-labelledby="tab-critters"
+        >
+          <h3 class="settings-section-title">Butterflies</h3>
+          <p class="blade-presets-hint">
+            Butterflies are <strong>procedural instanced meshes</strong> (generated body, wings, legs — see
+            <strong>Insects</strong>). Types use <strong>field share</strong> weights like grass. They drift with
+            wind.
+          </p>
+          <label class="setting-row">
+            Total butterflies <span id="val-butterfly-count">0</span>
+            <input
+              id="set-butterfly-count"
+              type="range"
+              min="0"
+              max="5000"
+              step="10"
+              value="0"
+            />
+          </label>
+          <label class="setting-row">
+            Placement seed <span id="val-butterfly-seed">7103</span>
+            <input
+              id="set-butterfly-seed"
+              type="range"
+              min="0"
+              max="99999"
+              step="1"
+              value="7103"
+            />
+          </label>
+          <p class="blade-types-meta">
+            Butterfly types: <span id="val-butterfly-types-count">1</span>
+            · <span id="butterfly-distribution-hint">—</span>
+          </p>
+          <p class="blade-types-meta blade-share-hint">
+            Each type’s <strong>field share</strong> is a relative weight (0–100), same as grass.
+          </p>
+          <div id="butterfly-presets-list" class="blade-presets-list"></div>
+          <button type="button" id="add-butterfly-preset" class="add-blade-btn">+ Add butterfly type</button>
+          <p class="blade-total">
+            Last distribution (instances per type): <span id="val-butterfly-distribution">—</span>
+          </p>
+
+          <template id="butterfly-preset-template">
+            <div class="blade-preset" data-butterfly-preset-row>
+              <div class="blade-preset-header">
+                <h4 class="blade-preset-title">Butterfly</h4>
+                <button type="button" class="remove-butterfly-preset" aria-label="Remove this butterfly type">
+                  ×
+                </button>
+              </div>
+              <label class="setting-row setting-row-tight">
+                In field (this build) <span data-critter-val="count">0</span>
+              </label>
+              <label class="setting-row setting-row-tight">
+                Field share (weight)
+                <span data-critter-val="share">100</span>
+                <input
+                  data-field="share"
+                  type="range"
+                  min="0"
+                  max="100"
+                  step="1"
+                  value="100"
+                />
+              </label>
+              <label class="setting-row setting-color">
+                Tint
+                <input data-field="color" type="color" value="#ffaa44" />
+              </label>
+            </div>
+          </template>
+
+          <h3 class="settings-section-title">Ladybugs</h3>
+          <p class="blade-presets-hint">
+            FBX from <code>public/models/ladybug.fbx</code>. A fraction of instances sit on tree trunks near
+            each tree; the rest crawl on the ground. Field share splits types like grass.
+          </p>
+          <label class="setting-row">
+            Total ladybugs <span id="val-ladybug-count">0</span>
+            <input
+              id="set-ladybug-count"
+              type="range"
+              min="0"
+              max="5000"
+              step="10"
+              value="0"
+            />
+          </label>
+          <label class="setting-row">
+            Share on trees (vs ground) <span id="val-ladybug-tree-share">0.45</span>
+            <input
+              id="set-ladybug-tree-share"
+              type="range"
+              min="0"
+              max="1"
+              step="0.02"
+              value="0.45"
+            />
+          </label>
+          <label class="setting-row">
+            Placement seed <span id="val-ladybug-seed">9023</span>
+            <input
+              id="set-ladybug-seed"
+              type="range"
+              min="0"
+              max="99999"
+              step="1"
+              value="9023"
+            />
+          </label>
+          <p class="blade-types-meta">
+            Ladybug types: <span id="val-ladybug-types-count">1</span>
+            · <span id="ladybug-distribution-hint">—</span>
+          </p>
+          <p class="blade-types-meta blade-share-hint">
+            Each type’s <strong>field share</strong> is a relative weight (0–100), same as grass.
+          </p>
+          <div id="ladybug-presets-list" class="blade-presets-list"></div>
+          <button type="button" id="add-ladybug-preset" class="add-blade-btn">+ Add ladybug type</button>
+          <p class="blade-total">
+            Last distribution (instances per type): <span id="val-ladybug-distribution">—</span>
+          </p>
+
+          <template id="ladybug-preset-template">
+            <div class="blade-preset" data-ladybug-preset-row>
+              <div class="blade-preset-header">
+                <h4 class="blade-preset-title">Ladybug</h4>
+                <button type="button" class="remove-ladybug-preset" aria-label="Remove this ladybug type">
+                  ×
+                </button>
+              </div>
+              <label class="setting-row setting-row-tight">
+                In field (this build) <span data-critter-val="count">0</span>
+              </label>
+              <label class="setting-row setting-row-tight">
+                Field share (weight)
+                <span data-critter-val="share">100</span>
+                <input
+                  data-field="share"
+                  type="range"
+                  min="0"
+                  max="100"
+                  step="1"
+                  value="100"
+                />
+              </label>
+              <label class="setting-row setting-color">
+                Tint
+                <input data-field="color" type="color" value="#cc1122" />
+              </label>
+            </div>
+          </template>
+
+          <h3 class="settings-section-title">Bumblebees</h3>
+          <p class="blade-presets-hint">
+            Same flying FBX as the hero bee (<code>public/models/bumblebee/</code>). Instanced bees drift over the
+            field, then land on nearby flower heads (uses flower placement). Tint is a light material multiplier.
+          </p>
+          <label class="setting-row">
+            Total bumblebees <span id="val-bumblebee-count">0</span>
+            <input
+              id="set-bumblebee-count"
+              type="range"
+              min="0"
+              max="5000"
+              step="1"
+              value="0"
+            />
+          </label>
+          <label class="setting-row">
+            Placement seed <span id="val-bumblebee-seed">7142</span>
+            <input
+              id="set-bumblebee-seed"
+              type="range"
+              min="0"
+              max="99999"
+              step="1"
+              value="7142"
+            />
+          </label>
+          <p class="blade-types-meta">
+            Bumblebee types: <span id="val-bumblebee-types-count">1</span>
+            · <span id="bumblebee-distribution-hint">—</span>
+          </p>
+          <p class="blade-types-meta blade-share-hint">
+            Each type’s <strong>field share</strong> is a relative weight (0–100), same as grass.
+          </p>
+          <div id="bumblebee-presets-list" class="blade-presets-list"></div>
+          <button type="button" id="add-bumblebee-preset" class="add-blade-btn">+ Add bumblebee type</button>
+          <p class="blade-total">
+            Last distribution (instances per type): <span id="val-bumblebee-distribution">—</span>
+          </p>
+
+          <template id="bumblebee-preset-template">
+            <div class="blade-preset" data-bumblebee-preset-row>
+              <div class="blade-preset-header">
+                <h4 class="blade-preset-title">Bumblebee</h4>
+                <button type="button" class="remove-bumblebee-preset" aria-label="Remove this bumblebee type">
+                  ×
+                </button>
+              </div>
+              <label class="setting-row setting-row-tight">
+                In field (this build) <span data-critter-val="count">0</span>
+              </label>
+              <label class="setting-row setting-row-tight">
+                Field share (weight)
+                <span data-critter-val="share">100</span>
+                <input
+                  data-field="share"
+                  type="range"
+                  min="0"
+                  max="100"
+                  step="1"
+                  value="100"
+                />
+              </label>
+              <label class="setting-row setting-color">
+                Tint
+                <input data-field="color" type="color" value="#e8c040" />
+              </label>
+            </div>
+          </template>
+
+          <h3 class="settings-section-title">Spiders &amp; webs</h3>
+          <p class="blade-presets-hint">
+            Procedural <strong>orb webs</strong> between or near trees (seed + count). Each has a small billboard
+            <strong>spider</strong>. <strong>Ladybugs</strong> and <strong>fireflies</strong> that enter the web’s
+            catch radius stick in place with a little wiggle (3D distance, not triangle tests).
+          </p>
+          <label class="setting-row">
+            Web count <span id="val-spider-web-count">0</span>
+            <input
+              id="set-spider-web-count"
+              type="range"
+              min="0"
+              max="48"
+              step="1"
+              value="0"
+            />
+          </label>
+          <label class="setting-row">
+            Placement seed <span id="val-spider-seed">4411</span>
+            <input
+              id="set-spider-seed"
+              type="range"
+              min="0"
+              max="99999"
+              step="1"
+              value="4411"
+            />
+          </label>
+
+          <h3 class="settings-section-title">Fireflies</h3>
+          <p class="blade-presets-hint">
+            <strong>Billboard sprites</strong>: a small canvas <strong>ant</strong> silhouette next to a soft glow sprite
+            (additive, night only). They fly day and night; glow follows your tint after dark (key <strong>1</strong>).
+            Wind nudges paths.
+          </p>
+          <label class="setting-row">
+            Total fireflies <span id="val-firefly-count">0</span>
+            <input
+              id="set-firefly-count"
+              type="range"
+              min="0"
+              max="2000"
+              step="10"
+              value="0"
+            />
+          </label>
+          <label class="setting-row">
+            Placement seed <span id="val-firefly-seed">3341</span>
+            <input
+              id="set-firefly-seed"
+              type="range"
+              min="0"
+              max="99999"
+              step="1"
+              value="3341"
+            />
+          </label>
+          <p class="blade-types-meta">
+            Firefly types: <span id="val-firefly-types-count">1</span>
+            · <span id="firefly-distribution-hint">—</span>
+          </p>
+          <p class="blade-types-meta blade-share-hint">
+            Each type’s <strong>field share</strong> is a relative weight (0–100), same as grass.
+          </p>
+          <div id="firefly-presets-list" class="blade-presets-list"></div>
+          <button type="button" id="add-firefly-preset" class="add-blade-btn">+ Add firefly type</button>
+          <p class="blade-total">
+            Last distribution (instances per type): <span id="val-firefly-distribution">—</span>
+          </p>
+
+          <template id="firefly-preset-template">
+            <div class="blade-preset" data-firefly-preset-row>
+              <div class="blade-preset-header">
+                <h4 class="blade-preset-title">Firefly</h4>
+                <button type="button" class="remove-firefly-preset" aria-label="Remove this firefly type">
+                  ×
+                </button>
+              </div>
+              <label class="setting-row setting-row-tight">
+                In field (this build) <span data-critter-val="count">0</span>
+              </label>
+              <label class="setting-row setting-row-tight">
+                Field share (weight)
+                <span data-critter-val="share">100</span>
+                <input
+                  data-field="share"
+                  type="range"
+                  min="0"
+                  max="100"
+                  step="1"
+                  value="100"
+                />
+              </label>
+              <label class="setting-row setting-color">
+                Glow tint
+                <input data-field="color" type="color" value="#b8ff66" />
+              </label>
+            </div>
+          </template>
+
+          <h3 class="settings-section-title">Ants</h3>
+          <p class="blade-presets-hint">
+            Tiny ground insects spread across the field. They wander randomly (no model file — simple instanced
+            meshes).
+          </p>
+          <label class="setting-row">
+            Total ants <span id="val-ant-count">0</span>
+            <input
+              id="set-ant-count"
+              type="range"
+              min="0"
+              max="8000"
+              step="20"
+              value="0"
+            />
+          </label>
+          <label class="setting-row">
+            Placement seed <span id="val-ant-seed">5581</span>
+            <input
+              id="set-ant-seed"
+              type="range"
+              min="0"
+              max="99999"
+              step="1"
+              value="5581"
+            />
+          </label>
+          <p class="blade-types-meta">
+            Ant types: <span id="val-ant-types-count">1</span>
+            · <span id="ant-distribution-hint">—</span>
+          </p>
+          <p class="blade-types-meta blade-share-hint">
+            Each type’s <strong>field share</strong> is a relative weight (0–100), same as grass.
+          </p>
+          <div id="ant-presets-list" class="blade-presets-list"></div>
+          <button type="button" id="add-ant-preset" class="add-blade-btn">+ Add ant type</button>
+          <p class="blade-total">
+            Last distribution (instances per type): <span id="val-ant-distribution">—</span>
+          </p>
+
+          <template id="ant-preset-template">
+            <div class="blade-preset" data-ant-preset-row>
+              <div class="blade-preset-header">
+                <h4 class="blade-preset-title">Ant</h4>
+                <button type="button" class="remove-ant-preset" aria-label="Remove this ant type">×</button>
+              </div>
+              <label class="setting-row setting-row-tight">
+                In field (this build) <span data-critter-val="count">0</span>
+              </label>
+              <label class="setting-row setting-row-tight">
+                Field share (weight)
+                <span data-critter-val="share">100</span>
+                <input
+                  data-field="share"
+                  type="range"
+                  min="0"
+                  max="100"
+                  step="1"
+                  value="100"
+                />
+              </label>
+              <label class="setting-row setting-color">
+                Tint
+                <input data-field="color" type="color" value="#2a1e14" />
+              </label>
+            </div>
+          </template>
+
+          <h3 class="settings-section-title">Worms</h3>
+          <p class="blade-presets-hint">
+            Ground-crawling earthworms with procedural segmented bodies and GPU-driven undulation.
+            Slow sinuous movement, hugging the terrain surface.
+          </p>
+          <label class="setting-row">
+            Total worms <span id="val-worm-count">0</span>
+            <input
+              id="set-worm-count"
+              type="range"
+              min="0"
+              max="4000"
+              step="10"
+              value="0"
+            />
+          </label>
+          <label class="setting-row">
+            Placement seed <span id="val-worm-seed">7721</span>
+            <input
+              id="set-worm-seed"
+              type="range"
+              min="0"
+              max="99999"
+              step="1"
+              value="7721"
+            />
+          </label>
+          <p class="blade-types-meta">
+            Worm types: <span id="val-worm-types-count">1</span>
+            · <span id="worm-distribution-hint">—</span>
+          </p>
+          <p class="blade-types-meta blade-share-hint">
+            Each type's <strong>field share</strong> is a relative weight (0–100), same as grass.
+          </p>
+          <div id="worm-presets-list" class="blade-presets-list"></div>
+          <button type="button" id="add-worm-preset" class="add-blade-btn">+ Add worm type</button>
+          <p class="blade-total">
+            Last distribution (instances per type): <span id="val-worm-distribution">—</span>
+          </p>
+
+          <template id="worm-preset-template">
+            <div class="blade-preset" data-worm-preset-row>
+              <div class="blade-preset-header">
+                <h4 class="blade-preset-title">Worm</h4>
+                <button type="button" class="remove-worm-preset" aria-label="Remove this worm type">×</button>
+              </div>
+              <label class="setting-row setting-row-tight">
+                In field (this build) <span data-critter-val="count">0</span>
+              </label>
+              <label class="setting-row setting-row-tight">
+                Field share (weight)
+                <span data-critter-val="share">100</span>
+                <input
+                  data-field="share"
+                  type="range"
+                  min="0"
+                  max="100"
+                  step="1"
+                  value="100"
+                />
+              </label>
+              <label class="setting-row setting-color">
+                Tint
+                <input data-field="color" type="color" value="#8B6550" />
+              </label>
+            </div>
+          </template>
+
+          <h3 class="settings-section-title">Birds (GPU flock)</h3>
+          <p class="blade-presets-hint">
+            Instanced silhouettes with separate <strong>land</strong> and <strong>water</strong> populations. Land
+            birds roam over dry ground; water birds skim above lakes and shore water. Total count is split by each
+            type’s field share (same weighting model as grass and fish).
+          </p>
+          <label class="setting-row">
+            Total birds <span id="val-bird-count">80</span>
+            <input
+              id="set-bird-count"
+              type="range"
+              min="0"
+              max="2000"
+              step="10"
+              value="80"
+            />
+          </label>
+          <label class="setting-row">
+            Placement seed <span id="val-bird-seed">8843</span>
+            <input
+              id="set-bird-seed"
+              type="range"
+              min="0"
+              max="99999"
+              step="1"
+              value="8843"
+            />
+          </label>
+          <p class="blade-types-meta">
+            Bird types: <span id="val-bird-types-count">2</span>
+            · <span id="bird-distribution-hint">Land vs water — field share weights.</span>
+          </p>
+          <p class="blade-types-meta blade-share-hint">
+            Each type’s <strong>field share</strong> is a relative weight (0–100), same as grass.
+          </p>
+          <div id="bird-presets-list" class="blade-presets-list">
+            <div class="blade-preset" data-bird-preset-row data-habitat="land">
+              <div class="blade-preset-header">
+                <h4 class="blade-preset-title">Land birds</h4>
+              </div>
+              <label class="setting-row setting-row-tight">
+                In field (this build) <span data-critter-val="count">0</span>
+              </label>
+              <label class="setting-row setting-row-tight">
+                Field share (weight)
+                <span data-critter-val="share">50</span>
+                <input
+                  data-field="share"
+                  type="range"
+                  min="0"
+                  max="100"
+                  step="1"
+                  value="50"
+                />
+              </label>
+              <label class="setting-row setting-color">
+                Tint
+                <input data-field="color" type="color" value="#4a5568" />
+              </label>
+            </div>
+            <div class="blade-preset" data-bird-preset-row data-habitat="water">
+              <div class="blade-preset-header">
+                <h4 class="blade-preset-title">Water birds</h4>
+              </div>
+              <label class="setting-row setting-row-tight">
+                In field (this build) <span data-critter-val="count">0</span>
+              </label>
+              <label class="setting-row setting-row-tight">
+                Field share (weight)
+                <span data-critter-val="share">50</span>
+                <input
+                  data-field="share"
+                  type="range"
+                  min="0"
+                  max="100"
+                  step="1"
+                  value="50"
+                />
+              </label>
+              <label class="setting-row setting-color">
+                Tint
+                <input data-field="color" type="color" value="#7a9abf" />
+              </label>
+            </div>
+          </div>
+          <p class="blade-total">
+            Last distribution (instances per type): <span id="val-bird-distribution">—</span>
+          </p>
+
+          <h3 class="settings-section-title">Fish (lake)</h3>
+          <p class="blade-presets-hint">
+            <strong>Procedural</strong> fish (CPU mesh: body, tail, fins, eyes) spawn only where the terrain is
+            <strong>underwater</strong> (dig below the water table). Add types for color mix; sliders below reshape
+            every fish like the butterfly generator.
+          </p>
+          <label class="setting-row">
+            Total fish <span id="val-fish-count">0</span>
+            <input
+              id="set-fish-count"
+              type="range"
+              min="0"
+              max="3000"
+              step="10"
+              value="0"
+            />
+          </label>
+          <label class="setting-row">
+            Placement seed <span id="val-fish-seed">3311</span>
+            <input
+              id="set-fish-seed"
+              type="range"
+              min="0"
+              max="99999"
+              step="1"
+              value="3311"
+            />
+          </label>
+          <p class="blade-types-meta">
+            Fish types: <span id="val-fish-types-count">1</span>
+            · <span id="fish-distribution-hint">—</span>
+          </p>
+          <p class="blade-types-meta blade-share-hint">
+            Each type’s <strong>field share</strong> is a relative weight (0–100), same as grass.
+          </p>
+          <div id="fish-presets-list" class="blade-presets-list"></div>
+          <button type="button" id="add-fish-preset" class="add-blade-btn">+ Add fish type</button>
+          <p class="blade-total">
+            Last distribution (instances per type): <span id="val-fish-distribution">—</span>
+          </p>
+
+          <h4 class="settings-subtitle">Fish generator (shape &amp; motion)</h4>
+          <p class="blade-presets-hint">
+            Same idea as <strong>Insects → butterfly motion</strong>: changing shape <strong>rebuilds</strong> the mesh.
+            Depth range is a fraction of the local water column (0 = bottom, 1 = surface).
+          </p>
+          <label class="setting-row setting-row-tight">
+            Body length × <span id="val-fish-body-length-mul">1.15</span>
+            <input id="set-fish-body-length-mul" type="range" min="0.35" max="2.2" step="0.02" value="1.15" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Body depth × <span id="val-fish-body-depth-mul">1.00</span>
+            <input id="set-fish-body-depth-mul" type="range" min="0.35" max="2.2" step="0.02" value="1" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Tail length × <span id="val-fish-tail-length-mul">1.00</span>
+            <input id="set-fish-tail-length-mul" type="range" min="0.3" max="2.5" step="0.02" value="1" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Tail width × <span id="val-fish-tail-width-mul">1.00</span>
+            <input id="set-fish-tail-width-mul" type="range" min="0.3" max="2.2" step="0.02" value="1" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Side fin scale <span id="val-fish-fin-scale">1.00</span>
+            <input id="set-fish-fin-scale" type="range" min="0.2" max="2.2" step="0.02" value="1" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Dorsal fin scale <span id="val-fish-dorsal-scale">1.00</span>
+            <input id="set-fish-dorsal-scale" type="range" min="0.2" max="2.2" step="0.02" value="1" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Surface noise amplitude <span id="val-fish-shape-noise-amp">0.022</span>
+            <input id="set-fish-shape-noise-amp" type="range" min="0" max="0.12" step="0.002" value="0.022" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Surface noise frequency <span id="val-fish-shape-noise-freq">11.00</span>
+            <input id="set-fish-shape-noise-freq" type="range" min="2" max="40" step="0.5" value="11" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Swim wiggle frequency <span id="val-fish-swim-freq">1.35</span>
+            <input id="set-fish-swim-freq" type="range" min="0.2" max="4" step="0.05" value="1.35" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Swim pace <span id="val-fish-swim-amp">0.42</span>
+            <input id="set-fish-swim-amp" type="range" min="0.05" max="1.2" step="0.02" value="0.42" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Turn / wander <span id="val-fish-yaw-wander">0.95</span>
+            <input id="set-fish-yaw-wander" type="range" min="0.2" max="3" step="0.05" value="0.95" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Depth min (fraction) <span id="val-fish-depth-min">0.12</span>
+            <input id="set-fish-depth-min" type="range" min="0.02" max="0.95" step="0.02" value="0.12" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Depth max (fraction) <span id="val-fish-depth-max">0.88</span>
+            <input id="set-fish-depth-max" type="range" min="0.05" max="0.98" step="0.02" value="0.88" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Emissive (underwater read) <span id="val-fish-emissive">0.08</span>
+            <input id="set-fish-emissive" type="range" min="0" max="0.45" step="0.01" value="0.08" />
+          </label>
+
+          <h4 class="settings-subtitle">Lake ecosystem (pellets &amp; food chain)</h4>
+          <p class="blade-presets-hint">
+            <strong>Pellets</strong> are tiny instanced specks (pick a visible color — default orange). They
+            <strong>regenerate</strong> after fish eat them. Fish lose health over time; they steer toward food and
+            can eat <strong>underwater ladybugs</strong> (respawn on land) and nip <strong>lakeside spider webs</strong>.
+          </p>
+          <label class="setting-row">
+            Pellet specks <span id="val-fish-eco-pellet-count">0</span>
+            <input id="set-fish-eco-pellet-count" type="range" min="0" max="4000" step="20" value="0" />
+          </label>
+          <label class="setting-row">
+            Pellet placement seed <span id="val-fish-eco-pellet-seed">7721</span>
+            <input id="set-fish-eco-pellet-seed" type="range" min="0" max="99999" step="1" value="7721" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Regen (pellets / sec) <span id="val-fish-eco-regen">0.00</span>
+            <input id="set-fish-eco-regen" type="range" min="0" max="40" step="0.2" value="0" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Hunger (health / sec) <span id="val-fish-eco-hunger">0.042</span>
+            <input id="set-fish-eco-hunger" type="range" min="0" max="0.2" step="0.002" value="0.042" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Feed — pellets <span id="val-fish-eco-feed-pellet">0.26</span>
+            <input id="set-fish-eco-feed-pellet" type="range" min="0" max="0.8" step="0.02" value="0.26" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Feed — ladybug <span id="val-fish-eco-feed-ladybug">0.52</span>
+            <input id="set-fish-eco-feed-ladybug" type="range" min="0" max="1" step="0.02" value="0.52" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Feed — spider web <span id="val-fish-eco-feed-spider">0.18</span>
+            <input id="set-fish-eco-feed-spider" type="range" min="0" max="0.8" step="0.02" value="0.18" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Eat radius <span id="val-fish-eco-eat-r">0.62</span>
+            <input id="set-fish-eco-eat-r" type="range" min="0.15" max="2.5" step="0.02" value="0.62" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Hunt steering <span id="val-fish-eco-hunt">2.35</span>
+            <input id="set-fish-eco-hunt" type="range" min="0" max="8" step="0.05" value="2.35" />
+          </label>
+          <label class="setting-row setting-color">
+            Pellet color
+            <input id="set-fish-pellet-color" type="color" value="#ff8800" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            <input id="set-fish-eco-prey-ladybugs" type="checkbox" checked />
+            Eat underwater ladybugs (they respawn on dry land)
+          </label>
+          <label class="setting-row setting-row-tight">
+            <input id="set-fish-eco-prey-spider" type="checkbox" checked />
+            Nip food from lakeside spider webs
+          </label>
+
+          <template id="fish-preset-template">
+            <div class="blade-preset" data-fish-preset-row>
+              <div class="blade-preset-header">
+                <h4 class="blade-preset-title">Fish</h4>
+                <button type="button" class="remove-fish-preset" aria-label="Remove this fish type">×</button>
+              </div>
+              <label class="setting-row setting-row-tight">
+                In lake (this build) <span data-critter-val="count">0</span>
+              </label>
+              <label class="setting-row setting-row-tight">
+                Field share (weight)
+                <span data-critter-val="share">100</span>
+                <input
+                  data-field="share"
+                  type="range"
+                  min="0"
+                  max="100"
+                  step="1"
+                  value="100"
+                />
+              </label>
+              <label class="setting-row setting-color">
+                Tint
+                <input data-field="color" type="color" value="#4a8fbe" />
+              </label>
+            </div>
+          </template>
+        </div>
+
+        <div
+          id="panel-insects"
+          class="settings-tab-panel"
+          role="tabpanel"
+          aria-labelledby="tab-insects"
+        >
+          <h3 class="settings-section-title">Insects — butterfly motion</h3>
+          <p class="blade-presets-hint">
+            The <strong>procedural butterfly swarm</strong> (Critters tab) uses global <strong>time</strong> and
+            <strong>Weather → wind speed &amp; direction</strong> for drift. Sliders here tune oscillation
+            frequencies and amplitudes (same time base as grass and flowers). Count, colors, and seed stay on
+            <strong>Critters</strong>.
+          </p>
+
+          <h4 class="settings-subtitle">Procedural generator (shape, noise, wings, legs, eyes)</h4>
+          <p class="blade-presets-hint">
+            The mesh is <strong>generated in CPU</strong> (body, wings, legs, eyes), with <strong>surface
+            noise</strong> on the body. Wing/leg <strong>animation</strong> runs in the shader with corrected
+            normals. <strong>Emissive</strong> keeps thin wings visible. Changing shape or counts
+            <strong>rebuilds</strong> geometry.
+          </p>
+          <label class="setting-row setting-row-tight">
+            Body length × <span id="val-bf-body-len-mul">1.20</span>
+            <input id="set-bf-body-len-mul" type="range" min="0.4" max="2.5" step="0.02" value="1.2" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Body width × <span id="val-bf-body-width-mul">1.00</span>
+            <input id="set-bf-body-width-mul" type="range" min="0.4" max="2.5" step="0.02" value="1" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Body thickness × <span id="val-bf-body-thick-mul">1.05</span>
+            <input id="set-bf-body-thick-mul" type="range" min="0.4" max="2.5" step="0.02" value="1.05" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Surface noise amplitude <span id="val-bf-shape-noise-amp">0.028</span>
+            <input id="set-bf-shape-noise-amp" type="range" min="0" max="0.15" step="0.002" value="0.028" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Surface noise freq 1 <span id="val-bf-shape-noise-f1">9.00</span>
+            <input id="set-bf-shape-noise-f1" type="range" min="1" max="48" step="0.5" value="9" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Surface noise freq 2 <span id="val-bf-shape-noise-f2">14.00</span>
+            <input id="set-bf-shape-noise-f2" type="range" min="1" max="48" step="0.5" value="14" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Wing pairs (1–4) <span id="val-bf-wing-pairs">2</span>
+            <input id="set-bf-wing-pairs" type="range" min="1" max="4" step="1" value="2" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Leg count (0–12) <span id="val-bf-leg-count">6</span>
+            <input id="set-bf-leg-count" type="range" min="0" max="12" step="1" value="6" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Eye offset X (lateral) <span id="val-bf-eye-x">0.04</span>
+            <input id="set-bf-eye-x" type="range" min="0" max="0.12" step="0.002" value="0.04" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Eye offset Y (vertical) <span id="val-bf-eye-y">0.00</span>
+            <input id="set-bf-eye-y" type="range" min="-0.08" max="0.12" step="0.002" value="0" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Eye offset Z (forward) <span id="val-bf-eye-z">0.06</span>
+            <input id="set-bf-eye-z" type="range" min="-0.02" max="0.14" step="0.002" value="0.055" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Eye size <span id="val-bf-eye-size">0.02</span>
+            <input id="set-bf-eye-size" type="range" min="0.004" max="0.06" step="0.001" value="0.02" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Body / wing emissive (visibility) <span id="val-bf-insect-emissive">0.38</span>
+            <input id="set-bf-insect-emissive" type="range" min="0" max="1.2" step="0.02" value="0.38" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Wing stroke freq (shader) <span id="val-bf-wing-stroke-freq">18.00</span>
+            <input id="set-bf-wing-stroke-freq" type="range" min="0" max="80" step="0.5" value="18" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Wing stroke amplitude <span id="val-bf-wing-stroke-amp">0.55</span>
+            <input id="set-bf-wing-stroke-amp" type="range" min="0" max="1.2" step="0.02" value="0.55" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Leg swing freq <span id="val-bf-leg-swing-freq">7.00</span>
+            <input id="set-bf-leg-swing-freq" type="range" min="0" max="40" step="0.25" value="7" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Leg swing amplitude <span id="val-bf-leg-swing-amp">0.40</span>
+            <input id="set-bf-leg-swing-amp" type="range" min="0" max="1.2" step="0.02" value="0.4" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Path body tilt (whole-body vs wings) <span id="val-bf-path-body-tilt">0.12</span>
+            <input id="set-bf-path-body-tilt" type="range" min="0" max="1" step="0.02" value="0.12" />
+          </label>
+
+          <h4 class="settings-subtitle">Placement (rebuilds instances)</h4>
+          <label class="setting-row setting-row-tight">
+            Flight height min <span id="val-bf-height-min">1.20</span>
+            <input id="set-bf-height-min" type="range" min="0.1" max="18" step="0.05" value="1.2" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Flight height max <span id="val-bf-height-max">7.50</span>
+            <input id="set-bf-height-max" type="range" min="0.3" max="24" step="0.05" value="7.5" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Field spread × <span id="val-bf-field-spread-mul">0.92</span>
+            <input id="set-bf-field-spread-mul" type="range" min="0.2" max="1.5" step="0.01" value="0.92" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Size base <span id="val-bf-scale-min">0.85</span>
+            <input id="set-bf-scale-min" type="range" min="0.2" max="2" step="0.01" value="0.85" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Size random add <span id="val-bf-scale-range">0.35</span>
+            <input id="set-bf-scale-range" type="range" min="0" max="2" step="0.01" value="0.35" />
+          </label>
+
+          <h4 class="settings-subtitle">Horizontal wander (frequencies × time)</h4>
+          <label class="setting-row setting-row-tight">
+            Wander freq X <span id="val-bf-wander-freq-x">0.35</span>
+            <input id="set-bf-wander-freq-x" type="range" min="0.02" max="6" step="0.01" value="0.35" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Wander freq Z <span id="val-bf-wander-freq-z">0.31</span>
+            <input id="set-bf-wander-freq-z" type="range" min="0.02" max="6" step="0.01" value="0.31" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Wander amp X <span id="val-bf-wander-amp-x">1.80</span>
+            <input id="set-bf-wander-amp-x" type="range" min="0" max="12" step="0.05" value="1.8" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Wander amp Z <span id="val-bf-wander-amp-z">1.60</span>
+            <input id="set-bf-wander-amp-z" type="range" min="0" max="12" step="0.05" value="1.6" />
+          </label>
+
+          <h4 class="settings-subtitle">Vertical bob &amp; flap</h4>
+          <label class="setting-row setting-row-tight">
+            Bob frequency <span id="val-bf-bob-freq">1.70</span>
+            <input id="set-bf-bob-freq" type="range" min="0" max="10" step="0.05" value="1.7" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Bob amplitude <span id="val-bf-bob-amp">0.45</span>
+            <input id="set-bf-bob-amp" type="range" min="0" max="4" step="0.02" value="0.45" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Flap frequency <span id="val-bf-flap-freq">12.00</span>
+            <input id="set-bf-flap-freq" type="range" min="0" max="48" step="0.5" value="12" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Flap rotation amplitude <span id="val-bf-flap-rot-amp">0.85</span>
+            <input id="set-bf-flap-rot-amp" type="range" min="0" max="3" step="0.02" value="0.85" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Flap → pitch × <span id="val-bf-flap-pitch-mul">0.50</span>
+            <input id="set-bf-flap-pitch-mul" type="range" min="0" max="2" step="0.02" value="0.5" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Flap → roll × <span id="val-bf-flap-roll-mul">0.25</span>
+            <input id="set-bf-flap-roll-mul" type="range" min="0" max="2" step="0.02" value="0.25" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Yaw spin (rad/s feel) <span id="val-bf-yaw-spin">0.15</span>
+            <input id="set-bf-yaw-spin" type="range" min="0" max="2" step="0.01" value="0.15" />
+          </label>
+
+          <h4 class="settings-subtitle">Wind coupling (uses Weather wind speed)</h4>
+          <label class="setting-row setting-row-tight">
+            Drift base <span id="val-bf-drift-base">0.22</span>
+            <input id="set-bf-drift-base" type="range" min="0" max="3" step="0.01" value="0.22" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Drift × wind speed <span id="val-bf-drift-wind-mul">0.18</span>
+            <input id="set-bf-drift-wind-mul" type="range" min="0" max="3" step="0.01" value="0.18" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Wind response (× on wind term) <span id="val-bf-wind-response">1.00</span>
+            <input id="set-bf-wind-response" type="range" min="0" max="3" step="0.05" value="1" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Wind push scale (× time drift) <span id="val-bf-wind-push-scale">0.08</span>
+            <input id="set-bf-wind-push-scale" type="range" min="0" max="0.5" step="0.005" value="0.08" />
+          </label>
+        </div>
+
+        <div
+          id="panel-author"
+          class="settings-tab-panel"
+          role="tabpanel"
+          aria-labelledby="tab-author"
+        >
+          <h3 class="settings-section-title">3D path author</h3>
+          <p class="blade-presets-hint">
+            Each <strong>anchor</strong> is a pivot: position + <strong>radius</strong> (tube thickness at that
+            control). The engine builds a <strong>smooth Catmull–Rom curve</strong> through your anchors (or a
+            straight segment if you only have two) and <strong>extrudes a variable-radius tube</strong>. Use
+            this to sculpt vines, tendrils, abstract strokes — all inside the app.
+          </p>
+          <p class="blade-presets-hint" id="author-place-hint" style="opacity: 0.45">
+            <strong>Alt+click</strong> the ground (Y=0) to drop an anchor when place mode is on and this panel
+            is open. Default thickness for new anchors is below.
+          </p>
+          <label class="setting-row setting-row-checkbox">
+            <span>Alt+click place mode</span>
+            <input id="author-place-mode" type="checkbox" />
+          </label>
+          <label class="setting-row setting-row-checkbox">
+            <span>Closed loop</span>
+            <input id="author-closed" type="checkbox" />
+          </label>
+          <label class="setting-row setting-row-checkbox">
+            <span>Live rebuild mesh</span>
+            <input id="author-live-rebuild" type="checkbox" checked />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Default radius (new anchors) <span id="val-author-def-r">0.05</span>
+            <input
+              id="author-default-radius"
+              type="range"
+              min="0.01"
+              max="0.35"
+              step="0.005"
+              value="0.05"
+            />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Tube subdivisions (along path) <span id="val-author-tubular">48</span>
+            <input id="author-tubular" type="range" min="8" max="256" step="4" value="48" />
+          </label>
+          <label class="setting-row setting-row-tight">
+            Radial segments (around) <span id="val-author-radial">10</span>
+            <input id="author-radial" type="range" min="3" max="48" step="1" value="10" />
+          </label>
+          <div id="author-anchors-list" class="author-anchors-list" aria-label="Anchor list"></div>
+          <div class="export-import-row author-actions">
+            <button type="button" id="author-add-anchor" class="add-blade-btn">Add anchor</button>
+            <button type="button" id="author-build" class="add-blade-btn">Build / update mesh</button>
+            <button type="button" id="author-clear" class="add-blade-btn">Clear all</button>
+          </div>
+          <div class="export-import-row">
+            <button type="button" id="author-export-json" class="add-blade-btn export-import-btn">
+              Export path JSON
+            </button>
+            <button type="button" id="author-import-btn" class="add-blade-btn export-import-btn">
+              Import path JSON
+            </button>
+          </div>
+          <input
+            type="file"
+            id="author-import-json"
+            accept="application/json,.json"
+            class="env-import-file"
+            tabindex="-1"
+            aria-hidden="true"
+          />
+        </div>
+
+        <div
+          id="panel-simulation"
+          class="settings-tab-panel"
+          role="tabpanel"
+          aria-labelledby="tab-simulation"
+        >
+          <section class="moon-tide-block" aria-label="Moon and tides">
+            <h3 class="settings-section-title">Moon & tides</h3>
+            <p class="blade-presets-hint">
+              Simplified <strong>lunar tides</strong>: two highs per day (semi-diurnal sine), modulated by a slower
+              spring/neap envelope. Raises mean sea level and slightly swells wind waves at high tide. Lake fish use
+              the same mean level.
+            </p>
+            <label class="setting-row setting-row-checkbox">
+              <span>Enable moon tide simulation</span>
+              <input id="sim-moon-tide-enabled" type="checkbox" checked />
+            </label>
+            <label class="setting-row setting-row-tight">
+              Tidal range (half amplitude, m) <span id="val-sim-moon-tide-strength">0.42</span>
+              <input
+                id="sim-moon-tide-strength"
+                type="range"
+                min="0"
+                max="1.25"
+                step="0.02"
+                value="0.42"
+              />
+            </label>
+            <label class="setting-row setting-row-tight">
+              Semi-diurnal period (s) <span id="val-sim-moon-tide-semi">90</span>
+              <input id="sim-moon-tide-semi" type="range" min="30" max="600" step="5" value="90" />
+            </label>
+            <label class="setting-row setting-row-tight">
+              Spring / neap beat period (s) <span id="val-sim-moon-tide-lunar">800</span>
+              <input id="sim-moon-tide-lunar" type="range" min="120" max="3600" step="20" value="800" />
+            </label>
+          </section>
+
+          <section class="spatial-memory-block" aria-label="Spatial memory outline">
+            <h3 class="settings-section-title">Spatial memory</h3>
+            <p class="blade-presets-hint">
+              Hierarchical frame for how space is remembered and reused: a <strong>world</strong> slice, a
+              <strong>regional</strong> slice, then <strong>local</strong> anchors. Use <strong>Ties</strong> to
+              spell out how those levels map onto each other (IDs, sectors, terrain features, paths).
+            </p>
+            <div class="spatial-memory-levels">
+              <label class="spatial-memory-level">
+                <span class="spatial-memory-level-title">Level 0 — World frame</span>
+                <span class="spatial-memory-level-hint">Extent, origin, north/up, water table, shared grids.</span>
+                <textarea
+                  id="spatial-memory-world"
+                  class="spatial-memory-textarea"
+                  rows="3"
+                  placeholder="e.g. ±200 m extent, Y=0 reference, water vs land split…"
+                  aria-label="Spatial memory level 0 world frame"
+                ></textarea>
+              </label>
+              <label class="spatial-memory-level">
+                <span class="spatial-memory-level-title">Level 1 — Regions / sectors</span>
+                <span class="spatial-memory-level-hint">Mid-scale chunks you reason about as a unit.</span>
+                <textarea
+                  id="spatial-memory-regions"
+                  class="spatial-memory-textarea"
+                  rows="3"
+                  placeholder="e.g. coast arc sectors, lake basin, forest band, minimap quadrants…"
+                  aria-label="Spatial memory level 1 regions"
+                ></textarea>
+              </label>
+              <label class="spatial-memory-level">
+                <span class="spatial-memory-level-title">Level 2 — Local anchors</span>
+                <span class="spatial-memory-level-hint">Landmarks, brush patches, paths, spawn-adjacent detail.</span>
+                <textarea
+                  id="spatial-memory-local"
+                  class="spatial-memory-textarea"
+                  rows="3"
+                  placeholder="e.g. hive cluster, chop islands, bee orbit points, painted pools…"
+                  aria-label="Spatial memory level 2 local anchors"
+                ></textarea>
+              </label>
+              <label class="spatial-memory-level spatial-memory-ties">
+                <span class="spatial-memory-level-title">Ties — how levels connect</span>
+                <span class="spatial-memory-level-hint">Explicit links: naming, containment, adjacency, flow.</span>
+                <textarea
+                  id="spatial-memory-ties"
+                  class="spatial-memory-textarea"
+                  rows="4"
+                  placeholder="e.g. L1 sector A ↔ L0 east half; L2 landmark X lives in L1 B; path graph: …"
+                  aria-label="Spatial memory ties between levels"
+                ></textarea>
+              </label>
+            </div>
+          </section>
+
+          <h3 class="settings-section-title">Simulation lab</h3>
+          <p class="blade-presets-hint">
+            Outline each built-in simulation before you wire it up. <strong>Linked to world</strong> writes the
+            matching sliders (weather, fish, insects, hives) so the run matches your plan. Spawn the world
+            first if you start from water — counts only apply after land and content spawn.
+          </p>
+          <div id="simulation-catalog" class="simulation-catalog" aria-label="Simulation outlines"></div>
+          <label class="simulation-global-label">
+            <span class="settings-subtitle">Workspace notes</span>
+            <textarea
+              id="simulation-global-notes"
+              class="simulation-global-notes"
+              rows="4"
+              placeholder="Cross-cutting ideas, dependencies, or experiments…"
+              aria-label="Global simulation workspace notes"
+            ></textarea>
+          </label>
+        </div>
+
+        <div
+          id="panel-audio"
+          class="settings-tab-panel"
+          role="tabpanel"
+          aria-labelledby="tab-audio"
+        >
+          <h3 class="settings-section-title">Audio settings</h3>
+          <p class="blade-presets-hint">
+            Master levels for future ambience and music. Hook your audio engine to these values.
+          </p>
+          <label class="setting-row">
+            Master volume <span id="val-audio-volume">1.00</span>
+            <input
+              id="set-audio-volume"
+              type="range"
+              min="0"
+              max="1"
+              step="0.02"
+              value="1"
+            />
+          </label>
+          <label class="setting-row setting-row-checkbox">
+            <span>Mute all</span>
+            <input id="set-audio-muted" type="checkbox" />
+          </label>
+        </div>
+
+        <section class="settings-export" aria-label="Export and import environment">
+          <h3 class="blade-presets-title">Environment preset</h3>
+          <p class="blade-presets-hint">
+            Export or import a JSON file with every setting in this panel (grass, flowers, trees, sky,
+            wind, ground) plus the <strong>sculpted terrain heightmap</strong> (embedded as
+            <code>terrain</code>). Older backups without <code>terrain</code> still import settings only.
+            Your last Scene settings are also <strong>saved in this browser</strong> automatically so the next
+            launch restores sliders and presets (same origin as terrain).
+          </p>
+          <div class="export-import-row">
+            <button type="button" id="env-export-btn" class="add-blade-btn export-import-btn">
+              Export JSON
+            </button>
+            <button type="button" id="env-import-btn" class="add-blade-btn export-import-btn">
+              Import JSON
+            </button>
+          </div>
+          <input
+            type="file"
+            id="env-import-file"
+            accept="application/json,.json"
+            class="env-import-file"
+            tabindex="-1"
+            aria-hidden="true"
+          />
+        </section>
+      </div>
+    </aside>
+
+    <div
+      id="flower-editor-overlay"
+      class="flower-editor-overlay"
+      aria-hidden="true"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="flower-editor-title"
+    >
+      <div class="flower-editor-layout">
+        <div class="flower-editor-preview-column">
+          <div class="flower-editor-chrome">
+            <div>
+              <h3 id="flower-editor-title">Flower designer</h3>
+              <p class="flower-editor-hint">
+                Preview only: drag to orbit, wheel to zoom. Tweak shape and colors here; the meadow does
+                <strong>not</strong> regenerate until you click <strong>Save to field</strong>.
+              </p>
+            </div>
+            <button type="button" id="flower-editor-close-btn" class="flower-editor-close" aria-label="Close">
+              ×
+            </button>
+          </div>
+          <div class="flower-editor-canvas-wrap">
+            <canvas id="flower-preview-canvas"></canvas>
+          </div>
+          <p class="flower-editor-orbit-hint">Drag to rotate · Wheel to zoom</p>
+        </div>
+        <div class="flower-editor-controls-column">
+          <div class="flower-editor-toolbar">
+            <label class="flower-editor-editing">
+              Editing
+              <select id="flower-editor-index" aria-label="Which flower type"></select>
+            </label>
+            <button type="button" id="flower-editor-save-btn" class="flower-editor-primary">Save to field</button>
+            <button type="button" id="flower-editor-cancel-btn">Cancel</button>
+          </div>
+          <div id="flower-mirror-panel" class="flower-mirror-panel">
+            <h4 class="settings-subtitle">Petal outline source</h4>
+            <label class="flower-petal-shape-mode-label">
+              <span class="flower-petal-shape-mode-title">Outline</span>
+              <select id="flower-petal-shape-mode" class="flower-petal-shape-mode-select" aria-label="Petal outline mode">
+                <option value="procedural">Procedural (golden / φ)</option>
+                <option value="custom">Custom (mirror draw)</option>
+              </select>
+            </label>
+            <p class="flower-editor-hint flower-mirror-mode-hint" id="flower-mirror-mode-hint">
+              Procedural: built-in width curve along the petal. Custom: paint a mirrored silhouette below; it
+              modulates width along each petal.
+            </p>
+            <h4 class="settings-subtitle flower-mirror-subtitle">Mirror silhouette (per petal)</h4>
+            <p class="flower-editor-hint">
+              Draw on <strong>one side</strong> of the line — the other side mirrors. Base at the bottom, tip at
+              the top. Choose a petal index, paint, then <strong>Apply profile</strong>.
+            </p>
+            <div class="flower-mirror-row">
+              <canvas id="flower-mirror-canvas" width="220" height="300"></canvas>
+              <div class="flower-mirror-actions">
+                <label class="flower-mirror-label">
+                  Petal
+                  <select id="flower-mirror-petal-index" aria-label="Petal index for mirror draw"></select>
+                </label>
+                <button type="button" id="flower-mirror-clear">Clear</button>
+                <button type="button" id="flower-mirror-apply" class="flower-editor-primary">Apply profile</button>
+                <button type="button" id="flower-mirror-reset-petal">Reset petal</button>
+              </div>
+            </div>
+          </div>
+          <div id="flower-editor-fields" class="flower-editor-fields"></div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="insect-preview-overlay"
+      class="insect-preview-overlay"
+      aria-hidden="true"
+      aria-label="Butterfly motion preview"
+    >
+      <div class="insect-preview-inner">
+        <div class="insect-preview-chrome">
+          <div>
+            <h3 class="insect-preview-title">Butterfly — live preview</h3>
+            <p class="insect-preview-hint">
+              <strong>Procedural</strong> insect (generated mesh + shader wings/legs). Same path motion as the
+              field swarm: <strong>Weather</strong> wind + <strong>Insects</strong> sliders. Adjust on the right.
+            </p>
+          </div>
+          <button type="button" id="insect-butterfly-save" class="insect-preview-save">
+            Save insect settings
+          </button>
+        </div>
+        <div class="insect-preview-canvas-wrap">
+          <canvas id="insect-preview-canvas"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="terrain-paint-overlay"
+      class="terrain-paint-overlay"
+      aria-hidden="true"
+      aria-label="Terrain elevation brush"
+    >
+      <div class="terrain-paint-panel">
+        <p class="terrain-paint-title">Elevation brush</p>
+        <div class="terrain-paint-tools" role="group" aria-label="Brush shape">
+          <button type="button" class="terrain-tool is-active" data-terrain-tool="soft">Soft</button>
+          <button type="button" class="terrain-tool" data-terrain-tool="sharp">Sharp</button>
+          <button type="button" class="terrain-tool" data-terrain-tool="level">Level</button>
+        </div>
+        <div class="terrain-paint-modes" role="group" aria-label="Raise or lower">
+          <button type="button" class="terrain-mode is-active" data-terrain-mode="raise">Raise</button>
+          <button type="button" class="terrain-mode" data-terrain-mode="lower">Lower</button>
+        </div>
+        <label class="terrain-paint-row">
+          <span>Brush size</span>
+          <input
+            id="terrain-brush-radius"
+            type="range"
+            min="4"
+            max="80"
+            step="1"
+            value="22"
+          />
+          <span id="terrain-brush-radius-val">22</span>
+        </label>
+        <label class="terrain-paint-row">
+          <span>Strength</span>
+          <input
+            id="terrain-brush-strength"
+            type="range"
+            min="0.25"
+            max="3.5"
+            step="0.05"
+            value="1.25"
+          />
+          <span id="terrain-brush-strength-val">1.25</span>
+        </label>
+        <p class="terrain-paint-hint">
+          Look at the ground and hold left mouse — paint uses the screen center. <kbd>E</kbd> exits.
+          <strong>Lower</strong> digs down to 6&nbsp;ft (≈1.83&nbsp;m) below the local surface; the water table is
+          3&nbsp;ft (≈0.91&nbsp;m) down — dig past that to see water. Terrain is saved in this browser;
+          <kbd>Ctrl</kbd>+<kbd>Z</kbd> (⌘Z on Mac) undoes the last stroke.
+          <strong>Stuck with an old map?</strong> Use the red button below, or add
+          <code>?wipe=1</code> to the address bar and reload. Note:
+          <code>localhost</code> and <code>127.0.0.1</code> keep <em>separate</em> storage — wipe each if you use both.
+        </p>
+        <div class="terrain-actions-row" role="group" aria-label="Terrain save and undo">
+          <button type="button" id="terrain-undo-btn" class="terrain-action-btn" disabled>
+            Undo stroke
+          </button>
+          <button type="button" id="terrain-save-btn" class="terrain-action-btn">Save now</button>
+          <button type="button" id="terrain-download-btn" class="terrain-action-btn" title="Download JSON backup">
+            Export file
+          </button>
+          <button type="button" id="terrain-import-btn" class="terrain-action-btn" title="Load terrain from JSON file">
+            Import file
+          </button>
+        </div>
+        <input
+          type="file"
+          id="terrain-import-file"
+          class="terrain-import-file"
+          accept="application/json,.json"
+          aria-hidden="true"
+          tabindex="-1"
+        />
+        <button type="button" id="terrain-reset-heightmap-btn" class="terrain-reset-map">
+          Reset heightmap (default ocean)
+        </button>
+        <button type="button" id="terrain-reset-workshop-btn" class="terrain-reset-workshop">
+          Clear world &amp; edit terrain again
+        </button>
+        <button type="button" id="terrain-nuke-all-storage-btn" class="terrain-nuke-storage">
+          Erase all saved map &amp; camera data (browser)
+        </button>
+      </div>
+    </div>
+
+    <div
+      id="tree-chop-overlay"
+      class="tree-chop-overlay"
+      aria-hidden="true"
+      aria-label="Tree chop crosshair"
+    >
+      <div class="tree-chop-crosshair" aria-hidden="true"></div>
+      <svg class="tree-chop-slash-svg" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <line
+          id="tree-chop-slash-line"
+          class="tree-chop-slash-line"
+          x1="0"
+          y1="0"
+          x2="0"
+          y2="0"
+        />
+      </svg>
+    </div>
+
+    <canvas id="c"></canvas>
+    </div>
+    <script type="module" src="/src/login-bootstrap.js"></script>
+  </body>
+</html>

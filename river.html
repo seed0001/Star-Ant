@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>River — current lab</title>
+    <link rel="stylesheet" href="/src/river.css" />
+  </head>
+  <body>
+    <div id="river-chrome">
+      <h1>River current</h1>
+      <p class="river-hint">
+        Standalone view — not the world map. Drag to orbit · wheel to zoom. Surface pixels drift with the current
+        and bend around rocks.
+      </p>
+      <div class="river-controls">
+        <label>
+          Water pixels
+          <input id="river-pixels" type="range" min="0" max="20000" step="250" value="4000" />
+          <span id="river-pixels-val">4000</span>
+        </label>
+        <label>
+          Flow speed
+          <input id="river-flow-speed" type="range" min="0.2" max="3.5" step="0.05" value="1.2" />
+          <span id="river-flow-speed-val">1.20</span>
+        </label>
+        <label>
+          Surface chop
+          <input id="river-chop" type="range" min="0" max="1.5" step="0.05" value="0.55" />
+          <span id="river-chop-val">0.55</span>
+        </label>
+        <label>
+          Current swirl
+          <input id="river-swirl" type="range" min="0" max="1.2" step="0.05" value="0.35" />
+          <span id="river-swirl-val">0.35</span>
+        </label>
+      </div>
+      <p class="river-back">
+        <a href="/index.html">← Grass World</a>
+      </p>
+    </div>
+    <canvas id="river-canvas"></canvas>
+    <script type="module" src="/src/river-main.js"></script>
+  </body>
+</html>
