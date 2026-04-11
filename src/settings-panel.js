@@ -1274,6 +1274,45 @@ function finiteOr(n, fallback) {
 }
 
 /**
+ * index.html defaults every population slider to 0. On "Spawn world", any count still at 0 gets
+ * these values so the scene fills in. (We merge per key, not only when the sum of all counts is 0 —
+ * otherwise raising birds alone left every insect at 0 and nothing spawned except birds.)
+ */
+const PLAYABLE_WORLD_CONTENT_DEFAULTS = {
+  grassCount: 2_000_000,
+  flowerCount: 12_000,
+  treeCount: 18,
+  rockCount: 280,
+  boulderCount: 12,
+  beeHiveCount: 4,
+  butterflyCount: 220,
+  ladybugCount: 120,
+  bumblebeeCount: 28,
+  fireflyCount: 80,
+  antCount: 400,
+  wormCount: 200,
+  birdCount: 24,
+  fishCount: 180,
+  spiderWebCount: 12,
+};
+
+/**
+ * @param {Record<string, unknown>} raw
+ * @returns {Record<string, unknown>}
+ */
+export function mergePlayableContentDefaultsForSpawn(raw) {
+  const o = raw && typeof raw === "object" ? { ...raw } : {};
+  for (const k of Object.keys(PLAYABLE_WORLD_CONTENT_DEFAULTS)) {
+    const key = /** @type {keyof typeof PLAYABLE_WORLD_CONTENT_DEFAULTS} */ (k);
+    const v = Math.floor(finiteOr(/** @type {number} */ (o[k]), 0));
+    if (v === 0) {
+      o[k] = PLAYABLE_WORLD_CONTENT_DEFAULTS[key];
+    }
+  }
+  return o;
+}
+
+/**
  * Normalizes the full settings snapshot (for export, import, or API handoff).
  * @param {unknown} raw
  */

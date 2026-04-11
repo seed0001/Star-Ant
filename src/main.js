@@ -8,6 +8,7 @@ import {
   applyEnvironmentSettingsToDOM,
   initSettingsPanel,
   loadEnvironmentSettingsAutosave,
+  mergePlayableContentDefaultsForSpawn,
   saveEnvironmentSettingsAutosave,
   updateSkyTuningLabelSpans,
   normalizeEnvironmentSettings,
@@ -2370,6 +2371,11 @@ function spawnWorldContent() {
   } catch {
     /* ignore */
   }
+  const domRaw = readSettingsFromDOM();
+  const merged = mergePlayableContentDefaultsForSpawn(
+    /** @type {Record<string, unknown>} */ (domRaw)
+  );
+  applyEnvironmentSettingsToDOM(normalizeEnvironmentSettings(merged), () => {});
   applySettings(readSettingsFromDOM());
   try {
     saveEnvironmentSettingsAutosave(readSettingsFromDOM());
