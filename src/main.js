@@ -535,11 +535,12 @@ function drawWorldMinimap(canvas, spread, px, pz, yaw) {
   ctx.stroke();
 }
 
-/** Wider gaps when few strips; tighter when many so strands stay visible. */
-function sliceGapForCount(slices) {
-  const s = Math.max(1, Math.min(16, Math.floor(slices)));
-  if (s <= 1) return 0.055;
-  return THREE.MathUtils.clamp(0.52 / s, 0.028, 0.09);
+/**
+ * Gap between width-wise blade strips in UV space (multi-slice / fan blades).
+ * Kept at 0 so strips meet edge-to-edge — non-zero values carve transparent slits that read as a grid.
+ */
+function sliceGapForCount() {
+  return 0;
 }
 
 /** @type {string} */
@@ -711,7 +712,7 @@ function createGrassMaterial() {
         bladeColorC: { value: new THREE.Color(0xc8e8a8) },
         uBandV: { value: 2 },
         uBandH: { value: 1 },
-        uSliceGap: { value: 0.055 },
+        uSliceGap: { value: 0 },
         uErosion: { value: 0.45 },
         uStreak: { value: 0.5 },
         uTerrainHeightMap: { value: _zeroTerrainTex },
@@ -951,8 +952,8 @@ function createGrassMaterial() {
         float u = clamp(vUv.x, 0.0, 1.0 - 1e-6) * sc;
         float k = floor(u);
         float f = fract(u);
-        float gw = clamp(uSliceGap, 0.02, 0.2);
-        if ((k > 0.0 && f < gw * 0.5) || (k < sc - 1.0 && f > 1.0 - gw * 0.5)) {
+        float gw = clamp(uSliceGap, 0.0, 0.2);
+        if (gw > 0.001 && ((k > 0.0 && f < gw * 0.5) || (k < sc - 1.0 && f > 1.0 - gw * 0.5))) {
           discard;
         }
       }

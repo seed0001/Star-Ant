@@ -772,7 +772,10 @@ export function getDryLandSpawnPoints(field) {
 }
 
 /**
- * Random point on dry land with small jitter inside the cell (avoids grid artifacts).
+ * Random point on dry land with jitter inside the terrain cell square around the dry sample.
+ * Uses almost the full half-cell span (was ±0.42 cell, which left bare strips along every
+ * cell boundary ~1.5m apart — looked like a grid). Retries with new random offsets if the
+ * sample lands in water near an edge.
  * @param {DryLandSpawnPoints | null | undefined} dry
  * @param {TerrainHeightField} field
  * @param {() => number} rng01
@@ -781,17 +784,18 @@ export function getDryLandSpawnPoints(field) {
 export function pickRandomDryXZ(dry, field, rng01) {
   if (!dry || dry.length < 1 || !field) return null;
   const j = Math.floor(rng01() * dry.length);
-  let x = dry.xs[j];
-  let z = dry.zs[j];
+  const cx = dry.xs[j];
+  const cz = dry.zs[j];
   const cell = field.size / field.segments;
-  const jm = cell * 0.42;
-  x += (rng01() - 0.5) * 2 * jm;
-  z += (rng01() - 0.5) * 2 * jm;
-  if (!isTerrainDryAt(field, x, z)) {
-    x = dry.xs[j];
-    z = dry.zs[j];
+  const span = cell * 0.5 * 0.98;
+  for (let attempt = 0; attempt < 10; attempt++) {
+    const x = cx + (rng01() - 0.5) * 2 * span;
+    const z = cz + (rng01() - 0.5) * 2 * span;
+    if (isTerrainDryAt(field, x, z)) {
+      return { x, z };
+    }
   }
-  return { x, z };
+  return { x: cx, z: cz };
 }
 
 /**
