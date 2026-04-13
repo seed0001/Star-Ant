@@ -989,9 +989,10 @@ export function fillFlowerInstances(
       }
       if (!terrain || allowUnderwater || isTerrainDryAt(terrain, x, z)) break;
     }
+    const gy = terrain ? terrain.getHeightBilinear(x, z) : 0;
     const rot = Math.random() * Math.PI * 2;
     const s = rng(0.78, 1.22);
-    dummy.position.set(x, 0, z);
+    dummy.position.set(x, gy, z);
     dummy.rotation.set(0, rot, 0);
     dummy.scale.setScalar(s);
     dummy.updateMatrix();

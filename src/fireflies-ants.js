@@ -135,8 +135,8 @@ export class FireflySwarm {
      *   glow: THREE.Sprite,
      *   phase: number,
      *   baseX: number,
-     *   baseY: number,
      *   baseZ: number,
+     *   hoverAboveGround: number,
      *   scale: number,
      *   glowColor: THREE.Color,
      *   snaredWeb: number,
@@ -251,7 +251,7 @@ export class FireflySwarm {
           phase: rng() * Math.PI * 2,
           baseX: bx,
           baseZ: bz,
-          baseY: 0.42 + rng() * 1.85,
+          hoverAboveGround: 0.42 + rng() * 1.85,
           scale: 0.88 + rng() * 0.22,
           glowColor,
           snaredWeb: -1,
@@ -312,7 +312,12 @@ export class FireflySwarm {
         it.baseX + Math.sin(t * 0.55 + ph) * 1.15 + wdx * w * 0.42;
       let pz =
         it.baseZ + Math.cos(t * 0.48 + ph * 1.3) * 1.15 + wdz * w * 0.42;
-      let py = it.baseY + Math.sin(t * 0.71 + ph * 0.9) * 0.38;
+      const g =
+        this._terrain?.getHeightBilinear(px, pz) ?? 0;
+      let py =
+        g +
+        it.hoverAboveGround +
+        Math.sin(t * 0.71 + ph * 0.9) * 0.38;
 
       if (it.snaredWeb < 0 && spiderZones && spiderZones.length > 0) {
         for (let zi = 0; zi < spiderZones.length; zi++) {
@@ -472,7 +477,11 @@ export class AntSwarm {
         pz[i] = z;
         const ry = rng() * Math.PI * 2;
         head[i] = ry;
-        dummy.position.set(x, 0.018 + rng() * 0.012, z);
+        dummy.position.set(
+          x,
+          land.groundY + 0.018 + rng() * 0.012,
+          z
+        );
         dummy.rotation.set(-Math.PI * 0.5 + (rng() - 0.5) * 0.08, ry, (rng() - 0.5) * 0.12);
         dummy.scale.setScalar(scale[i]);
         dummy.updateMatrix();
@@ -542,7 +551,10 @@ export class AntSwarm {
 
         const bob = Math.sin(t * 18 + ph * 5) * 0.006;
         const sway = Math.sin(t * 12 + ph * 3) * 0.05;
-        dummy.position.set(px[i], 0.016 + bob, pz[i]);
+        const gy = this._terrain
+          ? this._terrain.getHeightBilinear(px[i], pz[i])
+          : 0;
+        dummy.position.set(px[i], gy + 0.016 + bob, pz[i]);
         dummy.rotation.set(
           -Math.PI * 0.5 + sway * 0.25,
           head[i],

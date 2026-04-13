@@ -1065,7 +1065,7 @@ function fillGrassInstances(mesh, count, spread, colorVariation, terrain = null,
     const z = land.z;
     const rot = Math.random() * Math.PI * 2;
     const s = rng(0.75, 1.35);
-    dummy.position.set(x, 0, z);
+    dummy.position.set(x, land.groundY, z);
     dummy.rotation.set(0, rot, 0);
     dummy.scale.setScalar(s);
     dummy.updateMatrix();

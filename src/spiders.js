@@ -146,7 +146,7 @@ export class SpiderWebField {
    * @param {object} opts
    * @param {number} opts.count
    * @param {number} opts.seed
-   * @param {{ x: number, z: number, scale: number, trunkHeight: number }[]} opts.treePlacements
+   * @param {{ x: number, z: number, baseY?: number, scale: number, trunkHeight: number }[]} opts.treePlacements
    * @returns {boolean}
    */
   rebuild(opts) {
@@ -196,8 +196,11 @@ export class SpiderWebField {
         if (a !== b) {
           x = (a.x + b.x) * 0.5 + (rng() - 0.5) * 1.2;
           z = (a.z + b.z) * 0.5 + (rng() - 0.5) * 1.2;
+          const ba = typeof a.baseY === "number" ? a.baseY : 0;
+          const bb = typeof b.baseY === "number" ? b.baseY : 0;
+          const baseY = (ba + bb) * 0.5;
           const midH = Math.min(a.trunkHeight, b.trunkHeight) * 0.45;
-          y = 0.85 + rng() * Math.min(midH, 6) + rng() * 0.8;
+          y = baseY + 0.85 + rng() * Math.min(midH, 6) + rng() * 0.8;
         } else {
           x = (rng() * 2 - 1) * spread;
           z = (rng() * 2 - 1) * spread;
@@ -205,11 +208,12 @@ export class SpiderWebField {
         }
       } else if (trees.length >= 1 && rng() < 0.65) {
         const tr = trees[Math.floor(rng() * trees.length)];
+        const rootY = typeof tr.baseY === "number" ? tr.baseY : 0;
         const ang = rng() * Math.PI * 2;
         const rad = tr.scale * (0.35 + rng() * 0.5);
         x = tr.x + Math.cos(ang) * rad;
         z = tr.z + Math.sin(ang) * rad;
-        y = 1.1 + rng() * Math.min(tr.trunkHeight * 0.55, 7);
+        y = rootY + 1.1 + rng() * Math.min(tr.trunkHeight * 0.55, 7);
       } else {
         x = (rng() * 2 - 1) * spread;
         z = (rng() * 2 - 1) * spread;

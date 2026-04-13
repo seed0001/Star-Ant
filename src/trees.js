@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import { Tree, TreePreset } from "@dgreenheck/ez-tree";
-import { isTerrainDryAt, pickRandomDryXZ } from "./terrain-paint.js";
+import { sampleLandXZForSpawn } from "./terrain-paint.js";
 
 /** Preset names suitable for open-field trees (no trellis / training structures). */
 export const TREE_FIELD_PRESET_NAMES = Object.keys(TreePreset).filter((k) => k !== "Trellis");
@@ -189,17 +189,13 @@ export class TreeForest {
     for (let i = 0; i < n; i++) {
       let x = 0;
       let z = 0;
+      let groundY = 0;
       let found = false;
       for (let attempt = 0; attempt < 200; attempt++) {
-        if (terrain && dryLand && dryLand.length > 0) {
-          const p = pickRandomDryXZ(dryLand, terrain, rng);
-          if (!p) continue;
-          x = p.x;
-          z = p.z;
-        } else {
-          x = (rng() * 2 - 1) * spread;
-          z = (rng() * 2 - 1) * spread;
-        }
+        const land = sampleLandXZForSpawn(terrain, dryLand, rng, spread);
+        x = land.x;
+        z = land.z;
+        groundY = land.groundY;
         let ok = true;
         for (let j = 0; j < placed.length; j++) {
           const dx = x - placed[j].x;
@@ -210,7 +206,6 @@ export class TreeForest {
           }
         }
         if (!ok) continue;
-        if (terrain && !isTerrainDryAt(terrain, x, z)) continue;
         found = true;
         break;
       }
@@ -224,7 +219,6 @@ export class TreeForest {
       tree.options.seed = (seed + i * 7919 + (i * i) % 9973) >>> 0;
       tree.generate();
       tree.scale.setScalar(s);
-      const groundY = terrain ? terrain.getHeightBilinear(x, z) : 0;
       tree.position.set(x, groundY, z);
       tree.rotation.y = rng() * Math.PI * 2;
       tree.userData.trunkHeightApprox = shape.treeTrunkLength * s;
@@ -264,12 +258,13 @@ export class TreeForest {
 
   /**
    * World-space tree bases for placing critters (e.g. ladybugs on bark).
-   * @returns {{ x: number, z: number, scale: number, trunkHeight: number }[]}
+   * @returns {{ x: number, z: number, baseY: number, scale: number, trunkHeight: number }[]}
    */
   getTreePlacements() {
     return this.trees.map((t) => ({
       x: t.position.x,
       z: t.position.z,
+      baseY: t.position.y,
       scale: t.scale.x,
       trunkHeight: typeof t.userData.trunkHeightApprox === "number" ? t.userData.trunkHeightApprox : t.scale.x * 8,
     }));
@@ -290,14 +285,18 @@ export class TreeForest {
     let bestScore = Number.POSITIVE_INFINITY;
 
     for (const t of placements) {
+      const baseY = typeof t.baseY === "number" ? t.baseY : 0;
       const dx = px - t.x;
       const dz = pz - t.z;
       const distH = Math.sqrt(dx * dx + dz * dz);
       const trunkR = Math.max(0.32, t.scale * 1.35);
       const outer = trunkR + maxGap;
       if (distH < trunkR - 0.04 || distH > outer) continue;
-      if (py < 0.28 || py > t.trunkHeight * 0.9) continue;
-      const score = Math.abs(distH - (trunkR + 0.06)) + Math.abs(py - t.trunkHeight * 0.45) * 0.02;
+      const topY = baseY + t.trunkHeight * 0.9;
+      if (py < baseY + 0.28 || py > topY) continue;
+      const midY = baseY + t.trunkHeight * 0.45;
+      const score =
+        Math.abs(distH - (trunkR + 0.06)) + Math.abs(py - midY) * 0.02;
       if (score < bestScore) {
         bestScore = score;
         const ang = Math.atan2(dx, dz);
@@ -309,7 +308,11 @@ export class TreeForest {
           trunkHeight: t.trunkHeight,
           surfaceX: t.x + Math.sin(ang) * surfaceR,
           surfaceZ: t.z + Math.cos(ang) * surfaceR,
-          surfaceY: THREE.MathUtils.clamp(py, 0.35, t.trunkHeight * 0.88),
+          surfaceY: THREE.MathUtils.clamp(
+            py,
+            baseY + 0.35,
+            baseY + t.trunkHeight * 0.88
+          ),
         };
       }
     }

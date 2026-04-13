@@ -277,7 +277,7 @@ export class ButterflySwarm {
         const land = sampleLandXZForSpawn(this._terrain, opts.dryLand, rng, spread);
         const x = land.x;
         const z = land.z;
-        const y = yMin + rng() * (yMax - yMin);
+        const y = land.groundY + yMin + rng() * (yMax - yMin);
         baseX[i] = x;
         baseY[i] = y;
         baseZ[i] = z;
@@ -413,7 +413,7 @@ export class LadybugSwarm {
    * @param {CritterPreset[]} opts.presets
    * @param {number} opts.seed
    * @param {number} opts.treeShare
-   * @param {{ x: number, z: number, scale: number, trunkHeight: number }[]} opts.treePlacements
+   * @param {{ x: number, z: number, baseY?: number, scale: number, trunkHeight: number }[]} opts.treePlacements
    * @param {import("./terrain-paint.js").TerrainHeightField | null} [opts.terrain]
    * @param {import("./terrain-paint.js").DryLandSpawnPoints | null} [opts.dryLand]
    * @returns {Promise<boolean>}
@@ -472,6 +472,7 @@ export class LadybugSwarm {
       const h = new Float32Array(n);
       const trR = new Float32Array(n);
       const trH = new Float32Array(n);
+      const tBaseY = new Float32Array(n);
       const snaredWeb = new Int16Array(n);
       snaredWeb.fill(-1);
 
@@ -489,11 +490,13 @@ export class LadybugSwarm {
           mode[i] = 1;
           const tr = trees[Math.floor(rng() * trees.length)];
           const th = tr.trunkHeight;
+          const rootY = typeof tr.baseY === "number" ? tr.baseY : 0;
+          tBaseY[i] = rootY;
           const ang = rng() * Math.PI * 2;
           const rad = tr.scale * (0.32 + rng() * 0.42);
           x = tr.x + Math.cos(ang) * rad;
           z = tr.z + Math.sin(ang) * rad;
-          y = 0.05 + rng() * Math.min(th * 0.88, 14);
+          y = rootY + 0.05 + rng() * Math.min(th * 0.88, 14);
           tcx[i] = tr.x;
           tcz[i] = tr.z;
           theta[i] = ang;
@@ -510,7 +513,7 @@ export class LadybugSwarm {
           const land = sampleLandXZForSpawn(this._terrain, opts.dryLand, rng, spread);
           x = land.x;
           z = land.z;
-          y = 0.02 + rng() * 0.025;
+          y = land.groundY + 0.02 + rng() * 0.025;
           px[i] = x;
           pz[i] = z;
           ry = rng() * Math.PI * 2;
@@ -543,6 +546,7 @@ export class LadybugSwarm {
         h,
         trR,
         trH,
+        tBaseY,
         snaredWeb,
       });
     }
@@ -580,6 +584,7 @@ export class LadybugSwarm {
         h,
         trR,
         trH,
+        tBaseY,
         snaredWeb,
       } = blk;
       const n = mesh.count;
@@ -643,7 +648,10 @@ export class LadybugSwarm {
 
           const bob = Math.sin(t * 14 + ph * 4) * 0.018;
           const sway = Math.sin(t * 11 + ph * 2.7) * 0.04;
-          const yy = 0.02 + bob;
+          const gy = this._terrain
+            ? this._terrain.getHeightBilinear(px[i], pz[i])
+            : 0;
+          const yy = gy + 0.02 + bob;
           dummy.position.set(px[i], yy, pz[i]);
           dummy.rotation.set(
             -Math.PI * 0.5 + sway * 0.35,
@@ -655,11 +663,12 @@ export class LadybugSwarm {
           const tCz = tcz[i];
           const rad = trR[i];
           const tH = trH[i];
-          const maxY = Math.min(tH * 0.9, 14);
+          const rootY = tBaseY[i];
+          const maxY = rootY + Math.min(tH * 0.9, 14);
 
           theta[i] += dtC * (0.22 + 0.12 * Math.sin(t * 0.48 + ph) + 0.08 * Math.sin(t * 0.17 + ph * 2));
           h[i] += dtC * (0.42 * Math.sin(t * 0.41 + ph * 1.6) + 0.28 * Math.sin(t * 0.19 + ph * 0.7));
-          h[i] = THREE.MathUtils.clamp(h[i], 0.05, maxY);
+          h[i] = THREE.MathUtils.clamp(h[i], rootY + 0.05, maxY);
 
           const x = tCx + Math.cos(theta[i]) * rad;
           const z = tCz + Math.sin(theta[i]) * rad;
@@ -742,7 +751,8 @@ export class LadybugSwarm {
         const g = terrain.getHeightBilinear(px[i], pz[i]);
         const w = terrain.getWaterSurfaceHeightBilinear(px[i], pz[i]);
         if (w - g < 0.1) continue;
-        const yy = 0.02 + Math.sin(phase[i] * 4) * 0.018;
+        const gy = terrain.getHeightBilinear(px[i], pz[i]);
+        const yy = gy + 0.02 + Math.sin(phase[i] * 4) * 0.018;
         if (Math.abs(px[i] - fx) + Math.abs(pz[i] - fz) > 28) continue;
         const dx = fx - px[i];
         const dy = fy - yy;
@@ -756,7 +766,8 @@ export class LadybugSwarm {
           px[i] = nx;
           pz[i] = nz;
           head[i] = rng() * Math.PI * 2;
-          dummy.position.set(px[i], yy, pz[i]);
+          const gy2 = terrain.getHeightBilinear(px[i], pz[i]);
+          dummy.position.set(px[i], gy2 + 0.02 + Math.sin(phase[i] * 4) * 0.018, pz[i]);
           dummy.rotation.set(
             -Math.PI * 0.5 + (rng() - 0.5) * 0.12,
             head[i],

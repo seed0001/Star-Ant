@@ -168,8 +168,10 @@ export class TerrainHeightField {
    * @param {number} wz
    */
   _sampleBilinear(buf, wx, wz) {
-    const { u, v } = this.uvFromWorld(wx, wz);
-    if (u < 0 || u > 1 || v < 0 || v > 1) return 0;
+    const { u: u0, v: v0 } = this.uvFromWorld(wx, wz);
+    // Edge-clamp so props near the terrain rim still get surface height (formerly OOB → 0 sank meshes).
+    const u = THREE.MathUtils.clamp(u0, 0, 1);
+    const v = THREE.MathUtils.clamp(v0, 0, 1);
     const seg = this.segments;
     const fx = u * seg;
     const fy = v * seg;
@@ -804,19 +806,26 @@ export function pickRandomDryXZ(dry, field, rng01) {
  * @param {DryLandSpawnPoints | null | undefined} dry
  * @param {() => number} rng01
  * @param {number} spread half-extent on X/Z (matches field spread)
- * @returns {{ x: number, z: number }}
+ * @returns {{ x: number, z: number, groundY: number }} `groundY` is {@link TerrainHeightField.getHeightBilinear} at (x,z), or 0 without terrain.
  */
 export function sampleLandXZForSpawn(terrain, dry, rng01, spread) {
   if (terrain && dry && dry.length > 0) {
     const p = pickRandomDryXZ(dry, terrain, rng01);
-    if (p) return p;
+    if (p) {
+      const groundY = terrain.getHeightBilinear(p.x, p.z);
+      return { x: p.x, z: p.z, groundY };
+    }
   }
   let x = 0;
   let z = 0;
   for (let attempt = 0; attempt < 96; attempt++) {
     x = (rng01() * 2 - 1) * spread;
     z = (rng01() * 2 - 1) * spread;
-    if (!terrain || isTerrainDryAt(terrain, x, z)) return { x, z };
+    if (!terrain || isTerrainDryAt(terrain, x, z)) {
+      const groundY = terrain ? terrain.getHeightBilinear(x, z) : 0;
+      return { x, z, groundY };
+    }
   }
-  return { x, z };
+  const groundY = terrain ? terrain.getHeightBilinear(x, z) : 0;
+  return { x, z, groundY };
 }

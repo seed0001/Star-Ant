@@ -244,7 +244,11 @@ export class WormSwarm {
         pz[i] = z;
         const ry = rng() * Math.PI * 2;
         head[i] = ry;
-        dummy.position.set(x, 0.004 + rng() * 0.006, z);
+        dummy.position.set(
+          x,
+          land.groundY + 0.004 + rng() * 0.006,
+          z
+        );
         dummy.rotation.set(0, ry, 0);
         dummy.scale.setScalar(scale[i]);
         dummy.updateMatrix();
@@ -337,7 +341,10 @@ export class WormSwarm {
 
         // Very slight vertical bob — worms hug the ground
         const bob = Math.sin(t * 6 + ph * 3) * 0.003;
-        const yy = 0.004 + bob;
+        const gy = this._terrain
+          ? this._terrain.getHeightBilinear(px[i], pz[i])
+          : 0;
+        const yy = gy + 0.004 + bob;
 
         // Gentle body sway (roll)
         const roll = Math.sin(t * 3.5 + ph * 2.2) * 0.06;

@@ -180,7 +180,7 @@ export class BumblebeeSwarm {
         const land = sampleLandXZForSpawn(this._terrain, opts.dryLand, rng, spread);
         const x = land.x;
         const z = land.z;
-        const y = 2.2 + rng() * 9;
+        const y = land.groundY + 2.2 + rng() * 9;
         phase[i] = rng() * Math.PI * 2;
         scale[i] = 0.82 + rng() * 0.38;
         state[i] = S_FLY;
@@ -304,8 +304,13 @@ export class BumblebeeSwarm {
           x += (wanderX + wdx * w * 0.55) * dtC * 2.8;
           z += (wanderZ + wdz * w * 0.55) * dtC * 2.8;
 
+          const ground =
+            this._terrain?.getHeightBilinear(x, z) ?? 0;
           const baseY =
-            2.4 + Math.sin(t * 0.64 + ph * 0.95) * 2.8 + Math.sin(t * 1.9 + ph * 1.4) * 0.45;
+            ground +
+            2.4 +
+            Math.sin(t * 0.64 + ph * 0.95) * 2.8 +
+            Math.sin(t * 1.9 + ph * 1.4) * 0.45;
           if (hive) {
             const dh = Math.hypot(hive.x - x, hive.z - z);
             const forageY =
