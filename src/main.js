@@ -326,7 +326,8 @@ document.addEventListener("pointerlockchange", () => {
 document.addEventListener("mousemove", (e) => {
   if (!pointerLocked) return;
   if (randomCreatureView.active) return;
-  if (terrainPaint.dragging) return;
+  // Terrain paint intentionally keeps look active while dragging so you can sweep the
+  // center-screen brush across the ground smoothly (the brush follows where you look).
   if (treeChop?.dragging) return;
   if (flyMode === FlyMode.BEE_ORBIT && beePilot) {
     orbitYawOffset += e.movementX * 0.004;
@@ -2347,6 +2348,10 @@ let beeHiveField = null;
 /** @type {THREE.GridHelper | null} */
 let terrainPaintGrid = null;
 
+/** Brush footprint ring drawn on the ground at the aim point while terrain painting. */
+/** @type {THREE.Mesh | null} */
+let terrainBrushRing = null;
+
 /**
  * Until true, grass/trees/flowers/critters are not spawned — sculpt terrain first, then Spawn world.
  * Persisted in localStorage (same tab/session as terrain); legacy sessionStorage key is migrated on load.
@@ -2668,10 +2673,17 @@ function updateBeeHud() {
     treeChopOverlay.setAttribute("aria-hidden", show ? "false" : "true");
   }
   const terrainPaintOverlay = document.getElementById("terrain-paint-overlay");
-  if (terrainPaintOverlay) {
+  const terrainPaintReticle = document.getElementById("terrain-paint-reticle");
+  {
     const show = flyMode === FlyMode.FREE && terrainPaint.active === true && !treeChop?.chopMode;
-    terrainPaintOverlay.classList.toggle("is-visible", show);
-    terrainPaintOverlay.setAttribute("aria-hidden", show ? "false" : "true");
+    if (terrainPaintOverlay) {
+      terrainPaintOverlay.classList.toggle("is-visible", show);
+      terrainPaintOverlay.setAttribute("aria-hidden", show ? "false" : "true");
+    }
+    if (terrainPaintReticle) {
+      terrainPaintReticle.classList.toggle("is-visible", show);
+      terrainPaintReticle.setAttribute("aria-hidden", show ? "false" : "true");
+    }
   }
   const worldSpawnOverlay = document.getElementById("world-spawn-overlay");
   if (worldSpawnOverlay) {
@@ -2723,7 +2735,7 @@ function updateBeeHud() {
           "Open ocean: raise land with terrain paint to form islands, then Spawn world to place grass, trees, and life on dry ground.";
       } else if (terrainPaint.active && !treeChop?.chopMode) {
         hint.textContent =
-          "Terrain paint: Soft / Sharp raise or lower (dig up to 6 ft), Level flattens — water shows at 3 ft below the local surface when you dig deep enough. Hold left mouse, aim at ground. Ctrl+Z undo · terrain auto-saves. E or Terrain paint to exit.";
+          "Terrain paint: aim the crosshair at the ground (brush ring shows size). Soft / Sharp raise or lower (dig up to 6 ft), Level flattens — water shows at 3 ft below the local surface when you dig deep enough. Hold left mouse and move the mouse to sweep the brush. Ctrl+Z undo · terrain auto-saves. E or Terrain paint to exit.";
       } else if (treeChop?.chopMode) {
         hint.textContent =
           "Tree chop: click canvas once to capture mouse (look), then hold and swipe to cut — works at long range. — T or Chop to exit.";
@@ -2788,6 +2800,28 @@ export async function main() {
   terrainPaintGrid.material.depthWrite = false;
   terrainPaintGrid.renderOrder = 2;
   scene.add(terrainPaintGrid);
+
+  // Brush footprint ring — a flat annulus of radius 1 (scaled to brushRadius each frame)
+  // that sits on the ground at the aim point so you can see exactly where and how big the
+  // brush is. depthTest off so it stays visible over hills.
+  const brushRingGeo = new THREE.RingGeometry(0.92, 1.0, 72);
+  brushRingGeo.rotateX(-Math.PI / 2);
+  terrainBrushRing = new THREE.Mesh(
+    brushRingGeo,
+    new THREE.MeshBasicMaterial({
+      color: 0xffe08a,
+      transparent: true,
+      opacity: 0.85,
+      depthTest: false,
+      depthWrite: false,
+      side: THREE.DoubleSide,
+    })
+  );
+  terrainBrushRing.name = "TerrainBrushRing";
+  terrainBrushRing.renderOrder = 5;
+  terrainBrushRing.frustumCulled = false;
+  terrainBrushRing.visible = false;
+  scene.add(terrainBrushRing);
 
   sky = new SkyDome(scene);
   constellations = new ConstellationOverlay(scene);
@@ -3382,10 +3416,10 @@ export async function main() {
     treeChop?.update(dt);
     const pauseWorld = treeChop?.isCinematicActive() === true;
 
+    if (terrainBrushRing) terrainBrushRing.visible = false;
     if (
       !pauseWorld &&
       terrainPaint.active &&
-      terrainPaint.dragging &&
       flyMode === FlyMode.FREE &&
       groundPlaneRef &&
       terrainHeightField &&
@@ -3395,16 +3429,35 @@ export async function main() {
       const gh = groundRaycaster.intersectObject(groundPlaneRef.mesh, false);
       if (gh.length > 0) {
         const p = gh[0].point;
-        const sign = terrainPaint.tool === "level" ? 1 : terrainPaint.raise ? 1 : -1;
-        terrainHeightField.paint(
-          p.x,
-          p.z,
-          terrainPaint.brushRadius,
-          terrainPaint.tool,
-          terrainPaint.strength,
-          dt,
-          sign
-        );
+        // Show the brush footprint at the aim point (green raise / red lower / cyan level).
+        if (terrainBrushRing) {
+          const ringColor =
+            terrainPaint.tool === "level"
+              ? 0x8ad8ff
+              : terrainPaint.raise
+                ? 0x9cffa6
+                : 0xff9c8a;
+          terrainBrushRing.material.color.setHex(ringColor);
+          terrainBrushRing.position.set(p.x, p.y + 0.12, p.z);
+          terrainBrushRing.scale.set(
+            terrainPaint.brushRadius,
+            1,
+            terrainPaint.brushRadius
+          );
+          terrainBrushRing.visible = true;
+        }
+        if (terrainPaint.dragging) {
+          const sign = terrainPaint.tool === "level" ? 1 : terrainPaint.raise ? 1 : -1;
+          terrainHeightField.paint(
+            p.x,
+            p.z,
+            terrainPaint.brushRadius,
+            terrainPaint.tool,
+            terrainPaint.strength,
+            dt,
+            sign
+          );
+        }
       }
     }
 
