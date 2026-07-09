@@ -585,6 +585,58 @@ details[open] > .login-ocean-summary::before {
   visibility: visible;
 }
 
+.terrain-paint-reticle {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.12s ease, visibility 0.12s ease;
+}
+
+.terrain-paint-reticle.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.terrain-paint-crosshair {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 22px;
+  height: 22px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+/* Center dot */
+.terrain-paint-crosshair::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 4px;
+  height: 4px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.85);
+}
+
+/* Four short ticks with a gap around the center dot */
+.terrain-paint-crosshair::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)) 50% 0 / 1.5px 7px no-repeat,
+    linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)) 50% 100% / 1.5px 7px no-repeat,
+    linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)) 0 50% / 7px 1.5px no-repeat,
+    linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)) 100% 50% / 7px 1.5px no-repeat;
+  filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.8));
+}
+
 .terrain-paint-overlay {
   position: fixed;
   left: 0.75rem;
