@@ -499,6 +499,10 @@ details[open] > .login-ocean-summary::before {
   background: linear-gradient(180deg, rgba(60, 120, 70, 0.65), rgba(35, 70, 40, 0.88));
 }
 
+.terrain-choice-btn--beach {
+  background: linear-gradient(180deg, rgba(214, 188, 130, 0.72), rgba(120, 150, 120, 0.85));
+}
+
 #c {
   display: block;
   position: absolute;

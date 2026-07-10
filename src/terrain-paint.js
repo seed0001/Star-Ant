@@ -122,6 +122,42 @@ export class TerrainHeightField {
   }
 
   /**
+   * Half land / half water with a sloped beach between them. Dry land occupies +Z,
+   * the ocean occupies −Z, and a smooth transition band forms the shoreline. Reference
+   * stays at {@code refY} everywhere so the water surface is a single flat sheet.
+   * @param {number} [refY] reference surface / sea-level datum Y (m), typically 0
+   * @param {number} [depthBelowWaterSurfaceM] how far below the water surface the ocean floor sits
+   */
+  fillDefaultHalfBeach(refY = 0, depthBelowWaterSurfaceM = 4) {
+    const waterY = refY - WATER_TABLE_DEPTH_M;
+    const floorY = waterY - Math.max(0.05, depthBelowWaterSurfaceM);
+    const seg = this.segments;
+    const h = this.halfExtent;
+    const s = this.size;
+    const row = seg + 1;
+    // Beach runs along world X (constant Z). Fully dry land at/above beachStartZ,
+    // fully ocean floor at/below beachEndZ; the span between is the sloped beach.
+    const beachStartZ = 0;
+    const beachEndZ = -45;
+    for (let iz = 0; iz <= seg; iz++) {
+      // Same world-Z mapping as paint() / _applyHeightsToGeometry: iz=0 → +halfExtent.
+      const wz = h - (iz / seg) * s;
+      let t;
+      if (wz >= beachStartZ) t = 0;
+      else if (wz <= beachEndZ) t = 1;
+      else t = (beachStartZ - wz) / (beachStartZ - beachEndZ);
+      const smooth = t * t * (3 - 2 * t);
+      const heightY = refY + (floorY - refY) * smooth;
+      for (let ix = 0; ix <= seg; ix++) {
+        const idx = ix + iz * row;
+        this.referenceHeights[idx] = refY;
+        this.heights[idx] = heightY;
+      }
+    }
+    this.syncGroundMesh(true);
+  }
+
+  /**
    * @returns {THREE.BufferGeometry}
    */
   _buildGeometry() {
@@ -414,6 +450,18 @@ export class TerrainHeightField {
       const ref = this.referenceHeights[i];
       const waterY = ref - WATER_TABLE_DEPTH_M;
       if (this.heights[i] < waterY - 1e-4) return true;
+    }
+    return false;
+  }
+
+  /**
+   * True where any terrain sits at/above the local water surface — i.e. there is dry
+   * ground to place plants and land critters on. Complements {@link hasExposedWater}.
+   */
+  hasDryLand() {
+    for (let i = 0; i < this.heights.length; i++) {
+      const waterY = this.referenceHeights[i] - WATER_TABLE_DEPTH_M;
+      if (this.heights[i] >= waterY - 1e-4) return true;
     }
     return false;
   }

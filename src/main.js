@@ -1066,7 +1066,10 @@ function fillGrassInstances(mesh, count, spread, colorVariation, terrain = null,
     const z = land.z;
     const rot = Math.random() * Math.PI * 2;
     const s = rng(0.75, 1.35);
-    dummy.position.set(x, land.groundY, z);
+    // Y stays at 0 — the grass vertex shader lifts each blade to the live terrain
+    // height (worldPos.y += h0). Baking land.groundY here too would double-count the
+    // offset, burying blades under raised terrain / below the water surface.
+    dummy.position.set(x, 0, z);
     dummy.rotation.set(0, rot, 0);
     dummy.scale.setScalar(s);
     dummy.updateMatrix();
@@ -2237,6 +2240,7 @@ function performTerrainUndo() {
   rockField?.syncGroundHeight(terrainHeightField);
   beeHiveField?.syncGroundHeight(terrainHeightField);
   saveTerrainToLocalStorage(terrainHeightField);
+  updateWorldSpawnCopy();
   updateBeeHud();
 }
 
@@ -2358,6 +2362,69 @@ let terrainBrushRing = null;
  */
 let worldContentSpawned = false;
 
+/**
+ * Show the "Choose your world" modal and resolve with the picked starting terrain.
+ * Resolves "beach" if the modal markup is missing so boot never stalls.
+ * @returns {Promise<"beach" | "land" | "water">}
+ */
+function pickStartingTerrainViaModal() {
+  return new Promise((resolve) => {
+    const modal = document.getElementById("terrain-choice-modal");
+    const beachBtn = document.getElementById("terrain-pick-beach");
+    const landBtn = document.getElementById("terrain-pick-land");
+    const waterBtn = document.getElementById("terrain-pick-water");
+    if (!modal || !beachBtn || !landBtn || !waterBtn) {
+      resolve("beach");
+      return;
+    }
+    /** @param {"beach" | "land" | "water"} choice */
+    const done = (choice) => {
+      modal.hidden = true;
+      beachBtn.removeEventListener("click", onBeach);
+      landBtn.removeEventListener("click", onLand);
+      waterBtn.removeEventListener("click", onWater);
+      resolve(choice);
+    };
+    const onBeach = () => done("beach");
+    const onLand = () => done("land");
+    const onWater = () => done("water");
+    beachBtn.addEventListener("click", onBeach);
+    landBtn.addEventListener("click", onLand);
+    waterBtn.addEventListener("click", onWater);
+    modal.hidden = false;
+  });
+}
+
+/**
+ * Match the pre-spawn overlay card copy to the current terrain: open water, a coastline,
+ * or all dry land. Keeps the intro accurate whether the world started as beach / land /
+ * water, was restored from a save, or has since been sculpted.
+ */
+function updateWorldSpawnCopy() {
+  const titleEl = document.querySelector(".world-spawn-title");
+  const textEl = document.querySelector(".world-spawn-text");
+  if (!titleEl && !textEl) return;
+  const hasDry = terrainHeightField ? terrainHeightField.hasDryLand() : true;
+  const hasWater = terrainHeightField ? terrainHeightField.hasExposedWater() : false;
+  let title;
+  let text;
+  if (!hasDry) {
+    title = "Raise land from the sea";
+    text =
+      "You start in open water. Use terrain paint to build islands or coast, then spawn grass, trees, flowers, and critters on dry ground (counts stay at zero until you turn them up and spawn).";
+  } else if (hasWater) {
+    title = "Your coastline is ready";
+    text =
+      "Dry land meets the sea. Tune your grass, tree, flower, and critter counts, then Spawn world to populate the land — or keep sculpting the coast first (counts stay at zero until you turn them up).";
+  } else {
+    title = "Your land is ready";
+    text =
+      "You start on open dry ground. Tune your grass, tree, flower, and critter counts, then Spawn world — or sculpt hills and dig water first (counts stay at zero until you turn them up).";
+  }
+  if (titleEl) titleEl.textContent = title;
+  if (textEl) textEl.textContent = text;
+}
+
 function finalizeTerrainPaintStroke() {
   terrainHeightField?.finalizeStroke();
   treeForest?.syncTreeGroundHeight(terrainHeightField);
@@ -2366,6 +2433,7 @@ function finalizeTerrainPaintStroke() {
   if (terrainHeightField) {
     saveTerrainToLocalStorage(terrainHeightField);
   }
+  updateWorldSpawnCopy();
 }
 
 function spawnWorldContent() {
@@ -2399,6 +2467,7 @@ function resetTerrainWorkshop() {
     /* ignore */
   }
   applySettings(readSettingsFromDOM());
+  updateWorldSpawnCopy();
   updateBeeHud();
 }
 
@@ -2732,7 +2801,9 @@ function updateBeeHud() {
           "Random creature view: ~1 min per subject (butterflies, fish, whale, …). Esc or button to exit.";
       } else if (!worldContentSpawned) {
         hint.textContent =
-          "Open ocean: raise land with terrain paint to form islands, then Spawn world to place grass, trees, and life on dry ground.";
+          terrainHeightField && !terrainHeightField.hasDryLand()
+            ? "Open ocean: raise land with terrain paint to form islands, then Spawn world to place grass, trees, and life on dry ground."
+            : "Dry land is ready — Spawn world to place grass, trees, and life, or use Terrain paint to reshape the coast first.";
       } else if (terrainPaint.active && !treeChop?.chopMode) {
         hint.textContent =
           "Terrain paint: aim the crosshair at the ground (brush ring shows size). Soft / Sharp raise or lower (dig up to 6 ft), Level flattens — water shows at 3 ft below the local surface when you dig deep enough. Hold left mouse and move the mouse to sweep the brush. Ctrl+Z undo · terrain auto-saves. E or Terrain paint to exit.";
@@ -2834,14 +2905,20 @@ export async function main() {
     rockField.syncGroundHeight(terrainHeightField);
     beeHiveField.syncGroundHeight(terrainHeightField);
   } else {
-    const bootstrap = consumeBootstrapTerrain();
+    let bootstrap = consumeBootstrapTerrain();
+    if (bootstrap !== "land" && bootstrap !== "water") {
+      bootstrap = await pickStartingTerrainViaModal();
+    }
     if (bootstrap === "land") {
       terrainHeightField.fillDefaultFlatLand();
-    } else {
+    } else if (bootstrap === "water") {
       terrainHeightField.fillDefaultOceanFloor();
+    } else {
+      terrainHeightField.fillDefaultHalfBeach();
     }
     saveTerrainToLocalStorage(terrainHeightField);
   }
+  updateWorldSpawnCopy();
 
   try {
     const fromLocal = localStorage.getItem(WORLD_CONTENT_SPAWNED_STORAGE_KEY) === "1";
@@ -3089,6 +3166,7 @@ export async function main() {
     rockField?.syncGroundHeight(terrainHeightField);
     beeHiveField?.syncGroundHeight(terrainHeightField);
     saveTerrainToLocalStorage(terrainHeightField);
+    updateWorldSpawnCopy();
     terrainUndoStack.length = 0;
     updateTerrainPersistenceUi();
     try {
@@ -3181,6 +3259,7 @@ export async function main() {
       rockField?.syncGroundHeight(terrainHeightField);
       beeHiveField?.syncGroundHeight(terrainHeightField);
       saveTerrainToLocalStorage(terrainHeightField);
+      updateWorldSpawnCopy();
       updateBeeHud();
       const impBtn = document.getElementById("terrain-import-btn");
       if (impBtn) {
