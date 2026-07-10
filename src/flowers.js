@@ -989,10 +989,12 @@ export function fillFlowerInstances(
       }
       if (!terrain || allowUnderwater || isTerrainDryAt(terrain, x, z)) break;
     }
-    const gy = terrain ? terrain.getHeightBilinear(x, z) : 0;
     const rot = Math.random() * Math.PI * 2;
     const s = rng(0.78, 1.22);
-    dummy.position.set(x, gy, z);
+    // Y stays at 0 — the flower vertex shader lifts each plant to the live terrain
+    // height (worldPos.y += h0). Baking the ground height here too would double-count
+    // the offset, sinking flowers under raised terrain / below the water surface.
+    dummy.position.set(x, 0, z);
     dummy.rotation.set(0, rot, 0);
     dummy.scale.setScalar(s);
     dummy.updateMatrix();
