@@ -86,7 +86,7 @@ By morning, the only evidence is the castings — small, coiled monuments of pro
 
 [SHOT: crane field — slow rise from soil level up past grass, flowers, treetops, to open sky]
 
-Rise from the soil to the canopy and hold both in mind at once — the shining meadow, and the blind engine underneath it. The Gardener planted this world's surface. But the worms maintain its foundations, one swallowed grain at a time.
+Hold both in mind at once — the shining meadow, and the blind engine underneath it. The Gardener planted this world's surface. But the worms maintain its foundations, one swallowed grain at a time.
 
 [SHOT: wide field — afternoon light across the whole garden]
 

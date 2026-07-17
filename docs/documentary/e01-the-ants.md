@@ -12,7 +12,7 @@ Seen from above, it could be a forest. Green towers crowd the horizon in every d
 
 [SHOT: crane field — plunge from canopy height down between the blades to the soil]
 
-Descend below the canopy, and the scale of things reveals itself. Down here, a single blade is a monument. A pebble is a boulder. And the busiest citizens of this entire world are about to start their working day.
+Below the canopy, the scale of things reveals itself. Down here, a single blade is a monument. A pebble is a boulder. And the busiest citizens of this entire world are about to start their working day.
 
 [SHOT: low ant — ground level, an ant crosses frame close enough to fill it]
 
@@ -26,7 +26,7 @@ Follow one, and you begin to understand the rhythm of the floor of this world. S
 
 [SHOT: topdown ant — rise slowly to show dozens of ants scattered across the soil]
 
-Pull back, and she is not alone. She never was. Across the open ground between the grass towers, her sisters are everywhere — each one on her own errand, each one part of a pattern too large for any single ant to see.
+And she is not alone. She never was. Across the open ground between the grass towers, her sisters are everywhere — each one on her own errand, each one part of a pattern too large for any single ant to see.
 
 [SHOT: closeup ant — macro on the head and antennae as it pauses]
 
@@ -92,7 +92,7 @@ To them, the world is simply the world. It has always been this shape. When the 
 
 [SHOT: crane field — rise from a single ant up through the grass canopy into golden light]
 
-Rise back above the canopy, and she vanishes — one dark speck among thousands, on a floor the size of a living room. It is easy to overlook the ants. Almost everything does.
+From above the canopy, she vanishes — one dark speck among thousands, on a floor the size of a living room. It is easy to overlook the ants. Almost everything does.
 
 [SHOT: wide field — dusk settles over the swaying grass, lights beginning to blink far below]
 

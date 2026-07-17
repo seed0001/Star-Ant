@@ -36,7 +36,7 @@ And at the shoreline, the mirror becomes machinery. What reads as gentle lapping
 
 [SHOT: underwater fish — beneath the surface: green light, drifting motes, fish crossing]
 
-Cross the mirror, and the wardrobe changes entirely. Below is the drowned country of episode nine — cool, layered, and lit through a trembling roof.
+Beneath the mirror, the wardrobe changes entirely. Below is the drowned country of episode nine — cool, layered, and lit through a trembling roof.
 
 [SHOT: cutaway whale — the great silhouette slides through the deepest water, then away]
 

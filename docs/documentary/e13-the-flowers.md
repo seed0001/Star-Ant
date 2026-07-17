@@ -64,11 +64,11 @@ The bees cannot tell bred beauty from wild. Sunlight through a petal is sunlight
 
 [SHOT: closeup flower — macro dissection by camera: petal, then center, then stem in turn]
 
-Take one bloom apart with the lens, and every component confesses its job. The petals: pure signage, colored on the outward face where the customers fly, cheap and disposable by design. The center: the actual shop — pollen and nectar, inventory and till. The stem: a mast engineered like the grass towers, but sized for a heavier, gaudier cargo.
+Take one bloom apart, and every component confesses its job. The petals: pure signage, colored on the outward face where the customers fly, cheap and disposable by design. The center: the actual shop — pollen and nectar, inventory and till. The stem: a mast engineered like the grass towers, but sized for a heavier, gaudier cargo.
 
 [SHOT: closeup flower — the petal's surface at extreme magnification: gradients, sheen, depth of color]
 
-Even the color is engineered in layers. A petal is not painted; it is built — pigment below, structure above, the surface itself sculpted to catch light at the angles a descending bee will see. Some of these signals are tuned for eyes that read colors we cannot. The meadow is broadcasting on channels the camera can only gesture at.
+Even the color is engineered in layers. A petal is not painted; it is built — pigment below, structure above, the surface itself sculpted to catch light at the angles a descending bee will see. Some of these signals are tuned for eyes that read colors we cannot. The meadow is broadcasting on channels we can only guess at.
 
 [SHOT: track flower — wind sweeps the drift; every bloom noses into the moving air and recovers]
 

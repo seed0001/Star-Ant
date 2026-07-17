@@ -86,7 +86,7 @@ And at slack water — the few still minutes when the moon's pull balances and t
 
 [SHOT: wide moon — the moon high and small over the whole breathing world]
 
-Step back, and consider what the moon actually is to this garden: a clock nobody winds, a landlord nobody sees, a power that touches every shoreline without once touching the shore.
+Consider what the moon actually is to this garden: a clock nobody winds, a landlord nobody sees, a power that touches every shoreline without once touching the shore.
 
 [SHOT: closeup moon — the pale disc alone in frame, silent]
 

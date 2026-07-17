@@ -22,7 +22,7 @@ The trees.
 
 [SHOT: closeup tree — macro on bark, then travel up the trunk as it divides and divides]
 
-Follow a trunk upward and watch it make its choices. Here it splits; each branch splits again; each of those again — the same simple rule, repeated toward the light, until a single stem has become a crown of hundreds.
+A trunk, on its way up, makes its choices. Here it splits; each branch splits again; each of those again — the same simple rule, repeated toward the light, until a single stem has become a crown of hundreds.
 
 [SHOT: crane tree — rise through the branching interior, twigs and leaves thickening around the lens]
 
@@ -50,7 +50,7 @@ Above it all, the crowns give the birds their one solid landmark in a world of w
 
 [SHOT: crane tree — rising through the crown's interior: layer upon layer of leaves, light thinning]
 
-Climb through a crown and you pass through a business built on one commodity. Light enters from the top; each layer of leaves takes its share; and what reaches the bottom branches is the dregs — a green twilight that barely pays for the leaves that catch it. A tree's shape is not a pose. It is a market, resolved.
+A crown is a business built on one commodity. Light enters from the top; each layer of leaves takes its share; and what reaches the bottom branches is the dregs — a green twilight that barely pays for the leaves that catch it. A tree's shape is not a pose. It is a market, resolved.
 
 [SHOT: closeup tree — a leaf turning slowly on its stalk, tilting toward the brighter sky]
 

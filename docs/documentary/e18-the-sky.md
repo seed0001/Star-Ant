@@ -50,7 +50,7 @@ And when the dome goes truly dark at midday, every resident knows the grammar: t
 
 [SHOT: wide sky — clean midday blue, the dome at its emptiest and deepest]
 
-Spare an hour for the sky doing nothing, because its nothing is a masterwork. That noon blue is not a ceiling's paint; it is depth itself — sunlight scattered and rescattered until the whole dome glows with the leftovers. The residents stand at the bottom of an ocean of lit air, and only the camera ever looks up long enough to notice.
+Spare an hour for the sky doing nothing, because its nothing is a masterwork. That noon blue is not a ceiling's paint; it is depth itself — sunlight scattered and rescattered until the whole dome glows with the leftovers. The residents stand at the bottom of an ocean of lit air, and not one of them ever looks up long enough to notice.
 
 [SHOT: pan sky — a lone small cloud crossing the empty blue, its shadow crossing the field below]
 
@@ -58,7 +58,7 @@ Into that emptiness, a single cloud is an event. Watch one cross the dome traili
 
 [SHOT: closeup sky — the horizon band at midday: pale, hazed, where dome meets the world's rim]
 
-At the rim, the blue always thins. The horizon wears a pale band at every hour — distance itself made visible, the thickest possible slice of air between the lens and the edge of the world. It is the one part of the roof that admits how the trick is done: the sky is not a thing above the garden. It is the garden's air, wearing light.
+At the rim, the blue always thins. The horizon wears a pale band at every hour — distance itself made visible, the thickest possible slice of air between any eye and the edge of the world. It is the one part of the roof that admits how the trick is done: the sky is not a thing above the garden. It is the garden's air, wearing light.
 
 [SHOT: wide sky — the light imperceptibly warming as the afternoon begins its long descent]
 

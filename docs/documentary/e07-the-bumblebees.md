@@ -96,7 +96,7 @@ The Gardener stocked the hives and scattered the flowers. But this — the hum, 
 
 [SHOT: crane field — rise from the flower field up past the grass tops into open sky]
 
-Leave the meadow and keep climbing, past the tallest blade, past the treetops, into the one country this series has not yet visited: the open air.
+Beyond the meadow, past the tallest blade, past the treetops, lies the one country this series has not yet visited: the open air.
 
 [SHOT: wide birds — the flock wheels across the sky in formation]
 

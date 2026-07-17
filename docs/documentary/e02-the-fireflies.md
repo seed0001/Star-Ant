@@ -40,7 +40,7 @@ The glow swells, holds, and dims — a signal shaped by ancestry. In the wild, t
 
 [SHOT: dolly field — glide slowly through the field of lights at firefly height]
 
-Move among them, and the garden becomes something else entirely — a low sky of drifting stars beneath the real one. There are few sights in nature, at any scale, to match a meadow speaking to itself in light.
+In their midst, the garden becomes something else entirely — a low sky of drifting stars beneath the real one. There are few sights in nature, at any scale, to match a meadow speaking to itself in light.
 
 [SHOT: cutaway stars — tilt up to the constellations overhead, then back down to the field]
 

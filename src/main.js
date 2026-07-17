@@ -44,6 +44,7 @@ import { RockField, rockFieldSignature } from "./rocks.js";
 import { BeeHiveField, beeHiveSignature } from "./bee-hives.js";
 import { TreeChopSystem } from "./tree-chop.js";
 import { RandomCreatureViewController } from "./random-creature-view.js";
+import { DocumentaryController } from "./documentary.js";
 import { initTabletControls } from "./tablet-controls.js";
 import {
   TerrainHeightField,
@@ -2333,6 +2334,168 @@ function buildRandomCreatureDescriptors() {
 
 randomCreatureView.setDescriptorProvider(buildRandomCreatureDescriptors);
 
+const _DOC_TMP = new THREE.Vector3();
+
+/**
+ * First populated InstancedMesh under a group, as a documentary subject.
+ * @param {THREE.Group | null | undefined} group
+ * @param {number} radius minimum subject radius (world units)
+ */
+function docInstSubject(group, radius) {
+  if (!group) return null;
+  /** @type {THREE.InstancedMesh | null} */
+  let found = null;
+  group.traverse((o) => {
+    if (!found && o instanceof THREE.InstancedMesh && o.count > 0) found = o;
+  });
+  return found ? { kind: "inst", mesh: found, count: found.count, radius } : null;
+}
+
+/**
+ * Random terrain point subject. wantWater → point on the water surface;
+ * shore → dry point with exposed water nearby.
+ * @param {number} radius
+ * @param {boolean} [wantWater]
+ * @param {boolean} [shore]
+ */
+function docTerrainPoint(radius, wantWater = false, shore = false) {
+  const f = terrainHeightField;
+  if (!f) return { kind: "point", x: 0, y: 0.5, z: 0, radius };
+  const wetAt = (x, z) =>
+    f.getWaterSurfaceHeightBilinear(x, z) > f.getHeightBilinear(x, z) + 0.01;
+  for (let i = 0; i < 200; i++) {
+    const x = (Math.random() * 2 - 1) * GRASS_FIELD_SPREAD * 0.8;
+    const z = (Math.random() * 2 - 1) * GRASS_FIELD_SPREAD * 0.8;
+    const wet = wetAt(x, z);
+    if (shore) {
+      if (wet) continue;
+      if (wetAt(x + 3, z) || wetAt(x - 3, z) || wetAt(x, z + 3) || wetAt(x, z - 3)) {
+        return { kind: "point", x, y: f.getHeightBilinear(x, z) + 0.05, z, radius };
+      }
+      continue;
+    }
+    if (wantWater !== wet) continue;
+    const y = wantWater
+      ? f.getWaterSurfaceHeightBilinear(x, z)
+      : f.getHeightBilinear(x, z) + 0.05;
+    return { kind: "point", x, y, z, radius };
+  }
+  return { kind: "point", x: 0, y: f.getHeightBilinear(0, 0) + 0.5, z: 0, radius };
+}
+
+/**
+ * Random direct child of a group (tree, hive) as a point subject.
+ * @param {THREE.Group | null | undefined} group
+ * @param {number} radius
+ */
+function docGroupChildSubject(group, radius) {
+  if (!group || group.children.length < 1) return null;
+  const c = group.children[Math.floor(Math.random() * group.children.length)];
+  c.updateMatrixWorld(true);
+  _DOC_TMP.setFromMatrixPosition(c.matrixWorld);
+  return {
+    kind: "point",
+    x: _DOC_TMP.x,
+    y: _DOC_TMP.y + radius * 0.5,
+    z: _DOC_TMP.z,
+    radius,
+  };
+}
+
+/**
+ * Resolve a documentary shot subject name to a live camera target.
+ * Sky-type subjects return null — the controller frames those itself.
+ * @param {string} name
+ */
+function documentarySubject(name) {
+  switch (name) {
+    case "ant":
+      return docInstSubject(antSwarm?.group, 0.05) ?? docTerrainPoint(0.1);
+    case "firefly":
+      return docInstSubject(fireflySwarm?.group, 0.06) ?? docTerrainPoint(0.1);
+    case "butterfly":
+      return docInstSubject(butterflySwarm?.group, 0.1) ?? docTerrainPoint(0.1);
+    case "ladybug":
+      return docInstSubject(ladybugSwarm?.group, 0.05) ?? docTerrainPoint(0.1);
+    case "bee":
+      return docInstSubject(bumblebeeSwarm?.group, 0.09) ?? docTerrainPoint(0.1);
+    case "worm":
+      return docInstSubject(wormSwarm?.group, 0.06) ?? docTerrainPoint(0.1);
+    case "birds":
+      return (
+        docInstSubject(birdFlockLand?.group, 0.3) ??
+        docInstSubject(birdFlockWater?.group, 0.3) ??
+        docTerrainPoint(0.3)
+      );
+    case "fish":
+      return docInstSubject(fishSwarm?.group, 0.15) ?? docTerrainPoint(0.5, true);
+    case "whale":
+      return lakeWhale?.group?.visible
+        ? { kind: "group", group: lakeWhale.group, radius: 2.2 }
+        : docTerrainPoint(1, terrainHeightField?.hasExposedWater() === true);
+    case "soldier":
+      return soldierPilot?.root?.visible
+        ? { kind: "group", group: soldierPilot.root, radius: 0.03 }
+        : docTerrainPoint(0.05);
+    case "spider":
+    case "web": {
+      const zones = spiderField?.getZones() ?? [];
+      if (zones.length > 0) {
+        const z = zones[Math.floor(Math.random() * zones.length)];
+        return { kind: "point", x: z.x, y: z.y, z: z.z, radius: Math.max(0.25, z.radius) };
+      }
+      return docGroupChildSubject(treeForest?.group, 1.2) ?? docTerrainPoint(0.4);
+    }
+    case "hive":
+      return docGroupChildSubject(beeHiveField?.group, 0.35) ?? docTerrainPoint(0.3);
+    case "tree":
+    case "stump":
+      return docGroupChildSubject(treeForest?.group, 1.4) ?? docTerrainPoint(1);
+    case "flower":
+      return docInstSubject(flowerField?.group, 0.25) ?? docTerrainPoint(0.25);
+    case "rock":
+      return docInstSubject(rockField?.group, 0.5) ?? docTerrainPoint(0.4);
+    case "grass":
+      return docTerrainPoint(0.6);
+    case "water":
+      return docTerrainPoint(1.2, terrainHeightField?.hasExposedWater() === true);
+    case "underwater":
+      return docTerrainPoint(0.8, terrainHeightField?.hasExposedWater() === true);
+    case "shore":
+      return docTerrainPoint(0.8, false, true);
+    case "sky":
+    case "sun":
+    case "moon":
+    case "stars":
+    case "rain":
+    case "snow":
+    case "lightning":
+      return null;
+    default:
+      return docTerrainPoint(GRASS_FIELD_SPREAD * 0.12);
+  }
+}
+
+const documentary = new DocumentaryController({
+  camera,
+  getSubject: documentarySubject,
+  getTerrain: () => terrainHeightField,
+  getSpread: () => GRASS_FIELD_SPREAD,
+  canControl: () => flyMode === FlyMode.FREE,
+  onStart: () => {
+    if (randomCreatureView.active) randomCreatureView.end();
+    document.exitPointerLock?.();
+    terrainPaint.active = false;
+    terrainPaint.dragging = false;
+    if (treeChop) treeChop.chopMode = false;
+    updateBeeHud();
+  },
+  onStop: () => {
+    euler.setFromQuaternion(camera.quaternion, euler.order);
+    updateBeeHud();
+  },
+});
+
 function toggleRandomCreatureView() {
   if (flyMode !== FlyMode.FREE || !worldContentSpawned) return;
   if (randomCreatureView.active) {
@@ -2341,6 +2504,7 @@ function toggleRandomCreatureView() {
     return;
   }
   if (buildRandomCreatureDescriptors().length < 1) return;
+  documentary.stop();
   document.exitPointerLock?.();
   terrainPaint.active = false;
   terrainPaint.dragging = false;
@@ -2801,6 +2965,13 @@ function updateBeeHud() {
       "aria-pressed",
       can && randomCreatureView.active ? "true" : "false"
     );
+  }
+  const documentaryBtn = document.getElementById("documentary-btn");
+  if (documentaryBtn) {
+    const can = worldContentSpawned && flyMode === FlyMode.FREE;
+    documentaryBtn.disabled = !can && !documentary.active;
+    documentaryBtn.classList.toggle("is-active", documentary.active);
+    documentaryBtn.setAttribute("aria-pressed", documentary.active ? "true" : "false");
   }
   if (hint) {
     if (flyMode === FlyMode.FREE) {
@@ -3822,7 +3993,10 @@ export async function main() {
       });
     }
 
-    if (randomCreatureView.active && flyMode === FlyMode.FREE) {
+    if (documentary.active && flyMode === FlyMode.FREE) {
+      documentary.updateCamera(dt);
+      euler.setFromQuaternion(camera.quaternion, euler.order);
+    } else if (randomCreatureView.active && flyMode === FlyMode.FREE) {
       const rvBefore = randomCreatureView.active;
       randomCreatureView.update(camera, euler, clock.getElapsedTime());
       if (rvBefore && !randomCreatureView.active) updateBeeHud();
@@ -3896,5 +4070,13 @@ export async function main() {
   });
   document.getElementById("random-creature-view-btn")?.addEventListener("click", () => {
     toggleRandomCreatureView();
+  });
+  document.getElementById("documentary-btn")?.addEventListener("click", () => {
+    if (documentary.active) {
+      documentary.stop();
+      return;
+    }
+    if (flyMode !== FlyMode.FREE || !worldContentSpawned) return;
+    void documentary.openMenu();
   });
 }

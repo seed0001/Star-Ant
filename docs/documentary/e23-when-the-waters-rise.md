@@ -82,7 +82,7 @@ And through every outlaw flood, the lawful one keeps its appointments — the ti
 
 [SHOT: crane shore — rise until the whole waterline curves through frame, land and lake in balance]
 
-Step back far enough, and the flood stops looking like a disaster and starts looking like a pump. Twice a day gently, and now and then greatly, the border sweeps the margin — moving food, water, and hard luck across the line in both directions.
+From a distance, the flood stops looking like a disaster and starts looking like a pump. Twice a day gently, and now and then greatly, the border sweeps the margin — moving food, water, and hard luck across the line in both directions.
 
 [SHOT: wide field — the whole garden: margin glistening, both nations busy at their edges]
 

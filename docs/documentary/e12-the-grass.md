@@ -68,7 +68,7 @@ Take one tower and read it bottom to top. At the base, the blade is a folded cha
 
 [SHOT: closeup grass — light passing through the blade: the interior glowing green, veined]
 
-Hold it against the sun and the tower reveals itself as a factory. That green is machinery — the same light-harvesting chemistry running in every leaf of the great trees, packed into a blade the thickness of paper. Each of the ten million towers is a power station, quietly converting sky into sugar from first light to last.
+Against the sun, the tower reveals itself as a factory. That green is machinery — the same light-harvesting chemistry running in every leaf of the great trees, packed into a blade the thickness of paper. Each of the ten million towers is a power station, quietly converting sky into sugar from first light to last.
 
 [SHOT: low grass — the blade's tip bobbing under the weight of a landed butterfly, holding]
 

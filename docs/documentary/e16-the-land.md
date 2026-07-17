@@ -62,7 +62,7 @@ And a hollow is a promise. Water remembers every low line in the sculpture, and 
 
 [SHOT: wide terrain — hard light raking sideways across the land, every contour thrown into relief]
 
-Come at the right hour, when the light rakes low, and the whole grammar stands revealed at once — every rise underlined in gold, every hollow filled with shadow ink. This is the hour the map is most honest, and the camera has waited all series for it. Geography, in the end, is just light explaining the sculptor's decisions.
+At the right hour, when the light rakes low, the whole grammar stands revealed at once — every rise underlined in gold, every hollow filled with shadow ink. This is the hour the map is most honest. Geography, in the end, is just light explaining the sculptor's decisions.
 
 ## The world's edge
 

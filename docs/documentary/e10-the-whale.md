@@ -36,7 +36,7 @@ The fish treat it the way the ants treat the inch-tall visitor — as terrain th
 
 [SHOT: closeup whale — macro traveling shot along the body, nose toward tail]
 
-Travel the body nose to tail and you are surveying, not observing. The head alone outmeasures the whale's every neighbor. The body tapers with the logic of a hull — mass up front, propulsion astern.
+From nose to tail, this is a body to survey, not observe. The head alone outmeasures the whale's every neighbor. The body tapers with the logic of a hull — mass up front, propulsion astern.
 
 [SHOT: closeup whale — the tail stock flexes; the fluke rises and presses down, slow and total]
 
@@ -68,7 +68,7 @@ Its entire kingdom hangs on a detail of the sculpture. When the Gardener pressed
 
 [SHOT: dolly underwater — descending the drowned slope into the dark of the deep hollow]
 
-Follow the lakebed down into that pocket and the light thins with every meter. The drowned meadow's green gives way to blue, then to a darkness the surface never quite reaches. This is the garden's only true deep — a room with one resident, sized within a stroke of its occupant.
+In that pocket, the light thins with every meter of depth. The drowned meadow's green gives way to blue, then to a darkness the surface never quite reaches. This is the garden's only true deep — a room with one resident, sized within a stroke of its occupant.
 
 [SHOT: track whale — the whale turns along the pocket's far wall, fluke nearly brushing the slope]
 

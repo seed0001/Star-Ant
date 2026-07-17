@@ -26,7 +26,7 @@ Unlike the ants below or the butterflies above, the ladybug refuses to choose a 
 
 [SHOT: crane tree — rise up a great trunk, finding a ladybug ascending the bark]
 
-Others have moved uptown. Follow the trunk of any of the great trees, and you may find one climbing — a red bead on a wooden cliff, ascending with no apparent plan and no apparent doubt.
+Others have moved uptown. On the trunk of any of the great trees, you may find one climbing — a red bead on a wooden cliff, ascending with no apparent plan and no apparent doubt.
 
 [SHOT: closeup ladybug — macro on legs gripping bark as it climbs vertically]
 
