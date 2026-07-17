@@ -224,6 +224,12 @@ export function patchMaterialForProceduralInsect(mat) {
       attribute vec3 aHinge;
       attribute float aLegPhase;
       attribute float aWingSide;
+      uniform float uTime;
+      uniform float uWingBeatFreq;
+      uniform float uWingStrokeAmp;
+      uniform float uLegSwingFreq;
+      uniform float uLegSwingAmp;
+      uniform float uWindFlutter;
       ` + shader.vertexShader;
 
     shader.vertexShader = shader.vertexShader.replace(
@@ -272,7 +278,7 @@ export function patchMaterialForProceduralInsect(mat) {
     mat.userData.shader = shader;
   };
 
-  mat.customProgramCacheKey = () => "procedural_insect_v6_flat";
+  mat.customProgramCacheKey = () => "procedural_insect_v7_flat";
 }
 
 /**

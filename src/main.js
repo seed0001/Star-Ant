@@ -451,6 +451,13 @@ const MAX_TOTAL_BLADES = 10_000_000;
 const WORLD_CONTENT_SPAWNED_SESSION_LEGACY_KEY = "gwWorldSpawned";
 
 /**
+ * Set once playable content defaults have been merged into the autosave (on "Spawn world",
+ * or by the one-time boot heal for spawned worlds saved before per-key defaults existed).
+ * While set, a count of 0 in the autosave is a deliberate choice and is never refilled.
+ */
+const SPAWN_DEFAULTS_MERGED_STORAGE_KEY = "gwSpawnDefaultsMergedV1";
+
+/**
  * @returns {Record<string, unknown> | null}
  */
 function loadWorldModeState() {
@@ -2441,6 +2448,7 @@ function spawnWorldContent() {
   try {
     localStorage.setItem(WORLD_CONTENT_SPAWNED_STORAGE_KEY, "1");
     sessionStorage.setItem(WORLD_CONTENT_SPAWNED_SESSION_LEGACY_KEY, "1");
+    localStorage.setItem(SPAWN_DEFAULTS_MERGED_STORAGE_KEY, "1");
   } catch {
     /* ignore */
   }
@@ -3327,6 +3335,25 @@ export async function main() {
   const autosavedSettings = loadEnvironmentSettingsAutosave();
   if (autosavedSettings) {
     applyEnvironmentSettingsToDOM(autosavedSettings, () => {});
+  }
+  // One-time heal: worlds spawned before per-key playable defaults kept 0-counts forever
+  // (restore never re-runs the spawn merge), so critters like ants/worms/ladybugs never
+  // appeared. Merge defaults into any still-zero count once, then mark so deliberate
+  // zeros set afterwards stay respected.
+  try {
+    if (
+      worldContentSpawned &&
+      localStorage.getItem(SPAWN_DEFAULTS_MERGED_STORAGE_KEY) !== "1"
+    ) {
+      const merged = mergePlayableContentDefaultsForSpawn(
+        /** @type {Record<string, unknown>} */ (readSettingsFromDOM())
+      );
+      applyEnvironmentSettingsToDOM(normalizeEnvironmentSettings(merged), () => {});
+      saveEnvironmentSettingsAutosave(readSettingsFromDOM());
+      localStorage.setItem(SPAWN_DEFAULTS_MERGED_STORAGE_KEY, "1");
+    }
+  } catch {
+    /* ignore */
   }
   applySettings(readSettingsFromDOM());
   requestAnimationFrame(() => applySettings(readSettingsFromDOM()));

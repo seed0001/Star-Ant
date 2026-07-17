@@ -91,7 +91,13 @@ function patchWormMaterial(mat) {
     shader.uniforms.uPeriAmp = { value: 0.006 };
 
     shader.vertexShader =
-      `attribute float aSegmentT;\n` + shader.vertexShader;
+      `attribute float aSegmentT;
+uniform float uTime;
+uniform float uSlitherFreq;
+uniform float uSlitherAmp;
+uniform float uPeriFreq;
+uniform float uPeriAmp;
+` + shader.vertexShader;
 
     shader.vertexShader = shader.vertexShader.replace(
       "#include <begin_vertex>",
@@ -119,7 +125,7 @@ function patchWormMaterial(mat) {
     mat.userData.shader = shader;
   };
 
-  mat.customProgramCacheKey = () => "worm_undulate_v1";
+  mat.customProgramCacheKey = () => "worm_undulate_v2";
 }
 
 /**

@@ -4,12 +4,7 @@ import { isTerrainDryAt, sampleLandXZForSpawn } from "./terrain-paint.js";
 import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
 import { normalizeButterflyDynamics } from "./butterfly-dynamics.js";
 import { applyButterflyMotion } from "./butterfly-motion.js";
-import {
-  buildProceduralButterflyGeometry,
-  patchMaterialForProceduralInsect,
-  proceduralGeometrySignature,
-  updateProceduralInsectUniforms,
-} from "./procedural-insect.js";
+import { updateProceduralInsectUniforms } from "./procedural-insect.js";
 
 export const BUTTERFLY_FBX_URL = "/models/butterfly.fbx";
 export const LADYBUG_FBX_URL = "/models/ladybug.fbx";
@@ -39,7 +34,7 @@ function mergeMeshesFromFbx(root) {
  * @param {THREE.BufferGeometry} geo
  * @param {number} targetHeight
  */
-function normalizeGeometry(geo, targetHeight) {
+function normalizeGeometry(geo, targetHeight, fitMaxDimension = false) {
   geo.computeBoundingBox();
   const bb = geo.boundingBox;
   if (!bb) return;
@@ -47,7 +42,11 @@ function normalizeGeometry(geo, targetHeight) {
   bb.getSize(size);
   const cx = (bb.min.x + bb.max.x) * 0.5;
   const cz = (bb.min.z + bb.max.z) * 0.5;
-  const s = targetHeight / Math.max(size.y, 1e-4);
+  // Flat models (e.g. wings-spread butterfly) have tiny Y — fit their largest axis instead.
+  const denom = fitMaxDimension
+    ? Math.max(size.x, size.y, size.z, 1e-4)
+    : Math.max(size.y, 1e-4);
+  const s = targetHeight / denom;
   geo.translate(-cx, -bb.min.y, -cz);
   geo.scale(s, s, s);
   geo.computeVertexNormals();
@@ -58,9 +57,10 @@ function normalizeGeometry(geo, targetHeight) {
 /**
  * @param {string} url
  * @param {number} targetHeight
+ * @param {boolean} [fitMaxDimension] fit the largest axis to targetHeight instead of Y
  * @returns {Promise<THREE.BufferGeometry | null>}
  */
-export async function loadCritterGeometry(url, targetHeight) {
+export async function loadCritterGeometry(url, targetHeight, fitMaxDimension = false) {
   const loader = new FBXLoader();
   let fbx;
   try {
@@ -74,7 +74,7 @@ export async function loadCritterGeometry(url, targetHeight) {
     console.warn(`[critters] No meshes in FBX: ${url}`);
     return null;
   }
-  normalizeGeometry(geo, targetHeight);
+  normalizeGeometry(geo, targetHeight, fitMaxDimension);
   return geo;
 }
 
@@ -102,7 +102,6 @@ export function butterflySignature(o) {
     bfFieldSpreadMul: d.fieldSpreadMul,
     bfScaleMin: d.scaleMin,
     bfScaleRange: d.scaleRange,
-    procGeo: proceduralGeometrySignature(d),
   });
 }
 
@@ -165,8 +164,8 @@ export class ButterflySwarm {
     this.group = null;
     /** @type {THREE.BufferGeometry | null} */
     this._geo = null;
-    /** @type {string | null} */
-    this._geoSig = null;
+    /** @type {Promise<THREE.BufferGeometry | null> | null} */
+    this._loadPromise = null;
     /** Cancels stale async rebuilds when settings change faster than geometry finishes. */
     this._rebuildGen = 0;
     /** @type {{ mesh: THREE.InstancedMesh, phase: Float32Array, baseX: Float32Array, baseY: Float32Array, baseZ: Float32Array, scale: Float32Array }[]} */
@@ -175,19 +174,12 @@ export class ButterflySwarm {
     this._terrain = null;
   }
 
-  /**
-   * @param {import("./butterfly-dynamics.js").ButterflyDynamics} dynamics
-   */
-  ensureGeometry(dynamics) {
-    const dyn = normalizeButterflyDynamics(dynamics);
-    const sig = proceduralGeometrySignature(dyn);
-    if (this._geo && this._geoSig === sig) return this._geo;
-    if (this._geo) {
-      this._geo.dispose();
-      this._geo = null;
+  async ensureGeometry() {
+    if (this._geo) return this._geo;
+    if (!this._loadPromise) {
+      this._loadPromise = loadCritterGeometry(BUTTERFLY_FBX_URL, 0.15, true);
     }
-    this._geo = buildProceduralButterflyGeometry(dyn);
-    this._geoSig = sig;
+    this._geo = await this._loadPromise;
     return this._geo;
   }
 
@@ -220,16 +212,11 @@ export class ButterflySwarm {
     this._terrain = opts.terrain ?? null;
     const total = Math.max(0, Math.floor(opts.total));
     if (total < 1) {
-      if (this._geo) {
-        this._geo.dispose();
-        this._geo = null;
-        this._geoSig = null;
-      }
       if (token !== this._rebuildGen) return false;
       return true;
     }
 
-    const geo = this.ensureGeometry(opts.dynamics);
+    const geo = await this.ensureGeometry();
     if (token !== this._rebuildGen) return false;
     if (!geo) return false;
 
@@ -257,10 +244,10 @@ export class ButterflySwarm {
       const mat = new THREE.MeshStandardMaterial({
         color: 0xffffff,
         vertexColors: false,
-        metalness: 0.12,
-        roughness: 0.62,
+        metalness: 0.05,
+        roughness: 0.7,
+        side: THREE.DoubleSide,
       });
-      patchMaterialForProceduralInsect(mat);
       const mesh = new THREE.InstancedMesh(geo, mat, n);
       mesh.frustumCulled = false;
       mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);

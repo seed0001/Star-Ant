@@ -151,6 +151,10 @@ export class FishSwarm {
     const total = Math.max(0, Math.floor(opts.total));
     if (total < 1) return true;
 
+    // Fish live in water only: without terrain or any exposed water there is nowhere
+    // to spawn, so spawn none (no land fallback — they used to pile up dying at origin).
+    if (!this._terrain || !this._terrain.hasExposedWater()) return true;
+
     const presets =
       Array.isArray(opts.presets) && opts.presets.length > 0
         ? opts.presets
@@ -177,7 +181,17 @@ export class FishSwarm {
     });
 
     for (let pi = 0; pi < presets.length; pi++) {
-      const n = Math.max(0, counts[pi] ?? 0);
+      const want = Math.max(0, counts[pi] ?? 0);
+      if (want < 1) continue;
+
+      // Water-only spawns: fish without a valid underwater sample are dropped, so on
+      // mostly-dry maps the swarm shrinks to what the water actually supports.
+      const samples = [];
+      for (let i = 0; i < want; i++) {
+        const sample = this._sampleUnderwater(this._terrain, rng, spread, d);
+        if (sample) samples.push(sample);
+      }
+      const n = samples.length;
       if (n < 1) continue;
 
       const mesh = new THREE.InstancedMesh(geo, mat, n);
@@ -197,21 +211,14 @@ export class FishSwarm {
       health.fill(1);
 
       for (let i = 0; i < n; i++) {
-        const sample = this._sampleUnderwater(this._terrain, rng, spread, d);
+        const sample = samples[i];
         phase[i] = rng() * Math.PI * 2;
         scale[i] = 0.85 + rng() * 0.45;
         yaw[i] = rng() * Math.PI * 2;
-        if (!sample) {
-          px[i] = (rng() * 2 - 1) * spread * 0.1;
-          pz[i] = (rng() * 2 - 1) * spread * 0.1;
-          py[i] = 0.5;
-          depthFrac[i] = 0.5;
-        } else {
-          px[i] = sample.x;
-          py[i] = sample.y;
-          pz[i] = sample.z;
-          depthFrac[i] = sample.frac;
-        }
+        px[i] = sample.x;
+        py[i] = sample.y;
+        pz[i] = sample.z;
+        depthFrac[i] = sample.frac;
 
         dummy.position.set(px[i], py[i], pz[i]);
         _DIR.set(Math.sin(yaw[i]), 0, Math.cos(yaw[i])).normalize();
