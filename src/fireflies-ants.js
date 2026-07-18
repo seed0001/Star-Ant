@@ -36,6 +36,11 @@ export function antSignature(o) {
     antCount: o.antCount,
     antPresets: o.antPresets,
     antSeed: o.antSeed,
+    // Colony layout decides where each ant spawns, so a hill change has to
+    // respawn the swarm — not just move the anchors.
+    antHillCount: o.antHillCount,
+    antHillSeed: o.antHillSeed,
+    antWandererPercent: o.antWandererPercent,
   });
 }
 
@@ -371,6 +376,28 @@ function createAntBodyGeometry() {
 /**
  * Tiny ground ants — wide distribution, simple wander (no trees).
  */
+/** How far a colony ant strays from its hill while foraging normally. */
+const ANT_FORAGE_RADIUS = 9;
+/** Seconds a swarm runs once it starts. */
+const ANT_SWARM_DURATION = 18;
+/** Speed multiplier while swarming — the column has to read as urgent. */
+const ANT_SWARM_SPEED_MUL = 2.6;
+/** How far out from the hill the swarm column pushes. */
+const ANT_SWARM_MARCH = 16;
+
+/**
+ * Stable pseudo-random in [0,1) from two integers. Used to pick a fresh
+ * heading per (colony, swarm cycle) without storing any per-cycle state.
+ * @param {number} a
+ * @param {number} b
+ */
+function hash01(a, b) {
+  let h = Math.imul((a | 0) ^ 0x9e3779b9, 0x85ebca6b) ^
+    Math.imul((b | 0) + 0x165667b1, 0xc2b2ae35);
+  h ^= h >>> 15;
+  return ((h >>> 0) % 100003) / 100003;
+}
+
 export class AntSwarm {
   /**
    * @param {THREE.Scene} scene
@@ -392,11 +419,26 @@ export class AntSwarm {
      *   px: Float32Array,
      *   pz: Float32Array,
      *   head: Float32Array,
+     *   colony: Int16Array,
      * }[]}
      */
     this._blocks = [];
     /** @type {import("./terrain-paint.js").TerrainHeightField | null} */
     this._terrain = null;
+    /** @type {{ x: number; y: number; z: number }[]} */
+    this._hillPositions = [];
+    /** Round-robin cursor so colony assignment stays even across preset blocks. */
+    this._colonyCursor = 0;
+    /** @type {boolean[]} per-colony swarm state, refreshed each update for the minimap. */
+    this._swarmFlags = [];
+  }
+
+  /**
+   * Which colonies are mid-swarm right now — drives the minimap markers.
+   * @returns {boolean[]}
+   */
+  getSwarmFlags() {
+    return this._swarmFlags;
   }
 
   clear() {
@@ -409,6 +451,7 @@ export class AntSwarm {
       this.group = null;
     }
     this._terrain = null;
+    this._swarmFlags = [];
   }
 
   /**
@@ -424,6 +467,12 @@ export class AntSwarm {
     const token = ++this._rebuildGen;
     this.clear();
     this._terrain = opts.terrain ?? null;
+    this._hillPositions = Array.isArray(opts.hillPositions) ? opts.hillPositions : [];
+    this._colonyCursor = 0;
+    const wandererFrac = Math.min(
+      1,
+      Math.max(0, finiteOr(opts.wandererPercent, 15) / 100)
+    );
     if (!this._geo) this._geo = createAntBodyGeometry();
 
     const total = Math.max(0, Math.floor(opts.total));
@@ -466,20 +515,41 @@ export class AntSwarm {
       const px = new Float32Array(n);
       const pz = new Float32Array(n);
       const head = new Float32Array(n);
+      /** Index into hillPositions, or -1 for a free-roaming wanderer. */
+      const colony = new Int16Array(n);
 
+      const hills = this._hillPositions;
       for (let i = 0; i < n; i++) {
         phase[i] = rng() * Math.PI * 2;
         scale[i] = 0.75 + rng() * 0.55;
-        const land = sampleLandXZForSpawn(this._terrain, opts.dryLand, rng, spread);
-        const x = land.x;
-        const z = land.z;
+
+        // Round-robin so colonies get even numbers regardless of preset splits.
+        const isWanderer = hills.length < 1 || rng() < wandererFrac;
+        colony[i] = isWanderer ? -1 : (this._colonyCursor++ % hills.length);
+
+        let x;
+        let z;
+        if (colony[i] >= 0) {
+          // Spawn inside the home territory so colonies read as distinct
+          // clusters from frame one, rather than converging over time.
+          const hill = hills[colony[i]];
+          const a = rng() * Math.PI * 2;
+          const r = Math.sqrt(rng()) * ANT_FORAGE_RADIUS * 0.8;
+          x = THREE.MathUtils.clamp(hill.x + Math.cos(a) * r, -spread, spread);
+          z = THREE.MathUtils.clamp(hill.z + Math.sin(a) * r, -spread, spread);
+        } else {
+          const land = sampleLandXZForSpawn(this._terrain, opts.dryLand, rng, spread);
+          x = land.x;
+          z = land.z;
+        }
         px[i] = x;
         pz[i] = z;
         const ry = rng() * Math.PI * 2;
         head[i] = ry;
+        const groundY = this._terrain ? this._terrain.getHeightBilinear(x, z) : 0;
         dummy.position.set(
           x,
-          land.groundY + 0.018 + rng() * 0.012,
+          groundY + 0.018 + rng() * 0.012,
           z
         );
         dummy.rotation.set(-Math.PI * 0.5 + (rng() - 0.5) * 0.08, ry, (rng() - 0.5) * 0.12);
@@ -492,7 +562,7 @@ export class AntSwarm {
       mesh.instanceMatrix.needsUpdate = true;
       if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true;
       this.group.add(mesh);
-      this._blocks.push({ mesh, phase, scale, px, pz, head });
+      this._blocks.push({ mesh, phase, scale, px, pz, head, colony });
     }
 
     if (token !== this._rebuildGen) return false;
@@ -503,15 +573,58 @@ export class AntSwarm {
   /**
    * @param {number} t
    * @param {number} dt
+   * @param {object} [opts]
+   * @param {{ x: number; y: number; z: number }[]} [opts.hillPositions] live hill positions (terrain sync)
+   * @param {boolean} [opts.swarmEnabled]
+   * @param {number} [opts.swarmIntervalSec] seconds between one colony's swarms
    */
-  update(t, dt) {
+  update(t, dt, opts = {}) {
     const dtC = Math.min(Math.max(dt, 0), 0.08);
     const spread = this.fieldSpread * 0.98;
     const bound = spread * 0.99;
     const dummy = new THREE.Object3D();
 
+    const hills = opts.hillPositions ?? this._hillPositions ?? [];
+    const swarmEnabled = opts.swarmEnabled !== false;
+    // A colony can't swarm more often than a swarm lasts.
+    const period = Math.max(
+      ANT_SWARM_DURATION + 6,
+      finiteOr(opts.swarmIntervalSec, 75)
+    );
+
+    // Resolve every colony's swarm state once per frame rather than per ant.
+    // Deriving it from the clock keeps it stateless — no drift, and it stays
+    // correct across pauses.
+    const nHills = hills.length;
+    const swarming = this._swarmFlags;
+    swarming.length = nHills;
+    /** @type {number[]} */
+    const swarmTx = [];
+    /** @type {number[]} */
+    const swarmTz = [];
+    for (let c = 0; c < nHills; c++) {
+      // Stagger colonies across the period so they don't all march at once.
+      const offset = nHills > 0 ? (period * c) / nHills : 0;
+      const local = (((t + offset) % period) + period) % period;
+      const isSwarming = swarmEnabled && local < ANT_SWARM_DURATION;
+      swarming[c] = isSwarming;
+      if (!isSwarming) {
+        swarmTx.push(0);
+        swarmTz.push(0);
+        continue;
+      }
+      // Fresh heading each cycle, stable for the whole cycle.
+      const cycle = Math.floor((t + offset) / period);
+      const ang = hash01(c, cycle) * Math.PI * 2;
+      const progress = local / ANT_SWARM_DURATION;
+      // Column pushes out, holds, then the calm home-pull reels it back in.
+      const reach = ANT_SWARM_MARCH * Math.min(1, progress * 1.7);
+      swarmTx.push(hills[c].x + Math.cos(ang) * reach);
+      swarmTz.push(hills[c].z + Math.sin(ang) * reach);
+    }
+
     for (let b = 0; b < this._blocks.length; b++) {
-      const { mesh, phase, scale, px, pz, head } = this._blocks[b];
+      const { mesh, phase, scale, px, pz, head, colony } = this._blocks[b];
       const n = mesh.count;
 
       for (let i = 0; i < n; i++) {
@@ -522,10 +635,43 @@ export class AntSwarm {
           0.62 * Math.sin(t * 0.31 + ph * 2.1) +
           0.4 * Math.sin(t * 1.05 + ph * 3.4);
         head[i] += turn * dtC;
-        const pace =
+        let pace =
           0.07 +
           0.09 * (0.5 + 0.5 * Math.sin(t * 0.52 + ph * 2.4)) +
           0.04 * Math.sin(t * 1.03 + ph);
+
+        // Colony ants steer toward a goal: the swarm column while swarming,
+        // otherwise home whenever they wander past their foraging radius.
+        const c = colony ? colony[i] : -1;
+        if (c >= 0 && c < nHills) {
+          const hill = hills[c];
+          let goalX = 0;
+          let goalZ = 0;
+          let weight = 0;
+          if (swarming[c]) {
+            goalX = swarmTx[c];
+            goalZ = swarmTz[c];
+            weight = 2.9;
+            pace *= ANT_SWARM_SPEED_MUL;
+          } else {
+            const dx = px[i] - hill.x;
+            const dz = pz[i] - hill.z;
+            const d = Math.hypot(dx, dz);
+            if (d > ANT_FORAGE_RADIUS) {
+              goalX = hill.x;
+              goalZ = hill.z;
+              // Ramp in past the boundary so the territory edge stays soft.
+              weight = Math.min(2.6, (d - ANT_FORAGE_RADIUS) * 0.32);
+            }
+          }
+          if (weight > 0) {
+            const want = Math.atan2(goalX - px[i], goalZ - pz[i]);
+            // Shortest way round to the goal heading.
+            let diff = want - head[i];
+            diff = Math.atan2(Math.sin(diff), Math.cos(diff));
+            head[i] += diff * Math.min(1, weight * dtC);
+          }
+        }
 
         px[i] += Math.sin(head[i]) * pace * dtC;
         pz[i] += Math.cos(head[i]) * pace * dtC;

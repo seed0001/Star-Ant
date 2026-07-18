@@ -2304,6 +2304,58 @@
               value="5581"
             />
           </label>
+          <label class="setting-row">
+            Ant colonies (hills) <span id="val-ant-hill-count">0</span>
+            <input
+              id="set-ant-hill-count"
+              type="range"
+              min="0"
+              max="16"
+              step="1"
+              value="3"
+            />
+          </label>
+          <label class="setting-row">
+            Colony placement seed <span id="val-ant-hill-seed">7741</span>
+            <input
+              id="set-ant-hill-seed"
+              type="range"
+              min="0"
+              max="99999"
+              step="1"
+              value="7741"
+            />
+          </label>
+          <label class="setting-row">
+            Free-roaming ants <span id="val-ant-wanderer-percent">15</span>%
+            <input
+              id="set-ant-wanderer-percent"
+              type="range"
+              min="0"
+              max="100"
+              step="1"
+              value="15"
+            />
+          </label>
+          <label class="setting-row setting-row-tight">
+            <input id="set-ant-swarm-enabled" type="checkbox" checked />
+            Colonies swarm periodically
+          </label>
+          <label class="setting-row">
+            Seconds between swarms <span id="val-ant-swarm-interval">75</span>
+            <input
+              id="set-ant-swarm-interval"
+              type="range"
+              min="24"
+              max="300"
+              step="1"
+              value="75"
+            />
+          </label>
+          <p class="blade-types-meta">
+            Colonies are staggered, so one swarms at a time. A swarming colony
+            pulses on the world map.
+          </p>
           <p class="blade-types-meta">
             Ant types: <span id="val-ant-types-count">1</span>
             · <span id="ant-distribution-hint">—</span>

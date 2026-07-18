@@ -42,6 +42,7 @@ import { initFlowerEditor } from "./flower-editor.js";
 import { TreeForest, treeForestSignature } from "./trees.js";
 import { RockField, rockFieldSignature } from "./rocks.js";
 import { BeeHiveField, beeHiveSignature } from "./bee-hives.js";
+import { AntHillField, antHillSignature } from "./ant-hills.js";
 import { TreeChopSystem } from "./tree-chop.js";
 import { RandomCreatureViewController } from "./random-creature-view.js";
 import { DocumentaryController } from "./documentary.js";
@@ -509,7 +510,15 @@ function resizeWorldMinimapCanvas() {
   }
 }
 
-function drawWorldMinimap(canvas, spread, px, pz, yaw) {
+/**
+ * @param {HTMLCanvasElement | null} canvas
+ * @param {number} spread
+ * @param {number} px player x
+ * @param {number} pz player z
+ * @param {number} yaw player heading
+ * @param {{ hills?: { x: number; z: number }[], swarming?: boolean[], time?: number }} [marks]
+ */
+function drawWorldMinimap(canvas, spread, px, pz, yaw, marks = {}) {
   if (!canvas) return;
   const ctx = canvas.getContext("2d");
   if (!ctx) return;
@@ -530,6 +539,33 @@ function drawWorldMinimap(canvas, spread, px, pz, yaw) {
   const v = THREE.MathUtils.clamp(pz / spread, -1, 1);
   const cx = pad + (u * 0.5 + 0.5) * innerW;
   const cy = pad + (-v * 0.5 + 0.5) * innerH;
+
+  // Ant colonies, drawn under the player marker. A swarming colony pulses so
+  // you can spot the activity from the map and fly over to watch it.
+  const hills = marks.hills ?? [];
+  const swarming = marks.swarming ?? [];
+  const tNow = marks.time ?? 0;
+  for (let i = 0; i < hills.length; i++) {
+    const hu = THREE.MathUtils.clamp(hills[i].x / spread, -1, 1);
+    const hv = THREE.MathUtils.clamp(hills[i].z / spread, -1, 1);
+    const hx = pad + (hu * 0.5 + 0.5) * innerW;
+    const hy = pad + (-hv * 0.5 + 0.5) * innerH;
+    const isSwarming = swarming[i] === true;
+    if (isSwarming) {
+      const pulse = 0.5 + 0.5 * Math.sin(tNow * 4.2);
+      ctx.fillStyle = `rgba(240, 170, 70, ${0.18 + pulse * 0.22})`;
+      ctx.beginPath();
+      ctx.arc(hx, hy, 7 + pulse * 5, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.fillStyle = isSwarming ? "#f5b342" : "#b08048";
+    ctx.beginPath();
+    ctx.arc(hx, hy, 3.5, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.strokeStyle = "rgba(20, 40, 28, 0.85)";
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }
 
   ctx.fillStyle = "#e85533";
   ctx.beginPath();
@@ -561,6 +597,7 @@ let lastFlowerSignature = "";
 let lastTreeSignature = "";
 let lastRockSignature = "";
 let lastBeeHiveSignature = "";
+let lastAntHillSignature = "";
 /** @type {string} */
 let lastButterflySig = "";
 /** @type {string} */
@@ -585,6 +622,10 @@ let lastFishEcosystem = normalizeFishEcosystem({});
 let lastFishDepthRange = { depthMinFrac: 0.12, depthMaxFrac: 0.88 };
 /** @type {string} */
 let lastSpiderSig = "";
+
+/** Ant colony swarm cadence, read per frame by the ant swarm update. */
+let lastAntSwarmEnabled = true;
+let lastAntSwarmIntervalSec = 75;
 
 /** Wind snapshot for per-frame tree leaf shaders (same as weather sliders). */
 let lastWindSpeed = 1;
@@ -1310,6 +1351,12 @@ function applySettings(raw) {
   lastSnowIntensity = THREE.MathUtils.clamp(finiteOr(s.snowIntensity, 0), 0, 1);
   lastLightningIntensity = THREE.MathUtils.clamp(finiteOr(s.lightningIntensity, 0), 0, 1);
   lastCloudCover = THREE.MathUtils.clamp(finiteOr(s.cloudCover, 0.35), 0, 1);
+  lastAntSwarmEnabled = s.antSwarmEnabled !== false;
+  lastAntSwarmIntervalSec = THREE.MathUtils.clamp(
+    finiteOr(s.antSwarmIntervalSec, 75),
+    24,
+    300
+  );
   lastButterflyDynamics = s.butterflyDynamics;
   const audioVolume = THREE.MathUtils.clamp(finiteOr(s.audioVolume, 1), 0, 1);
   lastAudioVolume = audioVolume;
@@ -1410,6 +1457,23 @@ function applySettings(raw) {
       dryLand,
     });
     lastBeeHiveSignature = hiveSig;
+  }
+
+  // Rebuilt before the ant swarm below — ants spawn around these anchors.
+  const effectiveAntHill = worldSpawned ? Math.floor(finiteOr(s.antHillCount, 0)) : 0;
+  const antHillSeed = Math.floor(finiteOr(s.antHillSeed, 7741));
+  const antHillSig = antHillSignature({
+    antHillCount: effectiveAntHill,
+    antHillSeed,
+  });
+  if (antHillSig !== lastAntHillSignature && antHillField) {
+    antHillField.rebuild({
+      hillCount: effectiveAntHill,
+      seed: antHillSeed,
+      terrain: terrainHeightField,
+      dryLand,
+    });
+    lastAntHillSignature = antHillSig;
   }
 
   const spSig = spiderSignature(
@@ -1539,6 +1603,8 @@ function applySettings(raw) {
   const aSig = antSignature({
     ...s,
     antCount: effectiveAnt,
+    antHillCount: effectiveAntHill,
+    antHillSeed,
   });
   if (aSig !== lastAntSig && antSwarm) {
     const ok = antSwarm.rebuild({
@@ -1547,6 +1613,8 @@ function applySettings(raw) {
       seed: s.antSeed,
       terrain: terrainHeightField,
       dryLand,
+      hillPositions: antHillField?.getHillPositions() ?? [],
+      wandererPercent: finiteOr(s.antWandererPercent, 15),
     });
     if (ok) lastAntSig = aSig;
   }
@@ -1982,6 +2050,16 @@ function applySettings(raw) {
 
   setLabel("val-bee-hive-count", String(Math.floor(finiteOr(s.beeHiveCount, 0))));
   setLabel("val-bee-hive-seed", String(Math.round(finiteOr(s.beeHiveSeed, 19283))));
+  setLabel("val-ant-hill-count", String(Math.floor(finiteOr(s.antHillCount, 0))));
+  setLabel("val-ant-hill-seed", String(Math.round(finiteOr(s.antHillSeed, 7741))));
+  setLabel(
+    "val-ant-wanderer-percent",
+    String(Math.round(finiteOr(s.antWandererPercent, 15)))
+  );
+  setLabel(
+    "val-ant-swarm-interval",
+    String(Math.round(finiteOr(s.antSwarmIntervalSec, 75)))
+  );
 
   setLabel("val-spider-web-count", Math.floor(finiteOr(s.spiderWebCount, 12)).toLocaleString());
   setLabel("val-spider-seed", String(Math.round(finiteOr(s.spiderSeed, 4411))));
@@ -2247,6 +2325,7 @@ function performTerrainUndo() {
   treeForest?.syncTreeGroundHeight(terrainHeightField);
   rockField?.syncGroundHeight(terrainHeightField);
   beeHiveField?.syncGroundHeight(terrainHeightField);
+  antHillField?.syncGroundHeight(terrainHeightField);
   saveTerrainToLocalStorage(terrainHeightField);
   updateWorldSpawnCopy();
   updateBeeHud();
@@ -2448,6 +2527,16 @@ function documentarySubject(name) {
     }
     case "hive":
       return docGroupChildSubject(beeHiveField?.group, 0.35) ?? docTerrainPoint(0.3);
+    case "anthill": {
+      // Framed off the position list rather than the instanced mesh, so the
+      // camera lands on a specific mound instead of the group origin.
+      const hills = antHillField?.getHillPositions() ?? [];
+      if (hills.length > 0) {
+        const h = hills[Math.floor(Math.random() * hills.length)];
+        return { kind: "point", x: h.x, y: h.y + 0.12, z: h.z, radius: 0.5 };
+      }
+      return docTerrainPoint(0.4);
+    }
     case "tree":
     case "stump":
       return docGroupChildSubject(treeForest?.group, 1.4) ?? docTerrainPoint(1);
@@ -2519,6 +2608,8 @@ let fishFoodField = null;
 let spiderField = null;
 /** @type {import("./bee-hives.js").BeeHiveField | null} */
 let beeHiveField = null;
+/** @type {import("./ant-hills.js").AntHillField | null} */
+let antHillField = null;
 
 /** @type {THREE.GridHelper | null} */
 let terrainPaintGrid = null;
@@ -2601,6 +2692,7 @@ function finalizeTerrainPaintStroke() {
   treeForest?.syncTreeGroundHeight(terrainHeightField);
   rockField?.syncGroundHeight(terrainHeightField);
   beeHiveField?.syncGroundHeight(terrainHeightField);
+  antHillField?.syncGroundHeight(terrainHeightField);
   if (terrainHeightField) {
     saveTerrainToLocalStorage(terrainHeightField);
   }
@@ -3079,10 +3171,12 @@ export async function main() {
   treeForest = new TreeForest(scene, GRASS_FIELD_SPREAD);
   rockField = new RockField(scene, GRASS_FIELD_SPREAD);
   beeHiveField = new BeeHiveField(scene, GRASS_FIELD_SPREAD);
+  antHillField = new AntHillField(scene, GRASS_FIELD_SPREAD);
   if (loadTerrainFromLocalStorageOrClearBroken(terrainHeightField)) {
     treeForest.syncTreeGroundHeight(terrainHeightField);
     rockField.syncGroundHeight(terrainHeightField);
     beeHiveField.syncGroundHeight(terrainHeightField);
+    antHillField.syncGroundHeight(terrainHeightField);
   } else {
     let bootstrap = consumeBootstrapTerrain();
     if (bootstrap !== "land" && bootstrap !== "water") {
@@ -3344,6 +3438,7 @@ export async function main() {
     treeForest?.syncTreeGroundHeight(terrainHeightField);
     rockField?.syncGroundHeight(terrainHeightField);
     beeHiveField?.syncGroundHeight(terrainHeightField);
+    antHillField?.syncGroundHeight(terrainHeightField);
     saveTerrainToLocalStorage(terrainHeightField);
     updateWorldSpawnCopy();
     terrainUndoStack.length = 0;
@@ -3437,6 +3532,7 @@ export async function main() {
       treeForest?.syncTreeGroundHeight(terrainHeightField);
       rockField?.syncGroundHeight(terrainHeightField);
       beeHiveField?.syncGroundHeight(terrainHeightField);
+      antHillField?.syncGroundHeight(terrainHeightField);
       saveTerrainToLocalStorage(terrainHeightField);
       updateWorldSpawnCopy();
       updateBeeHud();
@@ -3570,6 +3666,7 @@ export async function main() {
           treeForest?.syncTreeGroundHeight(terrainHeightField);
           rockField?.syncGroundHeight(terrainHeightField);
           beeHiveField?.syncGroundHeight(terrainHeightField);
+          antHillField?.syncGroundHeight(terrainHeightField);
           saveTerrainToLocalStorage(terrainHeightField);
         } else {
           console.warn("[env import] terrain block skipped:", imp.message);
@@ -3881,7 +3978,12 @@ export async function main() {
         GRASS_FIELD_SPREAD,
         soldierPilot.root.position.x,
         soldierPilot.root.position.z,
-        euler.y
+        euler.y,
+        {
+          hills: antHillField?.getHillPositions() ?? [],
+          swarming: antSwarm?.getSwarmFlags() ?? [],
+          time: clock.getElapsedTime(),
+        }
       );
     } else if (!pauseWorld && !randomCreatureView.active && flyMode === FlyMode.BEE_DRONE && beePilot) {
       beePilot.tryLanding(dt, flowerField, treeForest, prevBeeY);
@@ -3974,7 +4076,11 @@ export async function main() {
         camera,
         spiderZones
       );
-      antSwarm?.update(clock.getElapsedTime(), dt);
+      antSwarm?.update(clock.getElapsedTime(), dt, {
+        hillPositions: antHillField?.getHillPositions() ?? [],
+        swarmEnabled: lastAntSwarmEnabled,
+        swarmIntervalSec: lastAntSwarmIntervalSec,
+      });
       wormSwarm?.update(clock.getElapsedTime(), dt);
       birdFlockLand?.update(clock.getElapsedTime(), dt, lastWindSpeed, lastWindDirRad, terrainHeightField);
       birdFlockWater?.update(clock.getElapsedTime(), dt, lastWindSpeed, lastWindDirRad, terrainHeightField);

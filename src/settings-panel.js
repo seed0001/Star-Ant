@@ -5,6 +5,7 @@ import { normalizeFishDynamics, DEFAULT_FISH_DYNAMICS } from "./fish-dynamics.js
 import { normalizeFishEcosystem, DEFAULT_FISH_ECOSYSTEM } from "./fish-ecosystem.js";
 import { BOULDER_COUNT_MAX, ROCK_COUNT_MAX } from "./rocks.js";
 import { BEE_HIVE_COUNT_MAX } from "./bee-hives.js";
+import { ANT_HILL_COUNT_MAX } from "./ant-hills.js";
 import { TREE_WORLD_SCALE_MAX, TREE_WORLD_SCALE_MIN } from "./trees.js";
 import {
   DEFAULT_WATER_SHADER,
@@ -819,6 +820,14 @@ export function readSettingsFromDOM() {
     antCount: readIntInput("set-ant-count", 0),
     antPresets: readAntPresetsFromDOM(),
     antSeed: readIntInput("set-ant-seed", 5581),
+    antHillCount: readIntInput("set-ant-hill-count", 3),
+    antHillSeed: readIntInput("set-ant-hill-seed", 7741),
+    antWandererPercent: readIntInput("set-ant-wanderer-percent", 15),
+    antSwarmEnabled:
+      get("set-ant-swarm-enabled") instanceof HTMLInputElement
+        ? /** @type {HTMLInputElement} */ (get("set-ant-swarm-enabled")).checked
+        : true,
+    antSwarmIntervalSec: readIntInput("set-ant-swarm-interval", 75),
     wormCount: readIntInput("set-worm-count", 0),
     wormPresets: readWormPresetsFromDOM(),
     wormSeed: readIntInput("set-worm-seed", 7721),
@@ -1290,6 +1299,11 @@ const PLAYABLE_WORLD_CONTENT_DEFAULTS = {
   bumblebeeCount: 28,
   fireflyCount: 80,
   antCount: 400,
+  antHillCount: 3,
+  antHillSeed: 7741,
+  antWandererPercent: 15,
+  antSwarmEnabled: true,
+  antSwarmIntervalSec: 75,
   wormCount: 200,
   birdCount: 24,
   fishCount: 180,
@@ -1536,6 +1550,27 @@ export function normalizeEnvironmentSettings(raw) {
     ),
     antPresets,
     antSeed: clampNum(Math.floor(finiteOr(/** @type {number} */ (o.antSeed), 5581)), 0, 99999),
+    antHillCount: clampNum(
+      Math.floor(finiteOr(/** @type {number} */ (o.antHillCount), 3)),
+      0,
+      ANT_HILL_COUNT_MAX
+    ),
+    antHillSeed: clampNum(
+      Math.floor(finiteOr(/** @type {number} */ (o.antHillSeed), 7741)),
+      0,
+      99999
+    ),
+    antWandererPercent: clampNum(
+      Math.floor(finiteOr(/** @type {number} */ (o.antWandererPercent), 15)),
+      0,
+      100
+    ),
+    antSwarmEnabled: o.antSwarmEnabled !== false,
+    antSwarmIntervalSec: clampNum(
+      Math.floor(finiteOr(/** @type {number} */ (o.antSwarmIntervalSec), 75)),
+      24,
+      300
+    ),
     wormCount: clampNum(
       Math.floor(finiteOr(/** @type {number} */ (o.wormCount), 0)),
       WORM_COUNT_MIN,
@@ -2995,6 +3030,14 @@ export function applyEnvironmentSettingsToDOM(s, onApplied) {
   setRange("set-firefly-seed", s.fireflySeed);
   setRange("set-ant-count", s.antCount);
   setRange("set-ant-seed", s.antSeed);
+  setRange("set-ant-hill-count", s.antHillCount);
+  setRange("set-ant-hill-seed", s.antHillSeed);
+  setRange("set-ant-wanderer-percent", s.antWandererPercent);
+  setRange("set-ant-swarm-interval", s.antSwarmIntervalSec);
+  const antSwarmEl = document.getElementById("set-ant-swarm-enabled");
+  if (antSwarmEl instanceof HTMLInputElement) {
+    antSwarmEl.checked = s.antSwarmEnabled !== false;
+  }
   setRange("set-worm-count", s.wormCount);
   setRange("set-worm-seed", s.wormSeed);
   setRange("set-bird-count", s.birdCount);
