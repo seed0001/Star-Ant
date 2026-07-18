@@ -7,7 +7,133 @@ import { applyButterflyMotion } from "./butterfly-motion.js";
 import { updateProceduralInsectUniforms } from "./procedural-insect.js";
 
 export const BUTTERFLY_FBX_URL = "/models/butterfly.fbx";
-export const LADYBUG_FBX_URL = "/models/ladybug.fbx";
+
+/**
+ * Bake a flat vertex color onto a geometry, in linear space.
+ *
+ * These act as a mask rather than a final color: the instance color (the
+ * user's preset) multiplies them, so 1.0 takes the preset hue at full strength
+ * and near-0 stays dark whatever the preset is.
+ *
+ * @param {THREE.BufferGeometry} geo
+ * @param {number} v linear grey level
+ */
+function paintGeometry(geo, v) {
+  const n = geo.attributes.position.count;
+  const arr = new Float32Array(n * 3);
+  arr.fill(v);
+  geo.setAttribute("color", new THREE.BufferAttribute(arr, 3));
+  return geo;
+}
+
+/** Shell takes the preset color; everything else stays near-black. */
+const LADYBUG_SHELL_TINT = 1;
+const LADYBUG_DARK_TINT = 0.07;
+
+// Scratch for trunk-crawl orientation — built per frame, never allocated.
+const _lbUp = new THREE.Vector3();
+const _lbFwd = new THREE.Vector3();
+const _lbRight = new THREE.Vector3();
+const _lbBasis = new THREE.Matrix4();
+const _lbWobble = new THREE.Quaternion();
+const _LB_AXIS_Z = new THREE.Vector3(0, 0, 1);
+
+// Near-circular from above and tucked at the front: a ladybug is only a little
+// longer than it is wide, unlike the ant's long body.
+const SHELL_RX = 0.023;
+const SHELL_RY = 0.0135;
+const SHELL_RZ = 0.0205;
+const SHELL_CY = 0.0145;
+const SHELL_CZ = -0.003;
+
+/**
+ * Procedural ladybug: domed elytra with a seam and seven spots, black head and
+ * pronotum, six legs and short antennae. Built +Z forward, +Y up, feet at y=0
+ * so a plain yaw rotation aims it along its travel direction.
+ */
+function createLadybugBodyGeometry() {
+  /** @type {THREE.BufferGeometry[]} */
+  const parts = [];
+
+  const shell = new THREE.SphereGeometry(1, 12, 8);
+  shell.scale(SHELL_RX, SHELL_RY, SHELL_RZ);
+  shell.translate(0, SHELL_CY, SHELL_CZ);
+  parts.push(paintGeometry(shell, LADYBUG_SHELL_TINT));
+
+  // Wafer-thin ellipsoid sharing the shell's curvature, so the seam tracks the
+  // dome instead of poking through it at the ends like a straight bar would.
+  const seam = new THREE.SphereGeometry(1, 4, 10);
+  seam.scale(0.0016, SHELL_RY * 1.005, SHELL_RZ * 1.005);
+  seam.translate(0, SHELL_CY, SHELL_CZ);
+  parts.push(paintGeometry(seam, LADYBUG_DARK_TINT));
+
+  const pronotum = new THREE.SphereGeometry(1, 8, 5);
+  pronotum.scale(0.0165, 0.0085, 0.0075);
+  pronotum.translate(0, 0.0125, 0.0155);
+  parts.push(paintGeometry(pronotum, LADYBUG_DARK_TINT));
+
+  const head = new THREE.SphereGeometry(1, 7, 5);
+  head.scale(0.0095, 0.0065, 0.0058);
+  head.translate(0, 0.0108, 0.0225);
+  parts.push(paintGeometry(head, LADYBUG_DARK_TINT));
+
+  // Classic seven-spot layout: one across the seam up front, three per elytron.
+  // Positions are sampled on the shell ellipsoid, pulled slightly inward so the
+  // spot spheres sit proud of the surface rather than floating.
+  const spots = [
+    { u: 0, v: 0.85 },
+    { u: 0.9, v: 0.45 },
+    { u: -0.9, v: 0.45 },
+    { u: 1.45, v: 0.66 },
+    { u: -1.45, v: 0.66 },
+    { u: 2.5, v: 0.44 },
+    { u: -2.5, v: 0.44 },
+  ];
+  for (const { u, v } of spots) {
+    const k = 0.94;
+    const cv = Math.cos(v);
+    const spot = new THREE.SphereGeometry(0.0045, 5, 4);
+    spot.scale(1, 0.6, 1);
+    spot.translate(
+      SHELL_RX * k * cv * Math.sin(u),
+      SHELL_CY + SHELL_RY * k * Math.sin(v),
+      SHELL_CZ + SHELL_RZ * k * cv * Math.cos(u)
+    );
+    parts.push(paintGeometry(spot, LADYBUG_DARK_TINT));
+  }
+
+  // Six short legs, splayed front / out / back, reaching down to y=0.
+  const LEG_LEN = 0.0125;
+  const legs = [
+    { z: 0.010, spread: 0.95, sweep: -0.6 },
+    { z: 0.002, spread: 1.05, sweep: 0.0 },
+    { z: -0.006, spread: 0.98, sweep: 0.62 },
+  ];
+  for (const cfg of legs) {
+    for (const side of [1, -1]) {
+      const leg = new THREE.CylinderGeometry(0.001, 0.0006, LEG_LEN, 3);
+      leg.translate(0, -LEG_LEN * 0.5, 0);
+      leg.rotateZ(side * cfg.spread);
+      leg.rotateX(cfg.sweep);
+      leg.translate(side * 0.0068, 0.0078, cfg.z);
+      parts.push(paintGeometry(leg, LADYBUG_DARK_TINT));
+    }
+  }
+
+  const FEELER_LEN = 0.0075;
+  for (const side of [1, -1]) {
+    const feeler = new THREE.CylinderGeometry(0.0007, 0.0004, FEELER_LEN, 3);
+    feeler.translate(0, FEELER_LEN * 0.5, 0);
+    feeler.rotateZ(-side * 0.42);
+    feeler.rotateX(1.0);
+    feeler.translate(side * 0.003, 0.0125, 0.0262);
+    parts.push(paintGeometry(feeler, LADYBUG_DARK_TINT));
+  }
+
+  const g = mergeGeometries(parts, false);
+  g.computeVertexNormals();
+  return g;
+}
 
 /**
  * @param {THREE.Object3D} root
@@ -374,11 +500,7 @@ export class LadybugSwarm {
   }
 
   async ensureGeometry() {
-    if (this._geo) return this._geo;
-    if (!this._loadPromise) {
-      this._loadPromise = loadCritterGeometry(LADYBUG_FBX_URL, 0.06);
-    }
-    this._geo = await this._loadPromise;
+    if (!this._geo) this._geo = createLadybugBodyGeometry();
     return this._geo;
   }
 
@@ -435,11 +557,14 @@ export class LadybugSwarm {
       const n = counts[pi] ?? 0;
       if (n < 1) continue;
 
+      // vertexColors must be on for the baked shell/dark mask to reach the
+      // fragment shader — with it off, three ignores instance colors too, which
+      // is why every ladybug used to render plain white.
       const mat = new THREE.MeshStandardMaterial({
         color: 0xffffff,
-        vertexColors: false,
+        vertexColors: true,
         metalness: 0.05,
-        roughness: 0.8,
+        roughness: 0.62,
       });
       const mesh = new THREE.InstancedMesh(geo, mat, n);
       mesh.frustumCulled = false;
@@ -500,13 +625,14 @@ export class LadybugSwarm {
           const land = sampleLandXZForSpawn(this._terrain, opts.dryLand, rng, spread);
           x = land.x;
           z = land.z;
-          y = land.groundY + 0.02 + rng() * 0.025;
+          // Legs are modelled down to y=0, so it only needs a hair of clearance.
+          y = land.groundY + 0.0003;
           px[i] = x;
           pz[i] = z;
           ry = rng() * Math.PI * 2;
           head[i] = ry;
-          rx = -Math.PI * 0.5 + (rng() - 0.5) * 0.12;
-          rz = (rng() - 0.5) * 0.25;
+          rx = (rng() - 0.5) * 0.05;
+          rz = (rng() - 0.5) * 0.05;
         }
         dummy.position.set(x, y, z);
         dummy.rotation.set(rx, ry, rz);
@@ -589,10 +715,12 @@ export class LadybugSwarm {
             const wy = Math.sin(t * 11 + ph * 2.7) * 0.03;
             const wz = Math.cos(t * 12 + ph * 3) * 0.04;
             dummy.position.set(z.x + wx, z.y + wy, z.z + wz);
+            // Struggling in the silk — a wider tumble than walking, but still
+            // clear of the Euler singularity at ±PI/2.
             dummy.rotation.set(
-              -Math.PI * 0.5 + Math.sin(t * 8 + ph) * 0.15,
+              Math.sin(t * 8 + ph) * 0.5,
               Math.atan2(wx, wz + 1e-5) + t * 0.15 + ph,
-              Math.sin(t * 16 + ph) * 0.12
+              Math.sin(t * 16 + ph) * 0.45
             );
             dummy.scale.setScalar(sc);
             dummy.updateMatrix();
@@ -633,17 +761,19 @@ export class LadybugSwarm {
             head[i] += (0.55 + 0.45 * Math.sin(t * 2.1 + ph * 3.7)) * Math.PI * 0.42;
           }
 
-          const bob = Math.sin(t * 14 + ph * 4) * 0.018;
+          // Walking, not hopping: the old 0.018 bob was most of the body's
+          // height, so they visibly bounced along the ground.
+          const bob = Math.sin(t * 14 + ph * 4) * 0.0009;
           const sway = Math.sin(t * 11 + ph * 2.7) * 0.04;
           const gy = this._terrain
             ? this._terrain.getHeightBilinear(px[i], pz[i])
             : 0;
-          const yy = gy + 0.02 + bob;
+          const yy = gy + 0.0003 + bob;
           dummy.position.set(px[i], yy, pz[i]);
           dummy.rotation.set(
-            -Math.PI * 0.5 + sway * 0.35,
+            sway * 0.35,
             head[i],
-            Math.sin(t * 16 + ph) * 0.07
+            Math.sin(t * 16 + ph) * 0.05
           );
         } else {
           const tCx = tcx[i];
@@ -653,21 +783,40 @@ export class LadybugSwarm {
           const rootY = tBaseY[i];
           const maxY = rootY + Math.min(tH * 0.9, 14);
 
-          theta[i] += dtC * (0.22 + 0.12 * Math.sin(t * 0.48 + ph) + 0.08 * Math.sin(t * 0.17 + ph * 2));
-          h[i] += dtC * (0.42 * Math.sin(t * 0.41 + ph * 1.6) + 0.28 * Math.sin(t * 0.19 + ph * 0.7));
+          const dTheta =
+            0.22 + 0.12 * Math.sin(t * 0.48 + ph) + 0.08 * Math.sin(t * 0.17 + ph * 2);
+          const dH =
+            0.42 * Math.sin(t * 0.41 + ph * 1.6) + 0.28 * Math.sin(t * 0.19 + ph * 0.7);
+          theta[i] += dtC * dTheta;
+          h[i] += dtC * dH;
           h[i] = THREE.MathUtils.clamp(h[i], rootY + 0.05, maxY);
 
           const x = tCx + Math.cos(theta[i]) * rad;
           const z = tCz + Math.sin(theta[i]) * rad;
-          const dx = x - tCx;
-          const dz = z - tCz;
-          const ry = Math.atan2(dx, dz) + Math.PI * 0.5;
-          const wiggle = Math.sin(t * 10 + ph * 2) * 0.07;
-          const rx = -0.85 + wiggle;
-          const rz = Math.sin(t * 13 + ph * 1.3) * 0.08;
+
+          // Clinging to a vertical trunk: the shell faces away from the bark and
+          // the body points along the way it's actually crawling. Euler angles
+          // can't express that without hitting gimbal lock, so build the basis.
+          _lbUp.set(x - tCx, 0, z - tCz);
+          if (_lbUp.lengthSq() < 1e-8) _lbUp.set(1, 0, 0);
+          _lbUp.normalize();
+          _lbFwd.set(
+            -Math.sin(theta[i]) * dTheta * rad,
+            dH,
+            Math.cos(theta[i]) * dTheta * rad
+          );
+          if (_lbFwd.lengthSq() < 1e-8) _lbFwd.set(0, 1, 0);
+          // Project the heading onto the bark plane so it stays flush.
+          _lbFwd.addScaledVector(_lbUp, -_lbFwd.dot(_lbUp)).normalize();
+          _lbRight.crossVectors(_lbUp, _lbFwd).normalize();
+          _lbBasis.makeBasis(_lbRight, _lbUp, _lbFwd);
 
           dummy.position.set(x, h[i], z);
-          dummy.rotation.set(rx, ry, rz);
+          dummy.quaternion.setFromRotationMatrix(_lbBasis);
+          // Crawl wobble, applied about the body's own axis rather than by
+          // poking rotation.z (which would round-trip through Euler angles).
+          _lbWobble.setFromAxisAngle(_LB_AXIS_Z, Math.sin(t * 13 + ph * 1.3) * 0.05);
+          dummy.quaternion.multiply(_lbWobble);
         }
 
         if (snaredWeb[i] < 0 && spiderZones && spiderZones.length > 0) {
@@ -694,10 +843,12 @@ export class LadybugSwarm {
             const wy = Math.sin(t * 11 + ph * 2.7) * 0.03;
             const wz = Math.cos(t * 12 + ph * 3) * 0.04;
             dummy.position.set(z.x + wx, z.y + wy, z.z + wz);
+            // Struggling in the silk — a wider tumble than walking, but still
+            // clear of the Euler singularity at ±PI/2.
             dummy.rotation.set(
-              -Math.PI * 0.5 + Math.sin(t * 8 + ph) * 0.15,
+              Math.sin(t * 8 + ph) * 0.5,
               Math.atan2(wx, wz + 1e-5) + t * 0.15 + ph,
-              Math.sin(t * 16 + ph) * 0.12
+              Math.sin(t * 16 + ph) * 0.45
             );
           } else {
             snaredWeb[i] = -1;
@@ -754,12 +905,8 @@ export class LadybugSwarm {
           pz[i] = nz;
           head[i] = rng() * Math.PI * 2;
           const gy2 = terrain.getHeightBilinear(px[i], pz[i]);
-          dummy.position.set(px[i], gy2 + 0.02 + Math.sin(phase[i] * 4) * 0.018, pz[i]);
-          dummy.rotation.set(
-            -Math.PI * 0.5 + (rng() - 0.5) * 0.12,
-            head[i],
-            (rng() - 0.5) * 0.25
-          );
+          dummy.position.set(px[i], gy2 + 0.0003, pz[i]);
+          dummy.rotation.set((rng() - 0.5) * 0.05, head[i], (rng() - 0.5) * 0.05);
           dummy.scale.setScalar(scale[i]);
           dummy.updateMatrix();
           mesh.setMatrixAt(i, dummy.matrix);
