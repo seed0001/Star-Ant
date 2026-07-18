@@ -12,95 +12,85 @@ In a world where grass stands over a meter tall, it takes ambition to be called 
 
 [SHOT: wide tree — the full treeline against the sky, crowns towering over the grass ocean]
 
-Above the swaying green nation, above every flier we have followed, the trees hold the only permanent skyline this garden has.
+Above the swaying green nation, above every flier we have followed, the trees hold the only permanent skyline this garden has. And "tree" is not a single kind of plant. It is a strategy — being tall and woody — that plants have invented over and over, in lineages only distantly related.
 
 [SHOT: orbit tree — a slow circle around one great crown, branches turning past the lens]
 
 The trees.
 
-## Grown, not built
+## Two great families
 
-[SHOT: closeup tree — macro on bark, then travel up the trunk as it divides and divides]
+[SHOT: closeup tree — macro on bark, then travel up the trunk as it divides toward the light]
 
-A trunk, on its way up, makes its choices. Here it splits; each branch splits again; each of those again — the same simple rule, repeated toward the light, until a single stem has become a crown of hundreds.
-
-[SHOT: crane tree — rise through the branching interior, twigs and leaves thickening around the lens]
-
-No two trees in the garden share a shape, because a tree is not a design. It is a history — every branch a decision recorded in wood, every asymmetry a memory of wind or shade or chance. The Gardener plants the seed and sets its character; the growing does the rest.
+Look across a treeline and you are usually seeing two very different groups. The broadleaf trees — oak, maple, birch — are flowering plants, angiosperms, wrapping their seeds in fruit. The conifers — pine, spruce, fir — are gymnosperms, an older lineage that carries naked seeds in cones and keeps its needles through the winter.
 
 [SHOT: wide tree — several trees side by side, each silhouette distinct]
 
-That is why a treeline never repeats itself. It is not a row of objects. It is a row of biographies.
+Different plumbing, different leaves, different ways of guarding a seed — but the same ambition, arrived at by separate roads: raise the leaves above the competition, and pay for the climb in wood.
 
-## The vertical city
+## What wood actually is
 
-[SHOT: track ladybug — a ladybug climbs past camera up the bark's canyons]
+[SHOT: closeup tree — extreme macro into the grain of a cut trunk, rings and vessels visible]
 
-And every biography carries tenants. The bark is a vertical country — the ladybugs' uptown, a cliff face of canyons and ridges walked by anything with the legs for it.
+And wood is stranger than it looks. Most of a tree's trunk is not alive. It is a scaffold of dead cells, stiffened with a tough substance called lignin — the stuff that lets a plant stand a hundred feet up instead of flopping like grass. A tree grows by adding a new layer under its bark each year, wrapping the old dead core in a fresh living sleeve.
 
-[SHOT: dolly web — glide between two trunks; a spider web spans the gap, sunlit]
+[SHOT: topdown stump — from above: the flat, ringed face of a cut stump]
 
-The spaces between the trunks are prime real estate of a darker sort. The spiders rig the corridors, taxing the air traffic. An old tree in this garden anchors half the hunting economy of its neighborhood.
+That is why a stump has rings. Each ring is one year — wide in a good season, narrow in a hard one. A cut trunk is a diary written in wood, one line per year, readable straight down to the seed it started from.
 
-[SHOT: cutaway birds — the flock settles briefly above the canopy, then pours off it]
+## The water column
 
-Above it all, the crowns give the birds their one solid landmark in a world of waving green. The grass is the garden's floor; the trees are its furniture, its towers, and its tenements — all at once.
+[SHOT: crane tree — rise up the trunk's interior toward the crown, following the flow of sap]
 
-## The crown's economy
+Now the real magic — how a tree lifts water dozens of feet into the air with no pump at all. Two pipelines run the height of the trunk. The xylem carries water up; the phloem carries sugar down.
 
-[SHOT: crane tree — rising through the crown's interior: layer upon layer of leaves, light thinning]
+[SHOT: closeup tree — a leaf turning slowly, tiny pores on its underside opening to the air]
 
-A crown is a business built on one commodity. Light enters from the top; each layer of leaves takes its share; and what reaches the bottom branches is the dregs — a green twilight that barely pays for the leaves that catch it. A tree's shape is not a pose. It is a market, resolved.
-
-[SHOT: closeup tree — a leaf turning slowly on its stalk, tilting toward the brighter sky]
-
-Every leaf negotiates its own position — angling on its stalk, edging toward gaps, spending the tree's substance to reach the tree's income. Branches that win the negotiation thicken. Branches that lose it are quietly abandoned: starved, dried, and eventually surrendered to the wind. The biography written in the crown's asymmetry includes its bankruptcies.
-
-[SHOT: wide tree — two neighboring crowns, their edges shying just short of touching]
-
-And where two giants stand close, watch the border between their crowns. The branches approach and hesitate, leaving a channel of daylight — each tree reading the other's shade, declining a war neither can win. The treeline's canopy is not one roof but a treaty of roofs, negotiated leaf by leaf over years.
+The lift begins in the leaves. Water evaporates out through microscopic pores, and because water molecules cling to one another, each escaping molecule tugs the next one up behind it — pulling an unbroken thread of water all the way from the roots. The tree does not push water up. The sky, drying the leaves, pulls it up. Every tree is a column of water held together by nothing but water's grip on itself.
 
 [SHOT: low tree — from the roots looking up: the trunk as a single column carrying the whole enterprise]
 
-All of it — the market, the treaties, the tenants — rides on the column. The trunk carries the crown's entire payroll skyward and the canopy's entire income down, every day, through a structure that must also simply stand. It is worth remembering, whenever a tree seems idle: stillness, at this size, is a full-time job.
+Cut that column, and the tree cannot drink. It is worth remembering, whenever a tree seems idle: holding that thread unbroken, from soil to sky, is a full-time job.
 
-## The falling giants
+## The wood wide web
 
-[SHOT: wide tree — a quiet frame; a single tree stands alone; something is about to change]
+[SHOT: cutaway worm — below the soil line: fine roots threaded through pale strands of fungus]
 
-But this garden's giants live with a hazard no wild forest knows. The hand that plants them also, sometimes, brings them down.
+But the roots are not working alone. Wrapped around and inside them lives a partner you never see — mycorrhizal fungi, threading through the soil far beyond the reach of any root.
 
-[SHOT: closeup stump — macro on a trunk's base as a clean cut opens across it]
+[SHOT: closeup tree — macro on a root tip sheathed in a fine web of fungal filaments]
 
-When the Gardener chooses to fell a tree, the cut is unlike anything nature makes — a single plane, drawn straight through the living wood. The trunk above it lets go of the trunk below.
+It is a trade. The fungus reaches into soil the tree cannot, harvesting water and scarce nutrients, and hands them over. In return, the tree pays in sugar, made up in the leaves. That fungal network can even link separate trees underground — the so-called wood wide web — a soil-borne trade route that has run beneath forests for hundreds of millions of years.
 
-[SHOT: track tree — the crown tips, gathers speed, and comes down through frame; grass erupts]
+## The giving giant
 
-And then, gravity's paragraph. A lifetime of patient branching spends itself in seconds. The crown that hosted ladybugs and anchored webs sweeps down through the air lanes and strikes the meadow with a violence this quiet world rarely sees.
+[SHOT: crane tree — rising through the crown: layer upon layer of leaves, light thinning below]
 
-[SHOT: topdown stump — from above: the flat, ringed stump and the fallen crown beside it]
+Above ground, the crown is doing work for the entire garden. Every leaf pulls carbon out of the air and locks it into wood — which is why a forest is one of the planet's great carbon stores — and releases oxygen as a by-product of the same reaction. A tree is quietly building the air the rest of us breathe.
 
-What remains tells the whole story: a stump inscribed with its rings — the tree's own diary, cut open at the last page — and a fallen giant already becoming something else: a bridge for ants, a windbreak for seedlings, cover for anything small.
+[SHOT: track ladybug — a ladybug climbs the bark; the crown behind it full of hidden life]
+
+And a single old tree is a whole habitat. Its shade cools the ground beneath it. Its roots build soil and slow the water cycle, holding rain in the land instead of letting it run off. Its bark, its canopy, its hollows shelter more species than any other structure in the garden. The trees are the floor's furniture, its towers, and its tenements, all at once.
 
 ## After the fall
 
-[SHOT: dolly stump — glide low across the fallen trunk, tenants beginning to explore it]
+[SHOT: track tree — the crown tips, gathers speed, and comes down through frame; grass erupts]
 
-Nothing here mourns, and nothing wastes. Within moments of the fall, the vertical country becomes a horizontal one, and the tenants file their change of address. In the garden, even catastrophe is real estate.
+And a tree keeps giving even in death. When one comes down — felled by the Gardener's hand, or simply by age — its work is not finished. It has only changed jobs.
 
-[SHOT: wide field — the gap in the treeline; light pours through onto suddenly bright grass]
+[SHOT: dolly stump — glide low across the fallen trunk, decomposers beginning to move in]
 
-And the gap itself is a gift. Light that the crown once hoarded now floods the floor. Grass thickens; flowers rush the clearing. A felled tree spends its final inheritance as sunshine.
+A dead tree is one of the busiest places in the whole garden. Fungi and insects move into the softening wood; the decomposers begin taking the trunk apart cell by cell, returning its century of stored carbon and nutrients to the soil for the next generation to use. A standing tree feeds the canopy. A fallen one feeds the ground.
 
-[SHOT: closeup tree — a young tree at the clearing's edge, thin and upright, growing]
+[SHOT: closeup tree — a young sapling at a sunlit gap's edge, thin and upright, growing]
 
-At the clearing's margin, the next biography has already started — a sapling with its whole architecture ahead of it, writing its first branch. The skyline heals the way skylines do: one story at a time.
+And the gap it leaves is a gift. Light that the crown once hoarded now floods the floor, and in that new sun a sapling races upward to claim the opening. The skyline heals the way skylines do — one slow, woody biography at a time.
 
 ## Closing
 
 [SHOT: pan field — sweep from the treeline down across the meadow to a scatter of gray shapes]
 
-The trees are the garden's tallest lives, and among its longest. But for true patience — for residents who watched every tree in this garden arrive, and will watch every one of them fall — we must visit the only citizens that were never alive at all.
+The trees are the garden's tallest lives, and among its longest. But for true patience — for residents older than any forest, that were here before the first seed and will be here after the last tree falls — we must visit the only citizens that were never alive at all.
 
 [SHOT: closeup rock — a lichen-gray boulder, ancient and immovable, grass leaning against it]
 

@@ -8,96 +8,76 @@
 
 [SHOT: low grass — from the meadow floor, straight up: blades framing a burning blue dome]
 
-Every citizen of this garden lives under the same roof. The ant glimpses it between towers. The fish reads it through a trembling ceiling. The birds fly in its lowest room. None of them has ever wondered what it is.
+Every citizen of this garden lives under the same roof. The ant glimpses it between towers. The fish reads it through a trembling ceiling. The birds fly in its lowest room. And that roof is not empty space — it is a substance, a thin shell of gas wrapped around the world, doing a dozen invisible jobs at once.
 
 [SHOT: wide sky — the full dome, horizon to horizon, over the small complete world]
 
-We will wonder for them.
+We call it air, and treat it as nothing. It is very far from nothing.
 
 [SHOT: pan sky — a slow rotation across the whole heaven]
 
 The sky.
 
-## The lamp
-
-[SHOT: wide sun — dawn: light floods over the rim of the world, shadows racing across the field]
-
-Its first duty is fire. When the sun clears the rim, the garden switches on — light races down the grass towers, the flowers open for business, and every cold-bodied flier on the meadow spreads itself to the heat.
-
-[SHOT: track sun — the sun's arc traced across the dome in accelerating light]
-
-The lamp then crosses the roof on its faithful arc, and the whole world tells time by it. Shadows are the garden's only clocks: long, short, long — morning, noon, evening — the same sentence read aloud daily to residents who cannot read anything else.
-
-[SHOT: closeup grass — golden hour: light raking sideways through backlit blades]
-
-And twice a day, at the arc's ends, the lamp becomes an artist. Low light turns the grass ocean to fire and the water to metal. If this series has a signature image, the sky painted it.
-
-## The wardrobe of weathers
-
-[SHOT: wide sky — clouds assembling: white fleets crossing the blue in formation]
-
-Between dawn and dusk, the dome dresses and redresses. Clear mornings; fleets of cloud by noon; gray wool before rain. Each costume changes the light, and the light changes everything — colors, temperatures, tempers.
-
-[SHOT: cutaway water — the lake swapping wardrobes in sync: silver, pewter, slate]
-
-The mirror below copies every change, an hour of mood in every minute. Watch sky and lake together and the garden seems to be thinking — considering something enormous, in colors.
-
-[SHOT: dolly sky — gliding beneath a darkening cloud base as the last blue closes]
-
-And when the dome goes truly dark at midday, every resident knows the grammar: the sky is about to speak in its other voice. That voice gets its own episode. For now — the roof holds.
-
-## The blue hours
+## What the air is made of
 
 [SHOT: wide sky — clean midday blue, the dome at its emptiest and deepest]
 
-Spare an hour for the sky doing nothing, because its nothing is a masterwork. That noon blue is not a ceiling's paint; it is depth itself — sunlight scattered and rescattered until the whole dome glows with the leftovers. The residents stand at the bottom of an ocean of lit air, and not one of them ever looks up long enough to notice.
+Fill your lungs and you have taken in a very specific recipe. Roughly four molecules in five are nitrogen — an unreactive gas that mostly just fills the space. About one in five is oxygen, the reactive one every animal here burns to stay alive. The rest is a trace: a whisper of argon, a little carbon dioxide, and a variable amount of water vapor. That thin mixture is what fire needs to burn, what the flower breathes in, and what the ant, the bird, and the Visitor cannot survive three minutes without.
 
-[SHOT: pan sky — a lone small cloud crossing the empty blue, its shadow crossing the field below]
+[SHOT: closeup flower — a bloom exchanging gases with the still air around it]
 
-Into that emptiness, a single cloud is an event. Watch one cross the dome trailing its shadow across the meadow like a slow hand — flowers dimming and reigniting in its wake, the air cooling a degree and recovering. One cloud, one shadow, one shiver through the grass economy. The sky cannot touch the garden gently without the garden answering.
+And it circulates. Plants pull in carbon dioxide and release oxygen in the light; animals do the reverse. Every breath in the garden is a trade with the same shared atmosphere — the flower exhaling what the beetle inhales, over and over, all day.
 
-[SHOT: closeup sky — the horizon band at midday: pale, hazed, where dome meets the world's rim]
+## The layered roof
 
-At the rim, the blue always thins. The horizon wears a pale band at every hour — distance itself made visible, the thickest possible slice of air between any eye and the edge of the world. It is the one part of the roof that admits how the trick is done: the sky is not a thing above the garden. It is the garden's air, wearing light.
+[SHOT: crane sky — rising from the grass tops up through the lowest, weathered layer of air]
 
-[SHOT: wide sky — the light imperceptibly warming as the afternoon begins its long descent]
+The roof has floors. The one we live on is the lowest and densest — the troposphere, a shallow layer hugging the ground where nearly all the water vapor rides. Every cloud, every rainfall, every gust the garden ever feels happens in this bottom room. Weather is a ground-floor event.
 
-And all through the blue hours, the great gradient is already moving. Noon's white light ages into afternoon gold so slowly that no resident could name the moment of change. The sky's finest work is done at exactly the speed that cannot be watched — which may be the best definition of a day this series can offer.
+[SHOT: wide sky — high thin haze far above the weather, catching the last clean light]
 
-## The turning of the light
+Above it lies a calmer layer, the stratosphere, and folded into that upper air is a faint band of a special form of oxygen — the ozone layer. It is a shield. It soaks up most of the sun's harshest ultraviolet light before that radiation can reach the meadow and burn the living things below. The garden basks in sunlight because, high overhead, an invisible filter has already strained out the part that would harm it.
 
-[SHOT: wide sky — sunset in full production: the western dome in flame, the east already dimming]
+## Why the dome is blue
 
-Evening is the dome's great scene change. The lamp drops to the rim, the fire spreads, and then — with a patience no theater could afford — the light simply leaves.
+[SHOT: wide sun — light flooding across the dome, the whole sky lit an even blue]
 
-[SHOT: pan field — the meadow surrendering color: flowers dimming, grass going gray-blue]
+Now the question no resident ever asks: why is it blue at all? Sunlight looks white but carries every color mixed together. As it pours through the air, it collides with countless molecules — and the smaller, bluer waves of light get knocked sideways, scattered across the whole dome, far more than the reds. So blue light arrives at your eye from every direction at once. The sky is not painted. It is white sunlight, with the blue shaken loose and spread everywhere.
 
-Below, the shift change we saw in episode two: day fliers landing, night lanterns lighting. The garden does not resist the dark. It has staff for it.
+[SHOT: track sun — the sun sinking toward the rim, its light reddening as it goes]
 
-[SHOT: crane sky — rising into deepening blue as the first stars pierce through]
+Watch the same trick reverse at dusk. When the sun drops to the rim, its light must slice through a far longer wedge of air to reach you. The blue is scattered away entirely before it arrives, leaving only the deep reds and golds to come through straight. Every sunset the garden has ever shown is the same physics as the noon blue, read from the far end. The lamp does not change color. The air does the painting.
 
-And the dark, it turns out, is not darkness at all. It is the dome's second act — the roof becoming a window, and beyond it, an audience of fixed lights taking their seats.
+## The great regulator
 
-## The roof and the window
+[SHOT: wide field — soft even warmth lying over the whole meadow, no shadow harsh]
 
-[SHOT: wide stars — full night: the dome crowded with stars over the black field]
+The air does a subtler job than any of these — it holds the heat. Certain gases in it, carbon dioxide and water vapor chief among them, let the sun's light in but slow the escape of the warmth the ground gives back. That gentle trapping — the greenhouse effect — keeps the garden's nights from plunging to killing cold. Without the blanket of air, this world would swing from scorching day to frozen dark. The atmosphere is the reason the meadow has a livable temperature at all.
 
-By full night, the transformation is complete. The same sky that burned blue and gold now stands deep and pierced with silver — patterns among the stars that the next episode will name one by one.
+[SHOT: wide sky — high cloud drifting, the air visibly moving across the dome]
 
-[SHOT: cutaway moon — the moon rising over the water, laying its cold lane on the lake]
+And it is never still. The sun heats the ground unevenly — bright hillside warmer than shaded hollow — and warm air rises while cooler air slides in beneath to take its place. That flow is wind: air moving from where pressure is high toward where it is low, chasing the sun's uneven touch. Every breeze that stirs the grass is the atmosphere balancing its own books.
 
-The night lamp rises in its turn, gentler than the first, with its own strange power — for as we shall see, that pale disc does not merely light the water. It moves it.
+## The busy medium
 
-[SHOT: low grass — night: grass silhouettes against the star field, a firefly drifting through frame]
+[SHOT: track birds — the flock riding a current of moving air across the dome]
 
-And under it all, the garden sleeps or works by kind — a world with one roof, two lamps, and no idea how well it is lit.
+For the living, the air is also a highway and a mail service. It carries the birds and the buzzing insects. It ferries pollen from flower to flower and lifts seeds to new ground. It moves the whole water cycle — evaporation up, rain and snow down. And it is a shield against more than sunlight: the same blanket burns up most of the small debris that would otherwise strike the ground from above.
+
+[SHOT: dolly sky — gliding beneath a darkening cloud base as the last blue closes]
+
+And when this restless air stacks up tall and cold and charged, it finds its loudest voice.
+
+[SHOT: cutaway lightning — a single stroke splits a bruised sky over the far field]
+
+That voice — thunder, and the storm that carries it — earns an hour of its own another day. For now, the roof holds, and the garden breathes.
 
 ## Closing
 
-[SHOT: wide stars — the star field fills the frame; certain stars seem to brighten, suggesting shapes]
+[SHOT: crane sky — rising into deepening blue as the first stars pierce through]
 
-Look longer at that window and the lights begin to organize. A hunter. A great bear. A swan flying down the dome. Someone has drawn pictures in the garden's night.
+But turn the lamp off, and the roof does something no daytime dome can. The blue was only ever the air, lit from in front. Switch off the sun, and you can finally see straight through the air — out, and out, to the lights that were always burning behind it.
 
-[SHOT: closeup stars — a single constellation traced faintly against the dark]
+[SHOT: wide stars — the dome crowded with stars over the black field]
 
 Next: the Stars.

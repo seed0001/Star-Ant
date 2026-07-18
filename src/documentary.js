@@ -31,6 +31,23 @@ const SKY_SUBJECTS = new Set([
 /** Subjects whose shots are allowed underwater. */
 const WET_SUBJECTS = new Set(["fish", "whale", "underwater", "water"]);
 
+/**
+ * Scene conditions a subject needs before its shot shows anything at all.
+ * Weather here is intensity-driven and the sky is empty by default, so a rain
+ * shot with the weather sliders at zero — or a star shot at midday — frames
+ * blank sky. The host applies these while a shot is live and restores the
+ * user's own weather when the documentary stops.
+ * @type {Record<string, {rain?: number, snow?: number, lightning?: number, cloud?: number, night?: boolean}>}
+ */
+const SUBJECT_CONDITIONS = {
+  rain: { rain: 0.7, cloud: 0.9 },
+  lightning: { rain: 0.55, lightning: 0.85, cloud: 0.95 },
+  snow: { snow: 0.75, cloud: 0.8 },
+  stars: { night: true, cloud: 0.05 },
+  moon: { night: true, cloud: 0.1 },
+  sun: { night: false, cloud: 0.15 },
+};
+
 const UP_HINT_RE =
   /\b(rise|rises|rising|ascend(?:s|ing)?|ascent|climb(?:s|ing)?|lift(?:s|ing)?|up|upward|skyward)\b/;
 const DOWN_HINT_RE =
@@ -458,6 +475,16 @@ export class DocumentaryController {
     this.onStop();
   }
 
+  /**
+   * Scene conditions the live shot needs — rain for a rain shot, night for a
+   * star shot. Null when the shot works under whatever weather is already set.
+   * @returns {{rain?: number, snow?: number, lightning?: number, cloud?: number, night?: boolean} | null}
+   */
+  getConditions() {
+    if (!this.active || !this._shot) return null;
+    return SUBJECT_CONDITIONS[this._shot.subject] ?? null;
+  }
+
   /* ----------------------------- camera engine ------------------------------ */
 
   /**
@@ -617,13 +644,15 @@ export class DocumentaryController {
 
     switch (isSky ? "sky" : shot.type) {
       case "sky": {
-        // Elevated vantage, slow yaw, pitched toward the sky.
+        // Elevated vantage, slow yaw, tilted up — but never so far that the
+        // horizon leaves frame. A steeper pitch renders as a featureless blue
+        // plate whenever the sky itself is empty (no rain, no stars).
         const R = Math.max(6, spread * 0.12);
         const a = this._angle0 + t * 0.04;
         cam.set(Math.cos(a) * R * 0.3, R * 0.55, Math.sin(a) * R * 0.3);
         look.set(
           cam.x + Math.cos(a) * 30,
-          cam.y + 18 + Math.sin(t * 0.1) * 6,
+          cam.y + 8 + Math.sin(t * 0.1) * 3,
           cam.z + Math.sin(a) * 30
         );
         break;

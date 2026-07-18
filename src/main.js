@@ -3738,11 +3738,24 @@ export async function main() {
       }
     }
 
+    // A documentary shot can demand conditions the current weather doesn't
+    // provide (rain, snow, a night sky). Force them for the length of the shot
+    // only — the user's own weather settings are never written to.
+    const docConditions = documentary.getConditions();
+
     if (!pauseWorld) {
-      if (Math.abs(dayPhase - targetDayPhase) > 0.01) {
-        dayPhase += (targetDayPhase - dayPhase) * Math.min(1, dt * 0.5);
+      const dayTarget =
+        docConditions?.night === true
+          ? 0.05
+          : docConditions?.night === false
+            ? 1
+            : targetDayPhase;
+      // Ease faster under the documentary so the sky arrives within the shot.
+      const dayRate = docConditions ? 1.2 : 0.5;
+      if (Math.abs(dayPhase - dayTarget) > 0.01) {
+        dayPhase += (dayTarget - dayPhase) * Math.min(1, dt * dayRate);
       } else {
-        dayPhase = targetDayPhase;
+        dayPhase = dayTarget;
       }
     }
 
@@ -3759,13 +3772,21 @@ export async function main() {
 
     if (!pauseWorld) {
       const elapsed = clock.getElapsedTime();
+      // Take the stronger of the user's weather and what the shot needs, so a
+      // documentary rain shot rains even with the sliders at zero.
+      const rainNow = Math.max(lastRainIntensity, docConditions?.rain ?? 0);
+      const snowNow = Math.max(lastSnowIntensity, docConditions?.snow ?? 0);
+      const lightningNow = Math.max(
+        lastLightningIntensity,
+        docConditions?.lightning ?? 0
+      );
       weatherEffects?.update(
         dt,
         elapsed,
         {
-          rainIntensity: lastRainIntensity,
-          snowIntensity: lastSnowIntensity,
-          lightningIntensity: lastLightningIntensity,
+          rainIntensity: rainNow,
+          snowIntensity: snowNow,
+          lightningIntensity: lightningNow,
           windSpeed: lastWindSpeed,
           windDirRad: lastWindDirRad,
           dayPhase,
@@ -3776,14 +3797,15 @@ export async function main() {
           : null
       );
       const storm = THREE.MathUtils.clamp(
-        lastRainIntensity * 0.92 + lastLightningIntensity * 0.48,
+        rainNow * 0.92 + lightningNow * 0.48,
         0,
         1
       );
       sky?.update(elapsed, camera.position, dayPhase, {
         windSpeed: lastWindSpeed,
         windDirRad: lastWindDirRad,
-        cloudCover: lastCloudCover,
+        // Set, not max: a star shot wants the overcast cleared, not kept.
+        cloudCover: docConditions?.cloud ?? lastCloudCover,
         storm,
         lightningFlash: weatherEffects?.getLightningFlash(elapsed) ?? 0,
       });
@@ -3887,12 +3909,18 @@ export async function main() {
 
     if (!pauseWorld) {
       groundPlaneRef?.setDayPhase(dayPhase);
-      const rainNow = lastRainIntensity;
+      // Match the weather the documentary forced, so its rain wets the ground
+      // and its snow settles instead of falling onto a dry, bare field.
+      const rainNow = Math.max(lastRainIntensity, docConditions?.rain ?? 0);
       const soak = rainNow * rainNow * 0.5 + rainNow * 0.08;
       groundWetness += dt * soak * 0.95;
       groundWetness -= dt * (0.055 + rainNow * 0.02) * (1.0 - rainNow * 0.35);
       groundWetness = THREE.MathUtils.clamp(groundWetness, 0, 1);
-      snowAccumField?.update(dt, lastSnowIntensity, dayPhase);
+      snowAccumField?.update(
+        dt,
+        Math.max(lastSnowIntensity, docConditions?.snow ?? 0),
+        dayPhase
+      );
       groundPlaneRef?.updateGroundWeather({
         wetness: groundWetness,
         time: clock.getElapsedTime(),

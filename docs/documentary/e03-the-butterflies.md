@@ -12,85 +12,81 @@ Morning in the garden arrives like a tide of light. It pours across the grass ca
 
 [SHOT: closeup butterfly — wings slowly open and close on a flower, backlit by the sun]
 
-Among them, one creature does not so much wake as unfurl. Wings first — always wings first — spread flat to drink the heat.
+Among them, one creature does not so much wake as unfurl. Wings first — always wings first — spread flat to drink the heat. A butterfly is cold-blooded; it cannot fly until the sun has warmed its flight muscles. The morning basking is not vanity. It is a preflight check.
 
 [SHOT: orbit butterfly — circle the resting butterfly, wing patterns catching the light]
 
-The butterfly. The most conspicuous traveler in the garden — and the least concerned about it.
+The butterfly. Order Lepidoptera — "scale-wing" — cousin to every moth, and one of roughly a hundred and eighty thousand species whose wings are tiled with dust-fine scales.
 
-## Flight, reinvented
+## Four lives in one
 
-[SHOT: track butterfly — it lifts off; camera struggles to follow the erratic, tumbling path]
+[SHOT: closeup butterfly — macro on the wing surface, scales like overlapping shingles]
 
-When it flies, it breaks every rule of good engineering. No straight lines. No steady altitude. It climbs, stalls, drops, flutters sideways — a flight path drawn by a child's crayon. And that is precisely the point.
+That dust is the secret of the name. Each wing is roofed in thousands of tiny scales, overlapping like shingles — some pigmented, some structured to bend light into blues and greens no pigment could make. Brush them off and the color goes with them. The butterfly is not carrying a picture; the picture is built into the roof it flies on.
 
-[SHOT: cutaway birds — the flock wheeling high above the field, then back to the butterfly]
+[SHOT: cutaway butterfly — a leaf bearing an egg, then a caterpillar, then a chrysalis]
 
-Above the canopy hunt the birds — fast, direct, efficient. Against a predator built for interception, the best defense is to be unpredictable. A butterfly's clumsy tumble is very difficult to aim at. What looks like chaos is camouflage, written in motion.
+But the adult is only the final act. A butterfly lives four lives. It begins as an egg, hatches into a caterpillar built to do one thing — eat and grow — then seals itself inside a chrysalis and dissolves almost entirely, rebuilding from the inside out. Complete metamorphosis: egg, larva, pupa, adult. The crawler that gorged on leaves and the flier sipping nectar are the same animal, twice invented.
 
-[SHOT: closeup butterfly — macro on wingbeats in slow flight between grass blades]
+[SHOT: closeup butterfly — the proboscis uncoiling toward a flower's center]
 
-Each beat throws the body upward; each pause lets it fall. Flight, for a butterfly, is a controlled failure to land — thousands of times a minute, all day long.
+And the rebuild swaps its tools. The caterpillar's chewing jaws are gone. In their place, the adult carries a proboscis — a coiled drinking straw it unrolls into each bloom. It no longer eats leaves. It drinks.
 
-## A world of flowers
+## The couriers of the field
 
 [SHOT: flythrough flower — swooping run across the flower field at bloom height]
 
-Its map of the garden is drawn in color. Where we see a meadow, the butterfly sees a constellation of landing pads — every bloom a fuel station, advertised in petals arranged by mathematics older than the garden itself.
+Its map of the garden is drawn in color. Where we see a meadow, the butterfly sees a constellation of fuel stations, each bloom advertising nectar in petals and ultraviolet patterns we cannot even see.
 
 [SHOT: topdown flower — straight down on a flower as the butterfly lands, petals radiating]
 
-Count the petals here and you will keep finding the same numbers — three, five, eight, thirteen. The spiral arithmetic of growing things. The butterfly cannot count. It doesn't need to. It simply goes where the color is.
+And in paying its fuel bill, it earns its keep. Pollen catches on its legs and body and rides to the next flower. A butterfly is a clumsier pollinator than a bee — it carries less, and perches rather than wallows — but it travels far and visits widely, moving pollen between distant plants the bees never reach. It is a courier that does not know it was hired.
 
 [SHOT: closeup butterfly — proboscis probing the flower's center]
 
-It lands lightly enough to leave the bloom unbothered, drinks, and moves on. In paying its fuel bill, it carries a fine dust of pollen from flower to flower — a courier that doesn't know it was hired.
+It lands lightly, drinks, and moves on — and the meadow, flower by flower, is quietly cross-pollinated in its wake.
+
+## The gallery of families
+
+[SHOT: cutaway butterfly — quick montage: four different butterflies, four different wing patterns]
+
+No two neighborhoods of the meadow fly the same colors, and the differences are not random. The order divides into great families. The swallowtails, large and tailed. The whites and yellows, the sulphurs. The blues and coppers, small and jewel-bright. And the brush-footed butterflies — the largest clan, the fritillaries and admirals and monarchs — who walk on four legs and hold the front pair tucked away.
+
+[SHOT: track butterfly — a single strong flier crossing the open field, high and direct]
+
+One of them makes the garden feel small. The monarch is a migrant: across generations it travels thousands of miles, and its caterpillars eat only milkweed — a plant so toxic it makes the adult poisonous too. Kill the milkweed and you kill the monarch. Their fates are welded together.
+
+[SHOT: cutaway butterfly — two near-identical orange-and-black wings side by side]
+
+And where one species is toxic, others copy its colors. A harmless butterfly that wears the poisoned one's warning pattern borrows its protection without paying the price — mimicry, a costume worn for survival. In the gallery of wings, some of the paintings are honest, and some are forgeries.
 
 ## The gauntlet
 
 [SHOT: dolly tree — glide between the great trunks where webs hang in shafts of light]
 
-But the flower road passes through dangerous country. Between the trees, the spiders have rigged their silk toll gates, invisible until the light catches them. Fliers cross this gauntlet every day of their lives.
+But the flower road passes through dangerous country. Between the trees, the spiders have rigged their silk toll gates, invisible until the light catches them.
 
-[SHOT: wide field — the butterfly small in frame, drifting toward the treeline]
+[SHOT: track butterfly — its erratic, tumbling flight path between the grass towers]
 
-The butterfly's tumbling flight, so effective against birds, is little help against a stationary net. Here, survival is mostly luck — and the garden does not always deal kindly.
+The butterfly's answer is that erratic, tumbling flight — no straight lines, no steady altitude. Against the birds that hunt by interception, being unpredictable is the whole defense; a fluttering, jinking target is very hard to aim at. What looks like clumsiness is evasion, written in motion.
 
 [SHOT: cutaway web — a web trembling with recent struggle, then back to open sky]
 
-Those that pass through carry on as if nothing had happened. There is no memory of danger in that small head, and perhaps that is a mercy. Every flower is the first flower. Every morning is the first morning.
-
-## The gallery of wings
-
-[SHOT: cutaway butterfly — quick montage: four different butterflies, four different wing patterns]
-
-No two neighborhoods of the meadow fly the same colors. The Gardener stocked this world with butterflies in every pattern the palette allows — sunset oranges, chalk whites, blues that only exist in this garden at this hour. Each variety carries its ancestry on its wings like a family crest, and the meadow in season reads like a gallery with the paintings in flight.
-
-[SHOT: closeup butterfly — macro on a single wing: the panels of color, the dark veining between]
-
-Look close at a single wing and the painting resolves into architecture. The color lies in panels, framed by dark veins — and those veins are not decoration. They are the wing's skeleton, a fan of struts holding a membrane thinner than anything else alive in the garden. The butterfly is not carrying a picture. It is flying inside one.
-
-[SHOT: track butterfly — two butterflies spiral around each other over the blooms, climbing together]
-
-When two meet over the flowers, the flight changes character entirely. They spiral — around each other, upward, a double helix drawn in wingbeats — before breaking apart to their separate errands. Rivalry or courtship, the choreography is the same, and it is the closest thing to dance this garden produces.
-
-[SHOT: wide field — dozens of butterflies at different altitudes, layered through the warm air]
-
-At the day's height, they stack the air in layers — some working the blooms, some cruising the grass tops, a few riding thermals up toward the birds' country and thinking better of it. Fair-weather traffic, in every sense: the whole gallery grounds itself at the first spit of rain.
+Against a stationary net, though, that gift is little help. Here survival is mostly luck. Those that pass through carry on as if nothing had happened — there is no memory of danger in that small head. Every flower is the first flower.
 
 ## Painted and brief
 
 [SHOT: orbit butterfly — slow circle as it rests, wings breathing open and shut]
 
-Rest with one a moment, and you can see the whole strange bargain of its life. The wings that make it beautiful make it visible. The flight that keeps it safe keeps it slow. It is a creature made entirely of trade-offs — and it works.
+Rest with one a moment and you see the whole bargain. Most adult butterflies live only a few weeks — long enough to mate and to lay the next generation on exactly the right plant. The beauty is real, but it is brief, and it is entirely in service of the eggs.
 
 [SHOT: low grass — looking up as the butterfly crosses high overhead, a sail against the sky]
 
-From the floor of the garden, an ant might watch it pass the way we watch an airliner — a shape from another world, crossing a sky it will never visit.
+There is a reason the naturalists watch them so closely. Butterflies are sensitive to heat, to chemicals, to the loss of a single host plant — so when their numbers rise or fall, they measure the health of the whole meadow. They are a barometer with wings.
 
 [SHOT: track butterfly — following it in golden afternoon light over the blooms]
 
-The Gardener stocked this world with hundreds of them, in every pattern the palette allows. They ask nothing of the garden but sunlight and nectar, and they pay their way in pollen and in beauty.
+The Gardener stocked this world with them, in every pattern the palette allows. They ask only sunlight and nectar, and they pay their way in pollen — and in being the meadow's early warning.
 
 ## Closing
 
@@ -100,4 +96,4 @@ An afternoon meadow, seen from above, with its slow confetti drifting bloom to b
 
 [SHOT: closeup ladybug — a red shell trundles along a leaf, then snaps open its wings]
 
-But not every jewel in this garden flies to be seen. Some prefer to walk — armored, methodical, and famously lucky. Next: the ladybugs.
+But not every jewel here flies to be seen. Some prefer to walk — armored, methodical, and among the hungriest hunters in the grass. Next: the ladybugs.

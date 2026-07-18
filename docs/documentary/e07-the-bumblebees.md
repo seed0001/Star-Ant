@@ -8,96 +8,86 @@
 
 [SHOT: wide field — bright midday; the flower field in full color]
 
-Listen to a summer meadow, and beneath the wind you will hear its engine — a low, workmanlike hum that never seems to stop, because it never does.
+Listen to a summer meadow, and beneath the wind you will hear an engine that never idles. It belongs to an insect that folklore once claimed should not be able to fly at all — and that pollinates much of what this meadow, and your dinner plate, will ever grow.
 
 [SHOT: track bee — a bumblebee powers through frame, camera racing to keep pace]
 
-The sound belongs to a flying paradox: a body seemingly too heavy, wings seemingly too small, workload seemingly impossible. None of which has ever slowed it down.
+She is a bumblebee: genus Bombus, some two hundred and fifty species spread across the cold and temperate world, from this garden to the edge of the Arctic. Fat, furred, and deliberate, she is built for a job the sleeker bees cannot do.
 
 [SHOT: closeup bee — hovering at a bloom, wings a blur, fur dusted gold with pollen]
 
-The bumblebee.
+The bumblebee. Not a honeybee, but a cousin — and in the machinery of this meadow, arguably the more important of the two.
 
-## The commuter with a schedule
+## A colony that dies every year
 
-[SHOT: orbit hive — circle a hive, workers arriving and departing in steady traffic]
+[SHOT: orbit hive — circle a nest, workers arriving and departing in steady traffic]
 
-Every flight begins and ends at the hive — the garden's busiest address. Watch the entrance for a minute and you will see the whole economy in motion: outbound workers empty, inbound workers heavy, nobody idle.
+Her home is not the towering honeybee city. A bumblebee colony is small — a few dozen to a few hundred — and it is temporary. It is founded each spring by a single queen, the lone survivor of last year's nest, who spent the winter asleep underground. Everything here, she started alone.
 
-[SHOT: track bee — follow one bee from the hive out over the grass tops toward the flowers]
+[SHOT: closeup hive — macro at the entrance: workers inspected as they pass]
 
-Each departure is a delivery run in reverse. Somewhere out in the meadow is nectar; the bee's job is to find it, drink it, and haul it home. She may make this round trip dozens of times before the light fails.
+She built the first wax cells, laid the first eggs, and warmed them with her own body until her daughters hatched to take over the foraging. By midsummer the colony peaks. By autumn it raises new queens and males, and then — unlike the honeybee — the whole nest dies. Only the young, mated queens crawl underground to try again next year.
 
-[SHOT: flythrough flower — bee's-eye sprint across the flower field, blooms whipping past]
-
-And she flies it like she means it. Where the butterfly drifts and tumbles, the bumblebee commutes — direct, loaded, and audibly annoyed by headwinds.
-
-## Doing business with flowers
+## The trick no honeybee can copy
 
 [SHOT: closeup flower — a bloom fills frame; the bee lands heavily, petals dipping]
 
-The landing is never graceful. It doesn't need to be. She is not a guest here; she is a contractor, and the flower built this entire structure — the color, the scent, the landing platform of petals — specifically to be found by her.
+Watch what happens when she reaches certain flowers — the tomato, the blueberry, the cranberry, the potato. Their pollen is locked inside tube-shaped anthers that will not simply pour out. A honeybee lands, finds the vault shut, and leaves.
 
-[SHOT: closeup bee — extreme macro: fur collecting pollen as she works the flower's center]
+[SHOT: closeup bee — extreme macro: the bee clamps the anthers and blurs with vibration]
 
-While she drinks, the flower does its quiet business. Pollen clings to her fur — that magnificent, impractical fuzz turns out to be the whole point. She grooms some into baskets for the hive. The rest rides along to the next bloom.
+The bumblebee does something else. She bites down, uncouples her wings, and fires her flight muscles in place — vibrating the flower at a precise, high frequency until the pollen bursts loose in a visible puff. It is called buzz pollination, or sonication, and most of the world's bees, the honeybee included, simply cannot do it.
 
-[SHOT: topdown flower — straight down as she lifts off and beelines to a neighboring flower]
+[SHOT: topdown flower — straight down as she lifts off, dusted, and moves to the next bloom]
 
-And with that short hop, flower to flower, the meadow's future is written. No pollination, no seeds; no seeds, no meadow. Every generation of blooms in this garden is carried, quite literally, on her back.
+That one skill is worth billions. Tomatoes, peppers, eggplants, blueberries — crops we depend on — set far more fruit under this buzzing than under anything a hive of honeybees can offer. Where the bumblebee works, the harvest is heavier.
 
-## The buzz
+## Built to work when nothing else will
 
-[SHOT: closeup bee — macro on the wings themselves, motion-blurred, the hum at full volume]
+[SHOT: closeup bee — macro on the fur, thick as a winter coat]
 
-That hum deserves a moment of respect. Hundreds of wingbeats per second, driven by muscles that fire like an engine rather than a metronome. The buzz is not a voice. It is machinery — the sound of physics being narrowly defeated, all day, every day.
+Her famous fuzz is not decoration. That dense pile catches pollen by the thousands of grains, and it insulates. A bumblebee can shiver her flight muscles to warm them, making her own heat — which lets her fly in cold, in wind, in the dim early light that grounds every other pollinator.
 
-[SHOT: cutaway soldier — the inch-tall human ducks as a bee thunders past overhead]
+[SHOT: wide field — grey overcast morning, a single bee already working the blooms]
 
-To the garden's smaller residents, a passing bumblebee is a freight event. The inch-tall visitor hears her coming long before he sees her — a storm front with fur.
+So she is first to the meadow at dawn and last to leave at dusk. She works cool mountainsides and early spring gardens weeks before a honeybee will stir. For countless early flowers, and for whole cold-climate ecosystems, she is not one pollinator among many. She is the one that shows up.
 
-[SHOT: track bee — she slaloms between grass towers, heavy but precise]
+## Different tools for different flowers
 
-Yet for all the noise, she is precise. She threads the grass towers, banks around blades, and lands on a swaying target smaller than herself. The clumsiness is an illusion. The skill is not.
+[SHOT: track bee — she threads between grass towers toward a deep tubular bloom]
 
-## The hive
+The genus divides its labor by anatomy. Long-tongued species reach nectar deep inside foxglove, clover, and comfrey — flowers built so narrow that short-tongued bees can't touch the bottom.
 
-[SHOT: orbit hive — full circle of the structure itself: the dome, the entrance, the traffic]
+[SHOT: closeup flower — a bee at the base of a bloom, biting a hole in the side]
 
-The center of her world deserves its own portrait. The hive is the garden's only true building — a fortress of wax and industry, humming from within like a transformer station. Every other creature in this series shelters where it can. The bees alone built their address.
+And the short-tongued ones cheat. Unable to reach the nectar honestly, some bite a hole in the base of the flower and steal it from outside — nectar robbing: taking the reward while skipping the pollination. Even in a system this cooperative, there are shortcuts.
 
-[SHOT: closeup hive — extreme macro at the entrance: guards stationed, inbound workers inspected]
+[SHOT: orbit hive — a drab bee slips into a nest that is not her own]
 
-The entrance is a border post, and it is staffed. Incoming workers are met, touched, verified — the colony's chemistry checked at the door like papers. The hive defends a treasury, and it knows it. Sugar, in this economy, is wealth, and wealth has always needed walls.
+A few species have abandoned work entirely. The cuckoo bumblebees raise no workers of their own. A female invades another colony, overthrows its queen, and lets the stolen workforce raise her young instead. Same fur, same buzz — a thief in the family.
 
-[SHOT: cutaway rain — rain hammers the meadow; the hive entrance stands empty, sealed against the gray]
+## The vanishing hum
 
-When the weather turns, the whole economy shelters in place. No bee flies in rain — the freight is too light, the raindrops too heavy, the mathematics simply unkind. Storm days are bank holidays: the meadow goes unvisited, the flowers wait unbanked, and the hive lives off its stores until the sky reopens for business.
+[SHOT: cutaway rain — rain hammers the meadow; the flowers stand unvisited]
 
-[SHOT: wide hive — dawn after rain: the first workers spilling out into clean light]
+That hum is quieter than it once was. Several bumblebee species are in steep decline — one, the rusty-patched, became the first bee ever placed on the United States endangered list. Habitat loss, pesticides, disease carried from commercial hives, and a warming climate are all pulling the fat little engine out of the sky.
 
-And when it does reopen, the response is immediate and total. Within minutes of first light, the entrance is a launch rail again. No meeting was held. No decision was made. The colony simply knows, the way a tide knows, that the meadow is paying interest again and every idle wing is a loss.
+[SHOT: cutaway soldier — the inch-tall human watches a bee thunder past overhead]
 
-## The hive's ledger
+It matters more than it looks. Lose her, and it is not honey that vanishes — no bumblebee makes much of that. It is the tomatoes, the berries, the wildflowers that reseed the meadow itself. Most of the flowering plants here need an animal like her to reproduce at all.
 
-[SHOT: orbit hive — evening light; traffic at the entrance slowing]
-
-By dusk, the ledger is balanced. Nectar in, pollen in, energy spent. The hive hums with the day's income, and the meadow — pollinated one rough landing at a time — is richer for having been robbed.
-
-[SHOT: wide field — flowers glowing in low light, bees straggling home]
-
-It is the garden's oldest business arrangement, and its best: nobody cheats, because cheating is impossible. The flower pays in nectar. The bee pays in pollen delivery. Neither party has ever read the contract. Both honor it perfectly.
+## The ledger
 
 [SHOT: closeup bee — one last bee on one last bloom, dusted in gold, the sun setting behind]
 
-The Gardener stocked the hives and scattered the flowers. But this — the hum, the contract, the golden dust — runs itself.
+By dusk her fur is loaded, the flowers behind her are fertilized, and the meadow's next generation is already written into the seeds she helped make. The Gardener scattered the flowers. The bumblebee is the reason there will be more.
 
 ## Closing
 
 [SHOT: crane field — rise from the flower field up past the grass tops into open sky]
 
-Beyond the meadow, past the tallest blade, past the treetops, lies the one country this series has not yet visited: the open air.
+Beyond the tallest blade lies a country this series has not yet visited: the open air.
 
 [SHOT: wide birds — the flock wheels across the sky in formation]
 
-It has its own citizens — fast, coordinated, and always watching the ground. Next: the birds.
+It has its own citizens — fast, coordinated, and always watching the ground below. Next: the birds.

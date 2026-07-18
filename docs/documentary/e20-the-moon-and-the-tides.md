@@ -4,97 +4,81 @@
 - Runtime target: ~7 min (~970 words)
 - Voice: en-US-AndrewMultilingualNeural
 
-## Cold open
+## What the moon is
 
 [SHOT: wide moon — the moon full over the lake, its cold lane laid across the water]
 
-Of all the lights that cross the garden's roof, only one reaches down and touches the world. The sun warms it. The stars decorate it. But the moon — the moon moves it.
+Of all the lights that cross the garden's roof, only one is a world in its own right. The moon is Earth's single natural satellite — a ball of rock roughly a quarter of our planet's width, close enough that we see it as a disc and not a star. It makes no light of its own. Every beam it lays across this water is sunlight, borrowed and thrown back.
 
-[SHOT: closeup shore — night: the waterline advancing up the sand, silent and certain]
+[SHOT: closeup moon — the pale disc alone in frame, craters catching the sun's borrowed light]
 
-Watch the beach under a climbing moon, and you can see the connection with your own eyes: the light rises, and the water rises to meet it.
+Look closely and the surface is a record of violence. Those dark plains and bright rings are impact craters, some billions of years old — and because the moon has almost no air and no weather, nothing has ever wiped them away. The moon itself was likely born from a collision: a body the size of a small planet struck the young Earth, and the flung debris gathered into the companion we see tonight.
 
 [SHOT: pan water — from the bright disc above down its reflection to the swelling lake]
 
-This is the story of the garden's strangest partnership. The moon, and the tides.
+But the moon does more than decorate the dark. It reaches down and pulls. This is the story of that pull — the moon, and the tides.
 
-## The pull
+## The pull — two bulges a day
 
 [SHOT: topdown water — the whole lake from above, its outline subtly but visibly breathing]
 
-The mechanism is invisible, which makes it the best magic in the garden. The moon leans on the water — not with light, but with attraction itself — and the water, everywhere at once, answers. The lake does not flow anywhere. It swells, as if the whole drowned country had drawn a breath.
+Gravity weakens with distance, so the moon tugs the near side of a body of water slightly harder than the far side. Water is free to move, and so it heaps up — not once but twice, into two bulges: one swelling toward the moon, and one on the exact opposite side, left behind as the moon pulls the planet out from under it.
 
 [SHOT: closeup shore — macro at the waterline: water climbing blade by blade into the grass margin]
 
-At the shore, that breath becomes territory. Nearly half a meter of rise at the full — enough to drown the low trails, flood the grass margins, and redraw the strictest border on the map. Then the pull relents, and the water walks back down the beach it just climbed.
+Then the world turns. As Earth rotates through those two standing bulges, most coasts sweep through two high waters and two low waters every day. The sun adds its own pull — about a third as strong as the moon's — but it is the moon that sets the beat. High, low, high, low: the oldest schedule there is.
 
 [SHOT: wide shore — the tide line drawn on the sand: wet dark below, dry pale above]
 
-Twice per lunar day, without exception, without effort. High water, low water, high water again — the garden's oldest schedule, kept by its most distant clock.
+And it drifts. Each day the tide arrives about fifty minutes later than the last, because the moon has moved a little further along its month-long orbit, and the water is chasing a target that will not hold still.
 
-## The spring and the neap
+## Spring and neap
 
 [SHOT: track moon — following the moon's arc across the dome in accelerated night]
 
-But listen longer, and the rhythm has a rhythm. Over many days, the tides themselves swell and shrink — some days the water surges far into the meadow; other days it barely fingers the sand.
+Watch across a month and the tides breathe with a slower rhythm. When the sun, Earth, and moon fall into a line — at new moon and at full — their two pulls add together. The water climbs highest and falls lowest. Sailors named these the spring tides, and the name has nothing to do with the season.
 
 [SHOT: wide water — split mood: one enormous tide flooding the margins, then a timid one]
 
-Sailors on our own world named these moods centuries ago: spring tides, when the pull runs strongest, and neap tides, when it slackens — the slow envelope wrapped around the fast pulse. The garden's sea keeps both times at once, a drummer with two hands.
+A week later the moon stands at a right angle to the sun, and the two pulls work against each other. The tides go slack and shallow — the neap tides, when high water barely rises and low water barely falls. Twice a month strong, twice a month weak: a slow envelope wrapped around the daily pulse.
 
-[SHOT: closeup water — gentle overlapping ripples, pattern within pattern]
+## The moon as a clock for life
 
-Nothing else here is so precisely musical. The wind is improvisation; the seasonsless days repeat plainly. Only the tide plays in polyrhythm — and it has never missed a beat.
+[SHOT: track fish — fish gliding over newly drowned meadow at high water]
 
-## Living on the schedule
-
-[SHOT: underwater fish — fish gliding over newly drowned meadow at high water]
-
-For the residents, the schedule is simply weather that keeps its promises. The fish ride each flood into borrowed country and withdraw before the lease expires.
+Life reads this clock. On our own world, whole reefs of coral spawn together on a single full moon; fish and crabs run their tides to the minute; countless creatures shift their hunting and hiding between bright nights and dark ones, because a full moon can mean either a hunter's advantage or a prey's danger.
 
 [SHOT: cutaway ant — ants working the freshly exposed wet zone at low water]
 
-The land nations work the ebb: at low water, the exposed margin is new land — damp, rich, and briefly roadworthy, until the drummer's other hand takes it back.
-
-[SHOT: cutaway ladybug — a ladybug hurrying, slightly too casually, off ground beginning to darken]
-
-And a few citizens, as episode twenty-three will confirm, treat the schedule with insufficient respect. The tide keeps no grudges; it also grants no exceptions. Punctuality, at the shore, is a survival skill.
-
-[SHOT: low shore — from the sand, the returning waterline approaching the lens]
-
-Nothing in the garden enforces its law so gently, or so absolutely.
+Even navigation runs on moonlight. Some insects steer by holding a fixed angle to the moon the way a sailor holds a star — dung beetles rolling a straight line by lunar light, moths keeping their bearing against it. Take the moon away, and a surprising amount of the living world would lose its timing and its compass at once.
 
 ## Life at the tideline
 
 [SHOT: closeup shore — the wet band between high and low water: dark, glistening, printed with traffic]
 
-Between the highest reach of the water and its lowest retreat lies the garden's newest country — the tideline. Twice owned, never settled, and richer than either nation that claims it. The wet band is printed daily with the traffic of both: fin-strokes in the drowned hours, ant roads in the dry ones.
+Between the highest reach of the water and its lowest retreat lies the richest, harshest ground of all — the intertidal zone, drowned and bared twice a day. On sea coasts, life sorts itself into strict bands here: the animals that can bear long hours in the air live high, and those that need the water live low, each species pinned to the exact stripe of shore it can survive.
 
 [SHOT: track shore — low water: ants working the exposed band while it lasts, moving quickly]
 
-Watch the land nation work an ebb, and notice the tempo. The ants on the tideline move faster than the ants of the high meadow — the same animal, on a deadline. Nothing teaches urgency like ground that keeps a schedule. The wet band is the only place in the garden where the residents visibly know the time.
+Watch the garden's own margin and you can read the same law in miniature. At low water the exposed band is briefly walkable — damp, rich, and busy — and the residents that work it move fast, because the ground keeps a schedule and the schedule grants no extensions.
 
-[SHOT: underwater shore — high water: fish gleaning the same band from the other side, methodical]
+[SHOT: low underwater — high water: fish gleaning the same band from the other side, methodical]
 
-Six of the water's hours later, the same ground works its other shift. The fish glean the flooded band with the same efficiency and the opposite passport — harvesting what the land traffic left, softened and salted by the flood. Two nations, one field, and a wall of time between them where a wall of space should be.
+Hours later the water returns and the fish glean the very same strip from the other side. Two nations, one field, a wall of time where a wall of space should be — and the tideline fed by both.
 
-[SHOT: wide shore — the tideline at the turn: water slack, neither advancing nor retreating, both nations near]
-
-And at slack water — the few still minutes when the moon's pull balances and the border rests — the two shifts stand nearest each other, separated by centimeters and by everything. Neither knows the other works its ground. The tide keeps them strangers, and keeps them fed, with the same motion.
-
-## The clock nobody winds
+## The long story
 
 [SHOT: wide moon — the moon high and small over the whole breathing world]
 
-Consider what the moon actually is to this garden: a clock nobody winds, a landlord nobody sees, a power that touches every shoreline without once touching the shore.
+The moon does one more thing, larger than any tide. Its steady pull holds Earth's tilt nearly fixed at about twenty-three degrees — and that fixed tilt is why the seasons keep their order year after year. Without the moon to steady it, the axis would wander, and the climate would lurch between extremes over the ages.
 
 [SHOT: closeup moon — the pale disc alone in frame, silent]
 
-The ants will never suspect it. The fish will never thank it. Even the Visitor, who might work it out, has beaches to walk. The moon does not mind. Attraction, at any scale, is patient.
+And it is leaving. The same tidal friction that raises these waters is nudging the moon a few centimeters farther away each year, and slowing our spin — so Earth's day is very slowly lengthening. The nights were shorter, and the moon larger, when the world was young.
 
 [SHOT: pan water — moonlight on the swelling lake, the beach drinking the advancing edge]
 
-And below, on schedule, the water stands up again to follow its light around the world.
+The ants will never suspect it. The fish will never thank it. Even the Visitor, who might work it out, has beaches to walk. But below, on schedule, the water stands up again to follow its distant clock around the world.
 
 ## Closing
 

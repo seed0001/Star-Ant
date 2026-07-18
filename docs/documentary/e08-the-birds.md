@@ -1,103 +1,103 @@
 # Episode 8 — The Birds
 
 - Season: 1 · The Critters
-- Runtime target: ~7 min (~950 words)
+- Runtime target: ~7 min (~970 words)
 - Voice: en-US-AndrewMultilingualNeural
 
 ## Cold open
 
 [SHOT: low grass — from the meadow floor, looking straight up; shapes cross the sky]
 
-Every resident of the garden floor knows this shadow. The ant freezes. The ladybug tucks close to a stem. The worm — if it is wise and it is raining — wishes it were underground.
+Every resident of the garden floor knows this shadow. The ant freezes. The ladybug tucks close to a stem. The worm — if it is wise, and it is raining — wishes itself deeper underground.
 
 [SHOT: wide birds — the full flock sweeps across frame in loose formation]
 
-High above the tallest grass, above the treetops, above everything, the garden has an air force.
+High above the tallest grass, above the treetops, above everything, moves the one group of animals here descended, directly and unbroken, from the dinosaurs.
 
 [SHOT: track birds — flying alongside the flock, wingbeats filling the frame]
 
 The birds.
 
-## The flock
-
-[SHOT: orbit birds — circle the flock mid-flight as it turns as one body]
-
-Watch them turn, and try to find the leader. There isn't one. Each bird follows three private rules: stay close to your neighbors, don't collide with them, and fly roughly where they're flying. That is the entire constitution.
-
-[SHOT: wide birds — the flock wheels, contracts, and blooms open against the sky]
-
-And from those three rules, this — a single shape with a hundred wings, folding and unfolding across the sky like smoke with intent. No commander, no plan, no rehearsal. Order for free. Naturalists call it emergence. The garden simply calls it morning.
+## Living dinosaurs
 
 [SHOT: closeup birds — one bird isolated in frame: body, beak, tail, the wing's whole stroke]
 
-Up close, each bird is a simple machine — a hull of muscle behind a beak, balanced on a tail, hauled through the air by wings that never truly rest. Simplicity, repeated a hundred times, is the flock's entire secret.
+That is not a figure of speech. Birds are the class Aves, and they are the last surviving branch of the theropod dinosaurs — the same lineage as the great two-legged hunters of the ancient world. Every sparrow overhead is a dinosaur that learned to fly.
 
-## The view from above
+[SHOT: track birds — a bird banks, light shining through its spread feathers]
 
-[SHOT: topdown field — the bird's-eye view: the whole garden laid out like a map]
+Flight rebuilt them from the inside out. Feathers — found on no other animal alive — give both lift and warmth. Many of their bones are hollow, braced inside with struts, light without being weak. They carry no teeth and no heavy jaw; a beak weighs almost nothing.
 
-From up here, they see what no other animal in this series has ever seen: everything. The grass ocean as a texture. The flower field as a scatter of paint. The water as a bright mirror in the land. Ours has been a documentary of citizens who cannot read the map they live on. The birds read it all day.
+[SHOT: closeup birds — the chest working quickly between wingbeats]
 
-[SHOT: dolly birds — glide with a bird as it tilts, scanning the ground far below]
+And all of it runs hot. A bird burns fuel at a furious rate, with a racing heart and a body held warmer than our own. Flight is the most expensive way to travel in this garden, and the bird pays that price every second it stays airborne.
 
-And they read it hungrily. That glistening thread on wet soil — a worm, surfaced and regretting it. That drifting fleck of color — a butterfly, tumbling its clumsy anti-aircraft pattern for good reason.
+## Ten thousand trades
 
-[SHOT: cutaway worm — ground level: a worm hurries, too slowly, toward loose soil]
+[SHOT: wide field — the whole meadow laid out under open sky]
 
-Rain is the great equalizer. When the tunnels flood and the worms come up, the flock comes down, and the meadow briefly becomes a market with one commodity.
+There is no such thing as "the" bird. Aves is enormous — roughly ten thousand living species, more than all the mammals, filling nearly every habitat on Earth from the poles to the deep ocean.
 
-[SHOT: track birds — a bird pulls out of a shallow dive back up to altitude]
+[SHOT: closeup birds — a stout seed-cracking beak, then a fine needle-like bill]
 
-It is not cruelty; it is altitude doing what altitude does. In the garden, height is information — and information, eventually, is lunch.
+Read the beak and you read the whole life. A short thick cone cracks seeds. A fine needle sips nectar. A hooked blade tears meat. A long probe pulls worms from the mud; a broad strainer sifts water. It is one tool, reshaped a thousand ways for a thousand diets.
 
-## Weathering the sky
+[SHOT: orbit birds — the flock as a mixed body, turning together]
 
-[SHOT: wide sky — clouds thicken; the light goes gray and heavy]
+The songbirds, the perching birds, are the largest group by far. Then the raptors — the hawks and owls that hunt on the wing. The waterfowl of the pond, the long-legged waders of the shore. One class, split into a hundred professions.
 
-But the open air collects its own taxes. When the weather turns, there is nowhere up here to hide. Rain thickens the air; wind shoves the formation sideways.
+## What they do for the garden
 
-[SHOT: cutaway lightning — a jagged bolt splits the sky; the flash whites out the frame]
+[SHOT: dolly birds — glide with a bird as it scans the ground far below]
 
-And when the storm truly arrives, the sky stops being a country and becomes a weapon. The flock rides it out the only way it knows — together, trading precision for togetherness, a hundred small hulls in a gray sea.
+And every profession does the garden a service. Begin with the one you can watch from here: pest control. Insect-eating birds clear a staggering number of insects and caterpillars from the grass and the leaves every season — free protection for every plant in the meadow.
 
-[SHOT: wide birds — after the storm: the flock reassembles against clearing sky]
+[SHOT: cutaway tree — a bird plucks a berry from a branch and flies off with it]
 
-Storms pass. The rules — stay close, don't collide, follow — survive every one of them. Within minutes, the smoke-shape is whole again, as if the sky had never misbehaved.
+Next, seeds. A bird eats a fruit here and drops the seeds far away, unharmed and fertilized where they fall. Whole forests are planted this way, by birds that never once knew they were gardening.
 
-## The cost of wings
+[SHOT: closeup flower — a tiny hovering bird dips its bill deep into a bloom]
 
-[SHOT: closeup birds — slow motion on a single bird: the full down-stroke, feathers flexed under load]
+Some are outright pollinators — hummingbirds and sunbirds carry pollen from flower to flower exactly as the bees do. And the scavengers, the vultures, strip the dead from the land before it can rot and spread sickness among the living. Feeder, planter, pollinator, undertaker — the birds hold half a dozen jobs at once.
 
-Slow the wingbeat down, and flight stops looking free. Every stroke is a payment — muscle burning fuel to buy another second of altitude. A bird is the most expensive animal in the garden to run, hour for hour. The ant walks nearly for nothing. The fish coasts. The bird pays rent on the sky every moment it is up here.
+## The flock, and the compass in the skull
 
-[SHOT: track birds — a bird stops flapping and glides, wings set, trading height for distance]
+[SHOT: orbit birds — circle the flock in flight as it turns as one body]
 
-Which is why the flock's real skill is not flapping but not flapping. Watch the glides — wings set, altitude spent like savings, distance bought at a discount. A good flier in this garden is defined by how often its wings are still. The flock's smoke-shape, seen closely, is a thousand small economies: beat, glide, borrow a neighbor's slipstream, repeat.
+Watch the flock turn and try to find the leader. There isn't one. Each bird obeys a few simple rules — stay near your neighbors, match their heading, don't collide — and from those rules alone the whole shape wheels and folds with no commander anywhere in it.
 
-[SHOT: wide birds — the flock descends toward the treetops in failing light, circling once]
+[SHOT: wide birds — the flock contracts, then blooms open against the sky]
 
-The other economy is rest, and rest means the trees. As the light fails, the flock spirals down to the only furniture tall enough to hold it — the crowns of the great trees, above the webs, above the walkers, below nothing. The treetops at dusk are the flock's harbor, and the circling descent is as close to ceremony as birds get.
+And the tight formation is not for show. Packed together, they are far harder for a hawk to single out, and each bird steals a little lift from the wake of the one ahead. The flock is genuinely cheaper to fly in than the empty air.
 
-[SHOT: closeup birds — settled: a row of silhouettes on a branch against the last light, feathers loosening]
+[SHOT: sky stars — the camera tilts up as dusk deepens into first stars]
 
-Settled, they become different animals entirely — round, still, and silent, the air force decommissioned until dawn. The sky they ruled all day carries on without them. It always could. That is the sky's one unkindness: it never once notices who is missing.
+Many of these travelers are only passing through. Migratory birds cross whole continents twice a year, and they find their way by instruments we can barely imagine — the angle of the sun, the pattern of the stars, and a true magnetic sense that reads the Earth's field like a compass built into the skull.
+
+## Warning system
+
+[SHOT: closeup birds — a single bird alert on a branch, head turning]
+
+Because they are everywhere, and particular about where they live, birds are the garden's early-warning system. When the songs thin out, something in the habitat has gone wrong before anything else will show it. A full chorus is a healthy world; a quiet spring is a warning.
+
+[SHOT: wide sky — clouds thicken; the light goes grey and heavy, the flock shoved sideways]
+
+Their sky collects hard taxes, too. Storms scatter the formation. And beyond this garden the real dangers are ours to name — vanishing habitat, windows they cannot see, free-roaming cats, and a warming climate that shifts the seasons their whole calendar depends on.
+
+[SHOT: wide birds — after the weather clears, the flock reassembles against open sky]
+
+Still, the rules survive every storm. Within minutes the shape is whole again, wheeling over a garden that would be a very different, and a much hungrier, place without them.
 
 ## The ceiling of the world
 
 [SHOT: crane field — from the flock, descend slowly all the way to a single ant on the soil]
 
-From the highest bird to the lowest ant is, for us, a single camera move. For the residents, it is the distance between universes. The ant will never know the map. The bird will never know the tunnel. The garden needs both, and tells neither.
-
-[SHOT: wide birds — the flock crosses the sunset, small and far]
-
-The birds are the ceiling of the animal world here — the last thing moving between the garden and the sky.
-
-## Closing
+From the highest bird to the lowest ant is, for us, a single camera move. For the residents, it is the distance between worlds. The ant will never know the map; the bird will never know the tunnel. The garden needs both, and tells neither.
 
 [SHOT: pan shore — sweep from the sky down to the waterline, then across the bright water]
 
 But the garden does not end at the shoreline, and its largest citizens do not fly. Beneath that bright mirror the birds navigate by lies a second garden — one this series has only glimpsed.
 
-[SHOT: underwater fish — beneath the surface: shafts of light, and fish cruising past camera]
+[SHOT: dolly fish — beneath the surface: shafts of light, and fish cruising past camera]
 
 Cold light, drowned meadows, and silver traffic. Next: the fish.

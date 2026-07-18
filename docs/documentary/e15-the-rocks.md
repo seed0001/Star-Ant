@@ -8,96 +8,80 @@
 
 [SHOT: wide field — the meadow in motion: grass waving, wings crossing, everything moving]
 
-For fourteen episodes, this series has chased motion — wings, waves, webs, and growing things. So it is worth asking what this world looks like to the only residents that have never moved at all.
+For fourteen episodes, this series has chased living things. But the ground they all stand on was here first — and it is worth asking what this world looks like to the only residents that were never alive at all.
 
 [SHOT: closeup rock — a boulder fills the frame, absolutely still; grass whips around it]
 
-While the garden hurries, these wait.
+While the garden hurries, these wait. And every one of them is a page of the planet's history, written in mineral.
 
 [SHOT: orbit rock — a slow, reverent circle around a single weathered boulder]
 
 The rocks.
 
-## The still ones
+## Three ways to make a stone
 
-[SHOT: topdown field — from high up: gray shapes scattered through the green like punctuation]
+[SHOT: closeup rock — macro across the surface: crystals, grain, and glassy facets in the light]
 
-The Gardener strewed them across the field the way a hand scatters seed — here a lone boulder in open grass, there a family of them shouldering together on a rise. From above, they read as punctuation in the meadow's long green sentence.
+Every rock in this garden belongs to one of three families, sorted by how it was born. The first is igneous — stone born of fire. Molten rock, cooled and frozen solid: fast at the surface as lava, into fine dark stone; slow underground as magma, growing the big glittering crystals of granite.
 
-[SHOT: closeup rock — macro across the surface: facets, pits, the geometry of the mineral]
+[SHOT: closeup rock — a stone showing fine horizontal layers, like the pages of a book]
 
-Up close, each is a small mountain range of one. Faces and fractures catch the light the way cliffs do; hollows hold shadow all day. A rock at this scale is not an object on the landscape. It is landscape, concentrated.
+The second is sedimentary — stone built in layers. Sand, mud, and grit settle, pile up, and are pressed together over ages into stone you can read like a stack of pages. Sandstone, limestone. These are the rocks that trap fossils — the only stone that keeps a record of the life that settled into it.
 
-[SHOT: low rock — from the soil, the boulder looming against moving clouds]
+[SHOT: closeup rock — a stone with warped, banded streaks frozen through it]
 
-To the garden's citizens, that is exactly what they are. An ant does not walk around a rock; it navigates it, the way we cross a hill. The scale of a thing depends entirely on the size of the walker.
+And the third is metamorphic — stone transformed. Take any rock, bury it deep, cook it under heat and crushing pressure, and it changes into something new without ever melting. Limestone becomes marble; mud becomes slate. The banding you see is the mark of that ordeal, frozen in place.
 
-## The infrastructure of stillness
+## The rock cycle
 
-[SHOT: track ant — an ant ascends a rock face, crests it, and surveys the meadow]
+[SHOT: crane field — rise above the meadow to take in hills, slopes, and scattered stone]
 
-And stillness, it turns out, is a public service. A boulder is the meadow's one guaranteed landmark — the object that will be exactly where it was yesterday, in a world where everything else sways.
+And no rock is ever finished. All three kinds are stops on a single slow loop the whole planet runs. Deep rock is lifted into mountains. Mountains are worn down to sediment. Sediment is buried, pressed, and heated back into stone — or driven deep enough to melt and rise again as magma.
 
-[SHOT: dolly rock — glide through the wind-shadow behind a boulder; the grass there stands calm]
+[SHOT: closeup rock — a boulder's surface, cracked and flaking, grains loosening at the edge]
 
-On its lee side, the wind goes quiet, and the still air is prime property: seedlings start here, walkers shelter here. In storm light you can read the whole service at a glance — a gray hull, and behind it, a wake of calm.
+The rock cycle. It has no beginning and no end, and it turns on a clock so slow that a human lifetime cannot see the hand move. Every stone in this garden is somewhere on that loop, mid-journey, whether it looks it or not.
 
-[SHOT: closeup rock — rain streams down the stone face; the soil at its base drinks the runoff]
+## How stone becomes soil
 
-When rain comes, each rock becomes a small watershed, gathering the sky and delivering it, concentrated, to whatever grows at its feet. Even doing nothing, stone does work.
+[SHOT: closeup rock — rain streams down the stone face; ice glinting in a crack]
 
-## A census of stone
+Which brings us to the quiet work these boulders are doing right now — breaking down. It is called weathering, and it comes two ways. The physical way is brute force: water seeps into a crack, freezes, expands, and levers the crack wider — freeze after freeze, until the stone splits.
 
-[SHOT: wide rock — a cluster of boulders of different sizes, huddled like a herd on a rise]
+[SHOT: closeup rock — a patch of gray-green lichen spreading across bare stone]
 
-The stone population, like every other in the garden, has its demography. Here and there they gather in families — a great parent boulder with its attendants of smaller stones, huddled the way the Gardener's scattering hand happened to drop them. Elsewhere, loners: single gray hulls a field apart, each the only landmark its neighborhood owns.
+The chemical way is subtler. Rain is faintly acidic, and over time it eats at the minerals themselves, softening the stone from within. And look here — lichen, the pioneer. Lichens colonize bare rock where nothing else can live, and as they grow they help pry mineral grains loose, beginning the work.
 
-[SHOT: closeup rock — one small stone, pebble-sized, half-buried in the soil among grass roots]
+[SHOT: cutaway worm — below: a thin skin of dark soil where crumbled rock meets grass roots]
 
-At the small end, the census blurs into the ground itself. A pebble to us is a boulder to an ant, and a grain of grit is a pebble to something smaller still. Stone in this garden is not a category of object. It is a spectrum — running from landmark to landscape to soil, with residents living at every scale of it.
+Grind stone fine enough, mix in the remains of the living, and you have made the one thing every plant in this series depends on: soil. Every blade of grass, every flower, every tree is rooted in weathered rock. The mountains, patiently, are becoming the meadow.
 
-[SHOT: orbit rock — circling a boulder whose faces differ: one sheer, one sloped, one cracked]
+## The mineral bank
 
-And no two are cut alike. Each boulder wears its own arrangement of faces — a sheer side, a walkable slope, a crack that holds shade at noon and warmth at dusk. To the walkers, those differences are everything: this rock is a lookout, that one a shelter, the third an obstacle to be respected and routed around.
+[SHOT: closeup rock — macro on the stone's surface, mineral grains catching the light]
+
+And as the rock breaks down, it pays out. Locked inside stone are the mineral nutrients that plants cannot make for themselves — calcium, potassium, and more. Weathering releases them slowly into the soil, a trickle of fertilizer measured out over centuries.
+
+[SHOT: wide field — grass and flowers growing thickest in the soil around a cluster of boulders]
+
+So the stillest things in the garden are quietly feeding the busiest. The stone does not grow, does not move, does not care — and yet the whole living field is drawing, grain by grain, on an account these boulders have held since before the first seed.
+
+## Shelter and warmth
+
+[SHOT: track ant — an ant crosses a rock face and slips into a shaded crack]
+
+Stone gives shelter, too. A boulder's cracks and hollows are microhabitats — cool shade in the heat, a windbreak in the storm, a hiding place from anything hunting in the open. To an ant, a rock is not an obstacle. It is a whole landscape of addresses.
 
 [SHOT: low rock — evening: a boulder radiating the day's warmth, small life gathered at its base]
 
-They even keep hours, after their fashion. All day a rock banks the sun's heat, and all evening it pays the heat back out — a warm hearth in the cooling meadow that the cold-bodied know by address. The stillest things in the garden, it turns out, run the only heating system it has.
-
-## Time, at rock speed
-
-[SHOT: wide rock — a boulder in fast-cycling light: day, dusk, night, dawn washing over it]
-
-Consider the garden from the rock's calendar. Fireflies are a nightly weather. Butterflies are a flicker. Even the great trees — grown, tenanted, and felled by the Gardener's hand — are, to stone, a passing season of upright neighbors.
-
-[SHOT: cutaway stump — the flat-cut stump nearby, rings exposed; then back to the unchanged rock]
-
-The tree records its life in rings and surrenders the diary when it falls. The rock records nothing and surrenders nothing. It was the first thing in the field the day the Gardener raised these hills, and everything this series has filmed has happened in front of it.
-
-[SHOT: closeup rock — absolute stillness; one grass blade taps the stone in the wind, again and again]
-
-If patience were a substance, it would look like this.
-
-[SHOT: track rock — the camera circles the boulder once, very slowly, as clouds race overhead]
-
-Film a rock honestly and you must accept that nothing will happen, and that this is the entire subject. The clouds hurry. The grass fidgets. The stone conducts its one activity — remaining — with a completeness no living thing in the garden can afford. Every other resident must eat, flee, or grow. The rock's whole occupation is to be exactly where it is, indefinitely, and it has never once fallen behind on the work.
-
-## The audience of the garden
-
-[SHOT: pan field — sunset sweeps the meadow; long boulder shadows stretch across the grass]
-
-Every drama we have followed — the webs and the tides, the falls and the floods — has played out around these gray witnesses. They are the garden's audience: present for everything, invested in nothing, outlasting all of it.
-
-[SHOT: wide field — stars come out above the darkened field; the rocks pale in the last light]
-
-There is a kind of comfort in that. Whatever changes in the garden tonight, the punctuation will hold its place.
+And stone keeps time with the sun. All day a rock banks heat into its mass; all evening it pays that heat back out — a warm hearth in the cooling meadow that the cold-bodied know by address. The thing that seems most dead in the garden runs its only heating system.
 
 ## Closing
 
-[SHOT: crane terrain — rise high above the field until hills, shores, and hollows read as one sculpture]
+[SHOT: crane field — rise high above the meadow until hills, shores, and hollows read as one sculpture]
 
-But the rocks rest on a larger stillness yet — the ground itself, with its raised hills and drowned hollows. And that ground, unlike any wild country, remembers being shaped.
+Stone is the slow foundation everything else is built on — soil, shelter, warmth, and the mineral wealth of the whole living field. But the rocks rest on a larger stillness yet: the ground itself, with its raised hills and drowned hollows. And that ground, unlike any wild country, remembers being shaped.
 
-[SHOT: topdown terrain — the whole world from above: every contour a deliberate stroke]
+[SHOT: topdown field — the whole world from above: every contour a deliberate stroke]
 
 Season three begins with the deepest story in the garden: the land, and the hand that sculpted it. Next: the Land.

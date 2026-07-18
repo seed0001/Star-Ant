@@ -8,95 +8,91 @@
 
 [SHOT: wide water — dead calm; the lake a perfect mirror at first light]
 
-Every world keeps one story it tells quietly. In this garden — a world of half-centimeter citizens and meter-tall grass — the quiet story is this: the largest resident outweighs all the others combined.
+Every world keeps one story it tells quietly. In this garden — a world of half-centimeter citizens and meter-tall grass — the quiet story is a paradox: the largest resident in the water is not a fish at all. It is a mammal, like us.
 
 [SHOT: topdown water — from high above, a vast dark shape glides beneath the surface]
 
-From the air, it reads as a moving piece of the lakebed. A shadow with intention.
+From the air it reads as a moving piece of the lakebed. A shadow with lungs.
 
-[SHOT: closeup whale — the flank slides past camera, endless, barnacle-gray]
+[SHOT: closeup whale — the flank slides past camera, endless, smooth and gray]
 
 The whale.
 
-## The impossible neighbor
+## Not a fish, but a mammal
 
 [SHOT: track whale — running alongside the whale at depth, its full length in frame]
 
-Nothing about it should fit here. In a garden where a bumblebee is heavy traffic and an inch-tall man is a giant, the whale is a category error — a creature built to the scale of the landscape itself, swimming in the landscape's one deep pocket.
+Everything a fish is, the whale is not. It is warm-blooded, holding its own heat in the cold water. It does not lay eggs — it bears live young and nurses them on milk. And though it spends its life submerged, it cannot breathe the water at all.
+
+[SHOT: wide water — the surface bulges; the back breaks through, a spout of mist blows off]
+
+Watch it rise. On top of the head sits a blowhole — a nostril that opens straight to a pair of lungs. Every so often the giant must climb to the ceiling, empty those lungs in a single blast, and refill them. It holds one breath for as long as it can, then trades it for another. The whale's tether is not to the deep. It is to the air.
 
 [SHOT: orbit whale — a slow half-circle around the head; the eye tracks the camera]
 
-And yet here it is, entirely at ease. It patrols the drowned country the way weather patrols the sky: slowly, hugely, and without opposition. Nothing here hunts it. Nothing here could.
+Its ancestors were land animals that walked back into the water tens of millions of years ago. Look closely and the history shows — a mammal's skeleton, hidden hip bones, a spine that drives the tail up and down, not side to side like a fish. The whale did not come from the fish. It went to join them.
 
-[SHOT: cutaway fish — a school scatters and reforms around the moving bulk, like starlings]
+## Two ways to eat an ocean
 
-The fish treat it the way the ants treat the inch-tall visitor — as terrain that happens to move. They part around the great flank and close behind it, and the two species share the water the way a village shares a mountain.
+[SHOT: closeup whale — the great mouth opens, curtains of fringe hang from the upper jaw]
 
-## Built like a landscape
+The world's whales split into two great kinds by how they feed. One kind carries no teeth at all. In their place hang plates of baleen — stiff fringed curtains that strain the water. They gulp an enormous mouthful, push it back out, and swallow whatever the sieve holds: clouds of tiny drifting animals, caught by the millions. The blue whale, largest animal that has ever lived, eats this way.
 
-[SHOT: closeup whale — macro traveling shot along the body, nose toward tail]
+[SHOT: track whale — the whale sweeps low through a drifting haze of fine motes]
 
-From nose to tail, this is a body to survey, not observe. The head alone outmeasures the whale's every neighbor. The body tapers with the logic of a hull — mass up front, propulsion astern.
+The other kind keeps its teeth — the toothed whales: the dolphins, the orcas, the sperm whale. They hunt one prey at a time, and they hunt with sound.
+
+[SHOT: closeup whale — macro on the broad forehead, angled toward the dark]
+
+A toothed whale sends out a stream of clicks and listens for the echoes — building a picture of the black water from returning sound. It is echolocation, the same trick the bats use in the night air, run here in water where it carries even better. In the lightless deep, the whale sees with its voice.
+
+## The engine and the song
 
 [SHOT: closeup whale — the tail stock flexes; the fluke rises and presses down, slow and total]
 
-And then, the engine. The tail — the peduncle driving that great horizontal fluke — moves with the patience of something that has never needed to hurry. One stroke. A pause that seems to last a season. Another stroke.
+Now the engine. That great horizontal tail — the fluke — beats up and down, driven by the largest muscles the animal owns. One stroke moves a mass no predator in this water could hope to challenge. Speed, at this size, is momentum with good manners.
 
 [SHOT: wide underwater — the whale crosses the full frame, dwarfing the sunlit water column]
 
-Speed, at this size, is simply momentum with good manners. The whale does not swim through the lake so much as revise its geography — a moving deep place, a temporary reef, a soft mountain on patrol.
-
-## The keeper of the deep
+And it is far from silent. Whales are among the loudest and most far-carrying voices in nature. Some of their calls travel enormous distances through water, and the males of certain kinds sing long, patterned songs that shift and repeat across a season. Sound is how a giant keeps in touch across a country too wide to see.
 
 [SHOT: low underwater — from the lake floor, the whale passes overhead like an eclipse]
 
-From the floor of the lake, its passage is an eclipse. Light dims, the water shoves sideways, and every smaller life keeps respectful distance until the sky clears.
+From the floor, its passing is an eclipse — the light dims, the water shoves sideways, and every smaller life keeps its distance until the sky clears again.
+
+## The gardener of the water
 
 [SHOT: dolly underwater — glide through the stirred water behind the fluke, motes swirling]
 
-But its wake is a gift. Each stroke of the fluke turns the water over — lifting the settled, stirring the still, redistributing the fine fallout of the garden to every waiting mouth downstream. Like the worms beneath the meadow, the giant is also a plowman. The garden does love its hidden gardeners.
+Here is why the whale matters far beyond its size. A whale feeds in the deep and releases its waste near the surface — and that waste is fertilizer, rich in iron and nutrients the sunlit water is starved of. Those nutrients feed the drifting plants at the base of everything. Scientists call it the whale pump: the giant lifts fertility up from the dark to where the light can use it.
 
-[SHOT: wide water — the surface bulges; the back breaks through into the air, glistening]
+[SHOT: track whale — the whale banks along the drowned slope, fluke nearly brushing the silt]
 
-And when it rises — when that dark hull finally touches the ceiling and breaks it — the two halves of the garden meet for a moment. The only citizen large enough to live in both worlds at once, wearing the sky on its back.
+Like the worms beneath the meadow, the giant is a plowman of its world. Stirring the water, moving the nutrients, tending a pasture it will never see bloom. The garden does love its hidden gardeners.
 
-## The deep pocket
+[SHOT: closeup whale — the eye, close and calm, unhurried]
 
-[SHOT: topdown water — the lake from above; its one deep region reads darker than all the rest]
-
-Its entire kingdom hangs on a detail of the sculpture. When the Gardener pressed the land low, one hollow went deeper than all the others — and that accident of the hand is the whale's whole habitat. Shallow water is a place it can visit. Deep water is the only place it can be.
-
-[SHOT: dolly underwater — descending the drowned slope into the dark of the deep hollow]
-
-In that pocket, the light thins with every meter of depth. The drowned meadow's green gives way to blue, then to a darkness the surface never quite reaches. This is the garden's only true deep — a room with one resident, sized within a stroke of its occupant.
-
-[SHOT: track whale — the whale turns along the pocket's far wall, fluke nearly brushing the slope]
-
-Watch it work the boundary and you understand how well it knows the room. The great body banks along the drowned hillside with a pilot's margin — close enough to stir silt, never close enough to touch. It carries a chart of the sculpture in its muscle memory, and the chart is flawless. In water this tight, a giant cannot afford to learn by collision.
-
-[SHOT: wide underwater — the whale hangs motionless mid-pocket, perfectly neutral, barely drifting]
-
-And sometimes it simply stops — hanging weightless in the middle of its one deep room, neither rising nor sinking, a held breath the size of a landmark. No hunger drives it, no threat waits for it. Whatever a whale does in those long minutes of stillness, it looks, from here, remarkably like thinking.
+And its gift outlasts its life. When a great whale finally dies and sinks, its body becomes a feast on the barren floor below — a whale fall, feeding a whole crowd of deep-water creatures for years from a single passing. In life it fertilizes the top of the water. In death it seeds the very bottom.
 
 ## Alone, and not lonely
 
+[SHOT: topdown water — the lake from above; its one deep region reads darker than all the rest]
+
+Its whole kingdom hangs on a single detail of the sculpture. When the Gardener pressed the land low, one hollow went deeper than all the rest — and that accident of the hand is the whale's entire habitat. Shallow water it can visit. Deep water is the only place it can be.
+
+[SHOT: wide underwater — the whale hangs motionless mid-pocket, perfectly neutral, barely drifting]
+
+Sometimes it simply stops, hanging weightless in its one deep room. Whales are long-lived and slow-breeding, and in the real world we very nearly erased them — hunted to the edge of vanishing before the killing was called off. Many kinds are climbing back now, one slow generation at a time. A giant recovers the way it does everything else: without hurry.
+
 [SHOT: pan water — sunset; the whale's slow wake draws one line across the golden lake]
 
-There is only one. The Gardener, who filled the meadow with hundreds of every smaller thing, placed a single whale in the deep water — one giant, for one lake.
-
-[SHOT: closeup whale — the eye again, close and calm, in failing light]
-
-Whether that is loneliness is a question the whale shows no sign of asking. It has the entire deep country to itself, a sky of fish for neighbors, and the moon overhead moving its whole world twice a day. As solitudes go, there are worse.
-
-[SHOT: track whale — following the fluke's slow beat down into darkening water]
-
-It swims on after dark, when the fireflies take the meadow and the surface turns black. Somewhere below the sleeping garden, the largest heartbeat in the world keeps its own time.
+There is only one, here — one giant for one lake, a sky of fish for neighbors, and the moon overhead moving its whole world. Somewhere below the sleeping garden, the largest heartbeat in this world keeps its own patient time.
 
 ## Closing
 
 [SHOT: wide field — pull back and up: lake, meadow, and treeline in one twilight frame]
 
-We have now met every wild citizen of this garden — the crawlers, the fliers, the swimmers, and the one leviathan. But one resident remains, and he is the strangest of all.
+We have now met every wild citizen of this garden — the crawlers, the fliers, the swimmers, and the one air-breathing leviathan among the fish. But one resident remains, and he is the strangest of all.
 
 [SHOT: closeup soldier — the inch-tall human stands at the shore, looking out over the water]
 

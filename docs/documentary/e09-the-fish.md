@@ -8,96 +8,92 @@
 
 [SHOT: wide water — the water surface from above, sky reflected, nothing visible below]
 
-To every animal we have met so far, this is where the world ends. The ants turn back here. The ladybugs drown here. Even the birds only read the surface, like a page they cannot turn.
+To every animal we have met so far, this is where the world ends. The ants turn back at this line. The ladybugs drown past it. But the surface is not a wall — it is a roof, and beneath it lives the single most successful group of animals with a backbone on this planet.
 
 [SHOT: dolly underwater — the camera slides beneath the surface; light shafts angle down]
 
-But cross the mirror, and the world does not end at all. It starts over.
+Cross the mirror, and the world does not end. It fills. Water holds oxygen the way air does, only far less of it — and an entire branch of vertebrate life evolved to mine that thin dissolved supply.
 
 [SHOT: track fish — a fish swims through frame, calm and certain, scales catching the light]
 
-Welcome to the drowned garden. These are the fish.
+These are the fish. Not one kind of animal, but the oldest and largest chapter of our own family tree — the vertebrates began here, in the water, as fish.
 
-## The country below
+## What a fish actually is
 
-[SHOT: flythrough underwater — swooping run over the flooded terrain, hills and hollows below]
+[SHOT: closeup fish — macro on the gill cover pulsing, water passing through]
 
-The floor of this country is the same land the Gardener sculpted — the same hills, the same hollows — simply claimed by water instead of air. Where the ground dips below the water table, a lake exists. Where it rises, a shore. The fish live inside the shape of the land, like air poured into a mold.
+Start with breathing, because it defines them. A fish pushes water over its gills — feathery, blood-rich filaments where dissolved oxygen crosses into the bloodstream and carbon dioxide crosses out. It is the same exchange our lungs perform, run on water instead of air.
 
-[SHOT: closeup fish — macro on the tail's rhythm, the body's easy S-curve]
+[SHOT: closeup fish — the flank in detail: a faint line of pores runs nose to tail]
 
-And they fit it beautifully. No legs to carry, no weight to fight. A fish moves by conviction — one traveling wave, nose to tail, and the water does the rest.
+Run a finger's width below the scales and you find the lateral line — a row of tiny sensors that read pressure and motion in the water. It lets a fish feel a current, a wall, or a neighbor's turn without seeing any of it. It is a sense we simply do not have.
 
-[SHOT: orbit fish — circle a cruising fish; others pass at different depths behind it]
+[SHOT: orbit fish — circle a cruising fish holding perfectly level in open water]
 
-They hold their depth the way birds hold altitude, layered through the water column from the sunlit ceiling to the dim floor. Same instinct, different fluid. The garden, it turns out, invented flight twice.
+And it hangs there, weightless, without effort. Most fish carry a swim bladder — a gas-filled sac they inflate or vent to match the water's push exactly. Fine-tune the gas, and the fish hovers at any depth it likes, spending almost nothing to stay there.
+
+## The many nations of fish
+
+[SHOT: closeup fish — two fish side by side: different sizes, different flank colors]
+
+"Fish" is not one lineage but many. The vast majority swimming here belong to the ray-finned fishes — Actinopterygii — the most species-rich group of vertebrates alive, tens of thousands of kinds, from minnows to marlin. Their fins are fans of thin bony rays, and nearly every fish you will ever meet is one of them.
+
+[SHOT: low underwater — the school passes overhead in silhouette against the bright ceiling]
+
+Older branches survive alongside them — the sharks and rays with skeletons of cartilage instead of bone, and a handful of lungfish that gulp air outright. The Gardener stocked these waters as the real world is stocked: with cousins separated by hundreds of millions of years, sharing one pond.
+
+[SHOT: closeup fish — a female trails a faint cloud of tiny eggs among the weeds]
+
+And nearly all of them begin the same way. A female releases eggs, a male releases milt, and fertilization happens out in open water. From each egg hatches a fry the size of an eyelash — most will feed something larger within days. Fish gamble on numbers, not on care.
 
 ## Making a living
 
-[SHOT: topdown water — from above: rings ripple where food pellets dot the surface]
+[SHOT: topdown water — from above: rings ripple where food drifts down onto the surface]
 
-Meals here arrive from the sky. Whatever falls onto the mirror — drifting motes, sinking crumbs, the garden's slow fallout — becomes the property of whoever reaches it first.
+Their jobs hold the whole pond together. Some fish graze the algae skinning every rock and stem, cropping the green film before it smothers the water. Without grazers, a pond can choke on its own bloom.
 
-[SHOT: closeup fish — a fish tilts upward and rises toward a sinking pellet]
+[SHOT: closeup fish — a fish noses into the silt, stirring a small cloud off the bottom]
 
-A sinking morsel is a public auction, and everyone bids. The fish patrol beneath the ceiling, reading it for silhouettes and ripples with the same attention the birds give the ground. Two worlds, mirrored at the surface, both staring at the same boundary from opposite sides.
+Others root through the sediment for larvae and worms, and in doing so they turn the mud over — releasing trapped nutrients back into the water where plants can use them again. A feeding fish is also a farmer of its own pond.
 
 [SHOT: cutaway ladybug — a ladybug struggles at the flooded margin, seen from below]
 
-And sometimes the boundary blunders in. When the waters rise over low ground, the drowned meadow briefly serves land-food — a ladybug where a ladybug should never be. The fish are not sentimental about windfalls. In the shallows, geography is the best hunter of all.
-
-## A world that breathes
-
-[SHOT: wide shore — the waterline itself: water lapping at grass, advancing and retreating]
-
-Because here is the strangest thing about the drowned country: its borders move. Twice in every lunar day, the moon leans on this water and the whole nation swells — up the beach, into the grass, over the low places.
-
-[SHOT: dolly underwater — glide through newly flooded ground, grass blades standing in water]
-
-At high tide, the fish swim through what was lately a meadow — a drowned forest of grass, briefly theirs, on loan from the moon.
-
-[SHOT: track fish — a fish turns back from thinning shallows as the water retreats]
-
-Then the tide lets go, the border retreats, and the nation shrinks to its old shape. The fish give ground without complaint. Their whole world breathes, and they have simply learned to live inside the lungs.
+And fish are the great connector of the food web. They eat the insects that fall in, and birds and larger hunters eat the fish — carrying the pond's energy up into the air and off across the land. Every meal here links water to sky.
 
 ## The school
 
 [SHOT: wide underwater — a dozen fish moving loosely together, spacing even, headings aligned]
 
-Watch a group cruise the middle water, and the birds' episode replays itself in a heavier fluid. The same three unwritten rules — stay close, don't collide, follow — produce the same conjuring trick: many bodies, one motion. The garden invented the flock twice, and signed neither copy.
+Watch them gather, and you see the water's answer to the flock. Schooling is not sentiment — it is arithmetic. In a crowd, any one fish is less likely to be the one taken, and a wall of shifting bodies confuses a predator that must lock onto a single target.
 
-[SHOT: track fish — the school jinks as one; a beat later, the stragglers snap into the new heading]
+[SHOT: track fish — the school jinks as one; a beat later the stragglers snap into the new heading]
 
-Startle them, and the trick shows its seams beautifully. The turn ripples through the school like a whipcrack — leaders first, laggards a heartbeat behind — information traveling body to body faster than any fish can see. No alarm was sounded. The school simply is its own alarm.
+There is a second prize: drafting. A fish riding the swirl off its neighbors is pushed along for free, so a tight school swims farther on less. Safety and fuel economy, bought with the same simple rule — match the fish beside you.
 
-[SHOT: closeup fish — two different fish side by side: different sizes, different flank colors]
+[SHOT: closeup fish — a single fish holds station, fins trembling against the current]
 
-And like the ants and the butterflies, the drowned nation comes in varieties. The Gardener stocked these waters with more than one lineage — different sizes, different liveries, sharing the water column the way the blade types share the meadow. Ancestry written on the flank, in colors only the sunlit shallows ever properly display.
+Remember, too, that all of it runs cold. A fish is the temperature of its water, its whole pace rising and falling with the pond. Warm shallows quicken them; the cold deep slows them to a hover. They do not fight the water's temperature. They become it.
 
-[SHOT: low underwater — the school passes overhead in silhouette against the bright ceiling]
+## A fragile ceiling
 
-From below, variety vanishes and only the pattern remains — a drifting constellation of dark hulls against the silver roof. It is the drowned country's version of the birds crossing the sky, and if the two nations could ever compare notes, they would recognize each other instantly.
+[SHOT: low underwater — from the lake floor, looking up: the bright, trembling surface]
 
-## The mirror ceiling
-
-[SHOT: low underwater — from the lake floor, looking up: the bright, trembling ceiling]
-
-Spend long enough down here, and the surface stops looking like an exit and starts looking like a sky — silver in the day, black at night, streaked and hammered when the rain comes down.
+For all its calm, this country lives on a knife-edge. Warm water holds less oxygen than cold — so a hot, still spell can quietly suffocate a whole pond from the top down. The fish read that failing supply in their gills long before anything shows at the surface.
 
 [SHOT: cutaway rain — from below: raindrops strike the ceiling in bursts of light]
 
-A storm, from underneath, is a drumroll played on the roof of the world. The fish barely stir.
+Rain, at least, is mercy — each drop stitches a little fresh oxygen back into the surface. But runoff, silt, and warmth can undo it just as fast. The clarity of this water is not decoration. It is the fish keeping the accounts.
 
 [SHOT: wide underwater — the whole water column at dusk: fish layered in fading light]
 
-Above that ceiling live giants, lanterns, and toll collectors they will never meet. The fish are no poorer for it. Theirs is the calmest country in the garden — cool, quiet, and complete.
+By dusk they settle into their layers — grazers near the sunlit roof, bottom-feeders down in the cool — a vertebrate world running quietly beneath a garden that barely knows it is there.
 
 ## Closing
 
 [SHOT: dolly underwater — the camera pushes into deeper, darker water; the floor falls away]
 
-Or almost complete. Because in the deepest reach of this drowned country, something moves that makes every fish in frame look like a minnow. Something the size of geography.
+But the pond keeps one resident these fish will never rival. Down where the light gives out, something moves that breathes air, nurses its young, and outweighs every fish in this water combined.
 
 [SHOT: closeup whale — from the gloom, an enormous eye slides past the lens]
 
-The deep keeps one secret in this garden, and it is next. The whale.
+Not a fish at all — a mammal, in a world of fish. The deep keeps one secret in this garden, and it is next. The whale.

@@ -6,93 +6,69 @@
 
 ## Cold open
 
-[SHOT: topdown terrain — the entire world from directly above: hills, hollows, shining water]
+[SHOT: topdown field — the entire world from directly above: hills, hollows, shining water]
 
-Every story this series has told stands on the same stage. The ants' roads, the fish's drowned country, the roots of ten million grass blades — all of it rests on one artifact.
+Every story this series has told stands on the same stage. The ants' roads, the fish's drowned country, the roots of ten million grass blades — all of it rests on a thin brown skin most of us call dirt. That word is a slander. What lies under the grass is one of the most crowded, most complicated living systems on any world.
 
-[SHOT: crane terrain — descend from map height down a long hillside to the grass tops]
+[SHOT: crane grass — descend from map height down a long hillside to the grass tops]
 
-In a wild world, land is an accident of deep time — collisions, erosions, ice. Not here.
+We stand on it, walk on it, build on it — and almost never look down into it. This hour, we look down. This is the story of the ground.
 
-[SHOT: wide terrain — a sculpted ridgeline curving down to a deliberate shore]
+## What the ground is made of
 
-This land was drawn. This is the story of the ground.
+[SHOT: closeup rock — a broken stone at the soil surface, grains crumbling from its face]
 
-## The sculpted stage
+Begin with the rock, because soil begins there too. Rain, frost, root, and acid work at stone for centuries, splitting it into ever smaller grains — sand you can see, silt you can feel, clay too fine to feel at all. That mineral rubble is soil's skeleton, ground down from the bones of older mountains.
 
-[SHOT: dolly terrain — glide low along a valley floor as the walls rise on either side]
+[SHOT: closeup worm — the dark crumb structure of topsoil, a worm easing through the gaps]
 
-Read the terrain closely and you can almost see the strokes. A ridge raised here, pass after pass, like clay coaxed upward. A basin pressed low there, until the water table found it. The Gardener works the ground the way a sculptor works a maquette — broadly first, then finely, then not at all.
+But skeleton alone is not soil. Mix in the second ingredient — dead things. Fallen grass, spent roots, the remains of every creature this series has met — broken down into a black, spongy substance called humus. Then add the two invisible ingredients: water, filling some of the tiny pores between grains, and air, filling the rest. Mineral, organic matter, water, air — a good topsoil is nearly half empty space, and that emptiness is where the living happens.
 
-[SHOT: closeup terrain — the soil surface itself: slopes meeting, grass following every contour]
+## The city underfoot
 
-And everything obeys the result. Grass grows to the exact fall of every slope. Trees find footing where the gradient allows. Water goes precisely where the hollows invite it and nowhere else. Land is the one text every resident of the garden can read, because their whole lives are written on it.
+[SHOT: closeup worm — extreme macro on a single crumb of earth, threaded with pale root and fungus]
 
-[SHOT: pan terrain — sweep across the full range: highlands, meadow, shore, water]
+Now the astonishing part. A single teaspoon of healthy soil can hold billions of microorganisms — more bacteria than there are people on Earth, plus fungi, single-celled hunters, and animals too small to name. The ground is not a substance. It is a population.
 
-Raise the ground, and you have made a country for ants. Lower it past the waterline, and you have made one for fish. Every contour is a border decree.
+[SHOT: track worm — following an earthworm's burrow as it drags a leaf fragment down into the dark]
 
-## The moving map
+The larger citizens do the visible engineering. Earthworms eat their way through the soil, swallowing minerals and dead leaves and voiding them as rich casts, and their tunnels let air and water reach down. Ants and beetles and mites shred and stir. Threads of fungus lace it all together, some of them plugging directly into plant roots — trading water and minerals they gather for sugar the plant makes in the sun. Underfoot lies the largest partnership in the garden, and no resident above ever sees it.
 
-[SHOT: wide shore — the boundary line itself: bright water lapping a dark edge of soil]
+## The buried layers
 
-Because here is what no wild geography endures: this map can change. When the hand returns to the clay, hills migrate. Hollows deepen. And the shoreline — the hardest border in the garden — walks.
+[SHOT: low grass — a cutaway bank where the ground is sliced open, dark fading to pale with depth]
 
-[SHOT: cutaway ant — ants rerouting along a waterline that was not there before]
+Cut down through the ground and it reads like a page in cross-section, in bands called horizons. At the top, dark topsoil — the crowded layer, richest in humus and life, where nearly every root does its work. Below that, paler subsoil, where minerals washing down from above collect. Lower still, broken parent rock, the raw stone the whole profile was ground from. And these bands take their time: an inch of true topsoil can take centuries to build. The ground beneath the grass is older than anything walking on it.
 
-We have seen what follows, from every side. The ants remap their dry nation within moments. The fish inherit meadows. The ladybugs learn, briefly and badly, about naval life. What is upheaval to the residents is a single considered stroke to the sculptor.
+[SHOT: closeup rock — the boundary between living topsoil and the raw parent stone beneath]
 
-[SHOT: track terrain — flying the length of a freshly shaped ridge toward the horizon]
+The Gardener sculpts the shape of the land in an afternoon. The soil that fills that shape is the work of a slower hand entirely — weather and roots and worms, grinding and enriching for lifetimes.
 
-No resident protests, because no resident remembers. The garden's citizens live entirely in the present tense — and in the present tense, the land is always simply the land, however new its hills happen to be.
+## What the soil does for the world
 
-## The grammar of slopes
+[SHOT: crane grass — rise along a hillside where roots visibly grip the slope against the rain]
 
-[SHOT: dolly terrain — a long glide up a gentle rise, the gradient easing toward a rounded summit]
+Now watch what all that buried machinery accomplishes. First, it holds the world up. Roots grip the soil and the soil grips the roots, and together they keep the hillside from washing into the lake. Strip the grass, and the rain carries the slope away.
 
-Learn to read the ground's grammar, and the whole map becomes prose. A gentle slope is an invitation — grass thickens on it, walkers commute across it, water crosses it politely on its way somewhere lower. The garden's easy country, where every resident's life runs cheapest.
+[SHOT: wide field — a broad meadow greening, the ground feeding every blade at once]
 
-[SHOT: track terrain — the camera banks along a steep flank where the grass thins and the soil shows]
+Second, it feeds everything. Every plant needs nitrogen, phosphorus, and a handful of other elements, and it is the soil's microbes that unlock them — pulling nitrogen from the air, prying minerals from grains, releasing nutrients from the dead so the living can use them again. The whole meadow eats through the ground. Third, it drinks and stores — soaking up rain, holding it in those tiny pores, releasing it slowly through drought. And fourth, quietly, it holds carbon: the world's soils store more of it than all the plants and the air above them combined.
 
-A steep slope is a different sentence entirely. Grass struggles for grip; rain takes the shortcut down; even the ants switch from marching to mountaineering. Steepness is the land's way of charging admission — and the residents budget for it as surely as they budget for distance.
+[SHOT: cutaway soldier — the inch-tall Visitor kneeling, pressing a hand flat against the earth]
 
-[SHOT: topdown terrain — a hollow seen from above: contour rings closing to a damp, dark center]
+The Visitor could hold a fortune in one palm and never know it. Anchor, larder, sponge, and vault — all in a handful of what we call dirt.
 
-And a hollow is a promise. Water remembers every low line in the sculpture, and sooner or later keeps an appointment with all of them. The dark, damp centers of the garden's basins are its richest and riskiest addresses — first to flood, last to dry, loved by worms and regretted by ladybugs.
+## The thin and threatened skin
 
-[SHOT: wide terrain — hard light raking sideways across the land, every contour thrown into relief]
+[SHOT: wide field — raking evening light across the meadow, every contour of living ground revealed]
 
-At the right hour, when the light rakes low, the whole grammar stands revealed at once — every rise underlined in gold, every hollow filled with shadow ink. This is the hour the map is most honest. Geography, in the end, is just light explaining the sculptor's decisions.
-
-## The world's edge
-
-[SHOT: dolly terrain — approaching the field's far boundary, the world thinning toward its rim]
-
-Every made world has an edge, and this one is honest about it. The field runs so far and no farther — a stage with a rim, beyond which there is only sky.
-
-[SHOT: wide field — the whole garden centered in frame, finite and complete]
-
-Within that rim: everything. Eleven kinds of citizen, three kingdoms of green, one whale, and every drama this series has found. A world does not need to be endless to be entire.
-
-[SHOT: low grass — back at ground level, the rim invisible, the world seeming infinite again]
-
-And from the floor of the grass forest, the edge might as well not exist. Horizon is a matter of eye height. At half a centimeter, every world is endless.
-
-## The ground beneath the story
-
-[SHOT: crane terrain — rise once more from a single ant's patch of soil to the full map]
-
-It is the quietest character in the series, and the only indispensable one. Skies change by the hour, tides by the minute, residents by the season. The ground persists — holding the roots, cupping the lake, remembering the sculptor's last touch until the next one.
-
-[SHOT: topdown terrain — the map view again, but now familiar: every region a past episode]
-
-Look at the map now, after fifteen episodes, and it has stopped being scenery. That inlet is the fishes' border country. That rise is the Visitor's lookout. That treeline is the spiders' toll road. Geography, in the end, is just biography seen from above.
+For all its importance, it is heartbreakingly thin — a skin a few hand-spans deep wrapped over a stony planet, and nearly all land life depends on it. It builds by the century and it can vanish in a season: wind and water strip bared soil far faster than any process rebuilds it. The garden keeps its grass, and so keeps its ground. That is not decoration. That is survival.
 
 ## Closing
 
-[SHOT: wide water — from the sculpted shore, out across the bright, restless surface]
+[SHOT: wide shore — from the living soil of the bank, out across the bright, restless surface]
 
-But one region of this map refuses to hold still — the region that fills the hollows, answers the moon, and hides the giant. It deserves its own hour.
+But the ground does not act alone. Everything it does — dissolving minerals, feeding roots, carving hillsides — it does in partnership with a substance that fills its pores, answers the moon, and hides the giant.
 
 [SHOT: closeup water — ripples chase each other across sunlit water, filling the frame]
 

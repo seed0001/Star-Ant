@@ -8,85 +8,79 @@
 
 [SHOT: wide stars — full night; the entire dome ablaze with stars above the dark field]
 
-When the last light leaves the garden, the roof becomes a window — and through it, the deepest view any resident will ever have. Not that any resident is looking.
+When the last light leaves the garden, the roof becomes a window — and through it, the deepest view any resident will ever have. Those points of light are not decorations on the dome. They are suns. Each one is a furnace like our own, so far away that its fire has shrunk to a spark.
 
 [SHOT: low grass — night: a firefly's glow drifts across a sky full of fixed lights]
 
-The fireflies, you might think, would feel a kinship. They do not. They are busy. The stars burn for an audience of none.
+The firefly carries its light for a night. A star carries its light for billions of years. This hour, we look up and ask what they actually are.
 
 [SHOT: pan stars — a slow sweep across the crowded dome]
 
-So this hour, we will be that audience. The stars.
+The stars.
 
-## The pictures in the dark
+## The nearest star
 
-[SHOT: closeup stars — one region of sky; lines glow softly, connecting stars into a figure]
+[SHOT: wide sun — daylight: the lamp of the garden blazing over the meadow]
 
-Look long enough at any starry sky and the mind begins to draw. In this garden's sky, someone has drawn already — twelve figures, placed on the dome by the same hand that placed the whale in the lake.
+To understand a star, begin with the one the garden already knows by day. The sun is a star — our nearest by an enormous margin, close enough to be not a spark but a fire that fills the sky. It is a vast ball of glowing gas, so hot the atoms come apart into a churning state of matter called plasma.
 
-[SHOT: track stars — gliding along the dome from figure to figure as each traces itself]
+[SHOT: track sun — the sun's light pouring down across the grass towers]
 
-There, the hunter — Orion — belt and shoulders and sword, striding up the night. There, the Great Bear, seven bright points in a long dipper's drift. Cassiopeia's zigzag crown. And down the spine of the sky, Cygnus — the swan — flying forever along the pale road of the dome.
+And at its crushed, blazing core, it is fusing — mashing hydrogen atoms together into helium, and releasing a flood of energy each time. That energy climbs to the surface and leaves as light, crossing the emptiness to arrive here about eight minutes later. The sunlight warming the meadow now left the sun before you noticed the dawn. Every star in the night is doing the same thing the sun does. They only look gentle because they are unthinkably far.
 
-[SHOT: closeup stars — the scorpion's curve traced star by star]
+## The engine of everything alive
 
-Scorpius drags its hooked tail near the horizon. Leo couches. Gemini stands twinned. Pegasus squares off its great field of sky, with Andromeda trailing from one corner. Taurus lowers its horns at the hunter, as it has in every sky humans ever named. Virgo. And Boötes, the herdsman, following the Bear around the pole.
+[SHOT: wide field — the meadow drinking sunlight, every blade turned toward the lamp]
 
-[SHOT: wide stars — all twelve figures faintly visible at once across the dome]
+Here is why the nearest star matters more than all the rest combined. Nearly every living thing this series has met is running, at bottom, on starlight. The grass and the trees catch the sun's energy and lock it into sugar — photosynthesis — and everything that eats the grass, and everything that eats those, is spending that captured light secondhand.
 
-Twelve pictures — the same pictures our own ancestors drew, borrowed down into a garden the size of a room.
+[SHOT: closeup flower — a bloom open to the sun, the whole exchange lit in gold]
 
-## Why the pictures matter
+The bee's flight, the ant's march, the fish's turn, the beat of the Visitor's heart — all of it is sunlight, changed in form and passed along. Switch off that single star and the garden would not merely go dark. It would go cold, and then it would go quiet, forever. The stars are not scenery to the living world. One of them is the whole power supply.
 
-[SHOT: cutaway soldier — night: the inch-tall Visitor on a rise, face upturned to the stars]
+## The light of the past
 
-Only one resident could ever see them. The Visitor — the inch of humanity walking the grass forest — carries the one mind in the garden built for connecting dots. If he looks up on a clear night, he inherits the whole library: hunter, bear, queen, swan.
+[SHOT: pan stars — a slow drift across countless faint and distant points]
 
-[SHOT: closeup soldier — his silhouette against the star field, utterly small, utterly attentive]
-
-And in that moment, this tiny world joins every world humans have stood on. Constellations were our first maps, first calendars, first stories — the original documentary, narrated by whoever pointed upward first. A sky with pictures in it is a sky that someone loved.
-
-[SHOT: wide stars — the dome slowly wheeling, figures holding formation]
-
-The Gardener did not need to draw them. Grass grows without Orion; tides rise without the Swan. The pictures are the one feature of this world with no function at all — except the oldest one: to be looked at.
-
-## The steady lights
-
-[SHOT: dolly stars — drifting along the dome; below, the dark field with its few moving lanterns]
-
-Compare the two skies of the garden's night. Below: the fireflies — bright, brief, urgent, gone by morning. Above: the stars — fixed, patient, outlasting everything, like the rocks of the sky.
-
-[SHOT: cutaway rock — a boulder pale under starlight; then back to the star field]
-
-Every episode of this series has sorted the garden into the moving and the still. The night sorts it one last time. Motion is life, and it is mortal. Stillness is scenery, and it endures. The stars are on the far side of that ledger — the stillest things a moving world can see.
+Now turn to the far suns, and meet the strangest fact in the sky. The stars are so distant their light takes years, centuries, sometimes many thousands of years to reach us. So we never see a star as it is — only as it was when its light set out. Look up, and you are looking into the past. Some of those points may have died already; their last light is still crossing to us, a message from a sender no longer there.
 
 [SHOT: closeup water — star reflections trembling on the black lake]
 
-Even the water can only borrow them, and it cannot hold them still. Some things refuse to be owned by mirrors.
+The lake catches that ancient light and can't hold it still. Every glint on the water tonight is older than the garden, older than the Gardener, older than almost anything a resident could name.
 
-## The uses of a fixed sky
+## Made of stars
 
-[SHOT: wide stars — the dome held long enough that its slow wheel around the pole becomes visible]
+[SHOT: cutaway rock — a boulder pale under starlight, its minerals lit by distant suns]
 
-Stay with the window long enough, and the stillness reveals its one motion: the whole dome turns. Not the stars against each other — the figures hold formation all night — but the entire painted ceiling, wheeling slowly about its axis while the garden sleeps. The pictures are fixed. The gallery rotates.
+And the stars did more than light the world. They built it. In the beginning there was mostly hydrogen and helium and little else. Every heavier element — the carbon in the grass, the oxygen in the air, the iron in the soil, the calcium in the Visitor's bones — was forged in the hearts of stars, welded together by fusion over their long lives.
 
-[SHOT: track stars — following the Great Bear's slow arc; the pole region steady at the turn's center]
+[SHOT: wide stars — the crowded dome, sprinkled with the debris of vanished suns]
 
-Our ancestors made that turning into machinery. The Bear's arc was a clock; the steady point it circles was a compass; the figures rising at dusk were a calendar, announcing seasons to anyone patient enough to keep watch. Every use we ever found for the night sky is available in this one, hanging unused above the meadow like a library with no members.
+When a star dies, it scatters those elements back into space, and from that enriched dust, new stars and new worlds condense. The garden and everything crawling through it are made, quite literally, of the ash of older stars. Look up at them, and you are looking at your own ingredients, still glowing. We are, in the plainest sense, star stuff.
 
-[SHOT: cutaway birds — night: the dark treetops where the flock roosts beneath the wheeling sky]
+## The pictures and the crowd
 
-Almost unused. In our world, birds genuinely steer by stars — young songbirds learn the turning dome's still point before their first migration. Whether this garden's flock reads its painted ceiling, no one can say. But the ceiling is there, correct and constant, patient as only stone and starlight are.
+[SHOT: closeup stars — one region of sky; a bright pattern stands out among the fainter points]
 
-[SHOT: wide stars — the full dome again: twelve faint figures, uncountable anonymous stars between]
+Only one resident could ever make sense of the pattern. The Visitor — the inch of humanity in the grass forest — carries the one mind built for connecting dots. Humans everywhere have looked at these random scatterings and drawn figures between them: a hunter, a bear, a swan. The constellations are not out there in the sky. They are pictures our own kind painted onto the dark, and passed down for thousands of years.
 
-And between the twelve drawn figures, the anonymous thousands — stars that made no picture, joined no story, and shine identically anyway. The constellations are the sky's celebrities, but the dome's real glory was always the crowd. Any resident who ever looks up will see mostly stars that no one bothered to name. They light the garden all the same.
+[SHOT: cutaway soldier — night: the inch-tall Visitor on a rise, face upturned to the stars]
+
+Those figures were the first tools of civilization. The turning sky was a clock; the star that holds still while the others wheel was a compass; the patterns rising at dusk were a calendar, announcing the seasons. Sailors and travelers crossed whole worlds by them long before any map. A sky you can read is a sky you can navigate.
+
+[SHOT: cutaway birds — night: the flock roosting beneath the wheeling sky]
+
+And not only humans read it. In our world, young songbirds genuinely learn the sky's turning point before their first migration, and steer by the stars. The night is a map that even the birds can hold.
+
+[SHOT: wide stars — the whole faint river of the galaxy arching over the field]
+
+Behind the few bright figures lies the true multitude — the pale band arching overhead is our own galaxy seen edge-on, a wheel of hundreds of billions of stars, and ours is only one. Most of the lights up there made no picture and joined no story. They shine the garden's night all the same.
 
 ## Closing
 
 [SHOT: wide moon — the moon climbs into the star field, outshining the figures around it]
 
-But one light in this night sky is not fixed, not patient, and very far from functionless. It climbs, it wanes, it returns — and every time it crosses the dome, the water below stands up to follow it.
+But one light in this night sky is no star at all. It makes no fire of its own — it only catches the sun and hands it back — and it is close enough to reach out and touch the garden. Every time it crosses the dome, the water below stands up to follow it.
 
 [SHOT: topdown shore — night: the tide creeping up the moonlit beach in slow silver]
 

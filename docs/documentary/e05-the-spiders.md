@@ -8,99 +8,87 @@
 
 [SHOT: dolly tree — slow glide between dark trunks; a thread of silk flares in the light]
 
-Some hunters chase. Some hunters stalk. But the most successful hunter in this garden does neither. She builds — and then she waits.
+Some hunters chase. Some stalk. The one we are about to meet mostly waits — and it has been perfecting the wait for a very long time. Spiders were spinning silk before flowers bloomed, before birds flew, before the dinosaurs walked. Few animals on Earth have a longer résumé.
 
 [SHOT: closeup web — macro along a single silk strand, beads of light running its length]
 
-Her weapon is almost invisible. Finer than a hair, stronger for its weight than steel, and older as a technology than wings, warning colors, or light itself.
+Its tool is a thread finer than a hair and, for its weight, tougher than steel — drawn from its own body, on demand, in more than one recipe at once.
 
 [SHOT: orbit spider — circle the motionless spider at the hub of her finished web]
 
 The spider.
 
-## The architect
+## Not an insect
 
-[SHOT: topdown web — straight-on view of the web's full geometry: rings and spokes]
+[SHOT: closeup spider — extreme macro: eight legs, two body sections, a cluster of dark eyes]
 
-Look at the web face-on, and you are looking at engineering. Spokes radiate from the hub like the frame of a wheel — sixteen of them, taut and true. Around them run the rings, spiraling outward, spaced with a surveyor's precision.
+First, correct a lifelong mistake. This is not an insect. Count the legs — eight, not six. Count the body sections — two, not three. There are no antennae. There have never been wings, not once in the entire history of the group. Spiders are arachnids, closer kin to scorpions and ticks than to any fly they eat.
 
-[SHOT: closeup web — macro tracing a spiral ring across the spokes]
+[SHOT: wide tree — several webs strung between the trunks, catching the light]
 
-The spokes are dry silk — her highways, safe to walk. The rings are the trap: sticky, elastic, unforgiving. She knows the difference by touch, and she never forgets which is which. Her prey gets no such map.
+They belong to the order Araneae, and it is not a small experiment. Something like fifty thousand species have been named, on every continent except Antarctica, from the seashore to the mountaintop. Nearly all of them share one profession — they are predators — and almost every one of them makes silk.
 
-[SHOT: wide tree — several webs visible at once between the trunks, like sails in the light]
+## The silk
 
-She hangs her nets where the traffic is: the corridors between the great trees, the flight lanes every winged citizen of the garden must eventually use. Location, in her business, is everything.
+[SHOT: closeup spider — macro on the spinnerets at the tip of the abdomen, a line drawn out]
 
-## Raising the net
+The silk flows from spinnerets, nozzles at the rear of the body, and a single spider can spin several kinds for several jobs. There is tough dragline silk for safety ropes and web frames, strong enough to hold her whole weight. There is stretchy, glue-coated capture silk for the trap itself. There is soft silk to bind prey, and finer silk still to wrap her eggs.
 
-[SHOT: closeup spider — night construction: a single line paid out into the dark between trunks]
+[SHOT: topdown web — the web's full geometry: spokes radiating, sticky rings spiraling out]
 
-The net itself deserves its biography, because no web begins as a web. It begins as a gamble — a single line, cast into the air between two trunks, trusting the breeze to carry it across the gap. When it catches, that one thread is her bridge, her scaffold, and her entire claim to the corridor.
+Where she strings sticky and dry silk together, the geometry gives her away. The spokes are dry — her safe walkways. The spiral is the glue. She knows every strand by touch and never snares herself. Her prey is handed no such map.
 
-[SHOT: track spider — she crosses the bridge line, reinforcing it, then drops a vertical]
+## A hundred different trades
 
-From the bridge she surveys and drops — a vertical line, pulled taut, and suddenly the gamble has a frame. Then the spokes, one by one, each walked out from the hub and anchored true. She measures nothing and marks nothing. The blueprint is in her body, older than trees.
+[SHOT: wide tree — several differently shaped webs among the trunks]
 
-[SHOT: topdown web — accelerated: the sticky spiral laid ring by ring from the outside in]
+But not every spider builds the wheel you are picturing. That belongs to one guild, the orb-weavers. Others work differently: cobweb spiders hang the messy tangles in corners; sheet-weavers throw flat hammocks across the grass; funnel-weavers lay a silken mat with a tunnel to bolt from. Each web is a different solution to the same problem — catch something without chasing it.
 
-Last comes the spiral — the only part of the structure that means anyone harm. She lays it from the rim inward, ring after patient ring, eating the dry scaffold spiral behind her as she goes. Nothing is wasted; the construction site is recycled into the builder. By first light, the corridor has a toll gate that was not there at dusk.
+[SHOT: track spider — a stout spider sprints across open soil, no web in sight]
 
-[SHOT: closeup web — dawn: the finished web, dew-strung, flexing whole in the breeze]
+And a great many spiders have thrown the web away entirely. These are the active hunters. Wolf spiders run their prey down on foot across the ground, fast and tireless.
 
-The finished instrument weighs almost nothing and survives what the great trees cannot: it does not fight the wind, it strains it. A gust that would snap a rigid frame simply bellies the net and leaves. In this garden, we have seen that philosophy before — in the grass. The web is a meadow's flexibility, rigged for murder.
+[SHOT: closeup spider — a small spider swivels; two large forward eyes catch the light]
 
-## The patient economy
+Jumping spiders stalk like cats and pounce, guided by eyes so sharp they can judge a leap the way we thread a needle — the finest vision of any hunter this size in the garden.
 
-[SHOT: closeup spider — extreme macro: eight legs at rest on the hub, utterly still]
+[SHOT: closeup flower — a pale spider sits motionless in a bloom, front legs spread like a trap]
 
-And then — nothing. Stillness is her profession. While the ants march and the bees labor and the butterflies burn fuel on their painted chaos, she spends almost nothing. She is a fisherman with her line always in the water.
+And crab spiders barely move at all. They sit inside a flower, camouflaged against the petals, and ambush the very pollinators the meadow sends them. Some can even shift their color, over days, to match the bloom they are hiding in.
 
-[SHOT: cutaway firefly — night falls in a breath; a drifting lantern approaches the treeline]
+## The venom, and the truth about it
 
-Her customers arrive on their own schedules. By night, the fireflies wander in, carrying their fatal advertisements through the dark.
+[SHOT: closeup spider — macro on the fangs, a bead of venom held at the tip]
 
-[SHOT: cutaway ladybug — a ladybug lifts clumsily off a trunk, wings whirring]
+Almost every spider carries venom. It is how a soft-bodied hunter kills prey that is often larger and stronger than itself. The fangs inject it; it stills the catch and begins to digest it from within, so the spider drinks its meal rather than chews it.
 
-By day, the ladybugs — armored, overconfident, and no better at spotting silk than anything else that flies. The web does not discriminate. It simply subtracts, gently and permanently, from every population that crosses it.
+[SHOT: orbit spider — the spider slowly turning a wrapped bundle in her legs]
 
-[SHOT: closeup web — a strand twangs; the whole net shivers in slow motion]
+But here is the part worth remembering. Of all those tens of thousands of species, only a tiny handful carry venom that can seriously harm a person. The overwhelming majority are, to us, completely harmless — engineers and hunters absorbed in a business that has nothing to do with us at all.
 
-When the strike comes, she reads it through her feet. Every web is also an instrument — and every struggle plays a different song. Size, strength, position: the vibrations tell her everything before she takes a single step.
+## The garden's great subtractor
 
-## The toll collector
+[SHOT: wide field — the whole meadow, insects lifting off the grass in the light]
 
-[SHOT: track spider — she crosses her web along a spoke, fast and sure, toward the catch]
+Now the fact that matters most. Spiders are the garden's chief check on the insect world. Taken together, the spiders of the Earth eat an almost unimaginable weight of insects every year — a quiet, ceaseless predation on a scale no other land hunter can match. Remove them, and the garden would not become a paradise. It would drown under its own insects.
 
-Now, at last, she moves — and the speed is shocking. The same legs that held statue-still for hours cross the net in a blink, touching only the dry lines, never her own trap.
+[SHOT: cutaway birds — a bird snaps something small off a branch and wheels away]
 
-[SHOT: wide tree — the web in silhouette, spider at work at its center, light behind]
+And they pay that balance forward. A spider is a neat parcel of protein, and the garden knows it — birds, wasps, and larger hunters all live partly on spiders. They subtract from the insects below them, and they feed the hunters above.
 
-What happens next is quick, and it is not cruel — cruelty requires malice, and she has none. She has only accounts to balance. Every landing on her silk pays the toll that keeps the toll collector alive.
+[SHOT: low web — a young spider high on a strand, a thread of silk streaming up into the wind]
 
-[SHOT: low web — looking up at the web against the sky, repairs glinting where struggles tore it]
-
-Afterward she repairs the damage, strand by strand, with the patience of a keeper of nets. Tomorrow the web will be whole again. The corridors will fill with traffic again. The line goes back in the water.
+There is one last trick, and it is how they reached everywhere. A young spider climbs high, lifts its abdomen, and pays out silk until the breeze catches the thread and lifts the whole animal off its feet — sailing for miles on a line. They call it ballooning. It is how an animal with no wings managed to colonize a planet.
 
 ## The keystone
 
-[SHOT: crane tree — rise from the web up the trunk to the canopy, the field beyond]
+[SHOT: crane tree — rise from the web up the trunk toward the canopy, the field beyond]
 
-It is tempting to cast her as the villain of the garden. The fireflies' lanterns and the ladybugs' armor both fail at her doorstep. But remove the spiders, and the garden would not become a paradise. It would become a crowd.
-
-[SHOT: wide field — the whole meadow: butterflies, bees, birds over the grass ocean]
-
-Every ecosystem needs its subtractors. The webs cull the slow, the unlucky, and the excessive — and the populations that remain are the sharper for it. She is not outside the garden's balance. She is one of the things holding it level.
-
-[SHOT: closeup spider — back at the hub, motionless again, as light fades]
-
-By dusk she is at her post again, still as a carved thing, her instrument tuned and waiting. Somewhere out in the dark, a lantern is drifting her way. It has always been so.
-
-## Closing
+The Gardener filled this world with silk-spinners and stalkers and set them to hold the insects in check. They are not the villains of the garden; they are one of the things holding it level. But not every hunter works in the light, and not every citizen lives above the ground at all.
 
 [SHOT: pan field — away from the trees, across the open soil, settling on bare ground]
 
-But not every hunter in this garden works in the air, and not every citizen lives in the light at all. Beneath the meadow — under the ants, under the grass roots — something is moving through the earth itself.
+Beneath the meadow — under the ants, under the grass roots — something is moving through the earth itself.
 
 [SHOT: closeup worm — soil shifts; a pink-brown coil surfaces and glistens]
 
