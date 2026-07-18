@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
 import { splitCounts } from "./critters.js";
 import { isTerrainDryAt, sampleLandXZForSpawn } from "./terrain-paint.js";
 
@@ -367,9 +368,80 @@ export class FireflySwarm {
   }
 }
 
+/**
+ * Three-segment ant: gaster, petiole, thorax, head, plus six splayed legs,
+ * two elbowed antennae and mandibles — merged into one low-poly geometry
+ * (~300 triangles) so the whole swarm stays a single instanced draw call.
+ *
+ * Authored with +Z forward and +Y up, feet resting on y=0, so a plain yaw
+ * rotation aims the ant along its travel direction and scaling never lifts it
+ * off the ground.
+ */
 function createAntBodyGeometry() {
-  const g = new THREE.BoxGeometry(0.048, 0.011, 0.026);
-  g.translate(0, 0.0055, 0);
+  /** @type {THREE.BufferGeometry[]} */
+  const parts = [];
+  const BODY_Y = 0.0082;
+
+  const gaster = new THREE.SphereGeometry(0.0092, 7, 5);
+  gaster.scale(0.82, 0.86, 1.3);
+  gaster.translate(0, BODY_Y, -0.0186);
+  parts.push(gaster);
+
+  const petiole = new THREE.SphereGeometry(0.0026, 4, 3);
+  petiole.translate(0, BODY_Y - 0.0004, -0.0076);
+  parts.push(petiole);
+
+  const thorax = new THREE.SphereGeometry(0.0056, 6, 4);
+  thorax.scale(0.8, 0.86, 1.55);
+  thorax.translate(0, BODY_Y, 0.0032);
+  parts.push(thorax);
+
+  const head = new THREE.SphereGeometry(0.0064, 6, 4);
+  head.scale(1.0, 0.94, 0.86);
+  head.translate(0, BODY_Y + 0.0004, 0.0184);
+  parts.push(head);
+
+  // Six legs, splayed front / out / back. Each cylinder is built along +Y,
+  // shifted so it hangs from the origin, then tipped outward and swept.
+  const LEG_LEN = 0.0155;
+  const legs = [
+    { z: 0.008, spread: 0.92, sweep: -0.62 },
+    { z: 0.001, spread: 1.02, sweep: 0.02 },
+    { z: -0.005, spread: 0.95, sweep: 0.68 },
+  ];
+  for (const cfg of legs) {
+    for (const side of [1, -1]) {
+      const leg = new THREE.CylinderGeometry(0.0011, 0.0006, LEG_LEN, 3);
+      leg.translate(0, -LEG_LEN * 0.5, 0);
+      leg.rotateZ(side * cfg.spread);
+      leg.rotateX(cfg.sweep);
+      leg.translate(side * 0.0034, BODY_Y, cfg.z);
+      parts.push(leg);
+    }
+  }
+
+  // Antennae sweep forward and up off the front of the head.
+  const ANT_LEN = 0.014;
+  for (const side of [1, -1]) {
+    const feeler = new THREE.CylinderGeometry(0.0008, 0.0004, ANT_LEN, 3);
+    feeler.translate(0, ANT_LEN * 0.5, 0);
+    feeler.rotateZ(-side * 0.34);
+    feeler.rotateX(0.92);
+    feeler.translate(side * 0.0024, BODY_Y + 0.0032, 0.0216);
+    parts.push(feeler);
+  }
+
+  for (const side of [1, -1]) {
+    const jaw = new THREE.ConeGeometry(0.0013, 0.005, 3);
+    jaw.translate(0, 0.0025, 0);
+    jaw.rotateX(Math.PI * 0.5);
+    jaw.rotateY(-side * 0.34);
+    jaw.translate(side * 0.0022, BODY_Y - 0.001, 0.0224);
+    parts.push(jaw);
+  }
+
+  const g = mergeGeometries(parts, false);
+  g.computeVertexNormals();
   return g;
 }
 
@@ -547,12 +619,9 @@ export class AntSwarm {
         const ry = rng() * Math.PI * 2;
         head[i] = ry;
         const groundY = this._terrain ? this._terrain.getHeightBilinear(x, z) : 0;
-        dummy.position.set(
-          x,
-          groundY + 0.018 + rng() * 0.012,
-          z
-        );
-        dummy.rotation.set(-Math.PI * 0.5 + (rng() - 0.5) * 0.08, ry, (rng() - 0.5) * 0.12);
+        // Feet are modelled at y=0, so the body only needs a hair of clearance.
+        dummy.position.set(x, groundY + 0.0012, z);
+        dummy.rotation.set((rng() - 0.5) * 0.06, ry, (rng() - 0.5) * 0.06);
         dummy.scale.setScalar(scale[i]);
         dummy.updateMatrix();
         mesh.setMatrixAt(i, dummy.matrix);
@@ -695,16 +764,19 @@ export class AntSwarm {
           head[i] += (0.55 + 0.45 * Math.sin(t * 2.4 + ph * 3.2)) * Math.PI * 0.38;
         }
 
-        const bob = Math.sin(t * 18 + ph * 5) * 0.006;
+        // Scuttle: a little vertical bob, a pitch nod and a roll waddle. Kept
+        // small — the body sits on modelled legs now, so large tilts read as
+        // the ant sinking into the ground.
+        const bob = Math.sin(t * 18 + ph * 5) * 0.0009;
         const sway = Math.sin(t * 12 + ph * 3) * 0.05;
         const gy = this._terrain
           ? this._terrain.getHeightBilinear(px[i], pz[i])
           : 0;
-        dummy.position.set(px[i], gy + 0.016 + bob, pz[i]);
+        dummy.position.set(px[i], gy + 0.0012 + bob, pz[i]);
         dummy.rotation.set(
-          -Math.PI * 0.5 + sway * 0.25,
+          sway * 0.5,
           head[i],
-          Math.sin(t * 20 + ph) * 0.04
+          Math.sin(t * 20 + ph) * 0.06
         );
         dummy.scale.setScalar(sc);
         dummy.updateMatrix();
